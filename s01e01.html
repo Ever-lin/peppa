@@ -99,25 +99,27 @@ body {
   border: 1.5px solid var(--border);
   border-radius: 10px;
   padding: 8px 12px;
+}
+.tts-row {
   display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
 }
 .tts-bar-label { font-size: 11px; font-weight: 700; color: var(--text2); white-space: nowrap; }
-.repeat-btns { display: flex; gap: 4px; flex-wrap: wrap; }
-.rep-btn {
+.repeat-btns { display: flex; gap: 4px; flex-wrap: wrap; flex: 1; }
+.rep-btn, .pause-btn {
   font-size: 11px; font-weight: 800; color: var(--text2);
   background: var(--bg); border: 1.5px solid var(--border);
   border-radius: 20px; padding: 3px 9px; cursor: pointer;
   transition: all .15s; white-space: nowrap; font-family: inherit;
 }
-.rep-btn:hover { background: var(--pink-bg); border-color: var(--pink); color: var(--pink-d); }
+.rep-btn:hover, .pause-btn:hover { background: var(--pink-bg); border-color: var(--pink); color: var(--pink-d); }
 .rep-btn.active { background: var(--pink-d); border-color: var(--pink-d); color: #fff; }
+.pause-btn.active { background: #7C3AED; border-color: #7C3AED; color: #fff; }
 
-.tts-bar-right { margin-left: auto; display: flex; align-items: center; gap: 6px; }
 .stop-all-btn {
   font-size: 11px; font-weight: 800; color: #fff;
   background: #e74c3c; border: none;
   border-radius: 20px; padding: 4px 12px; cursor: pointer;
-  font-family: inherit; display: none;
+  font-family: inherit; display: none; flex-shrink: 0;
 }
 .stop-all-btn.visible { display: block; }
 
@@ -296,6 +298,128 @@ body {
   padding:5px 16px; border-radius:20px; text-decoration:none;
 }
 
+/* ── DICTATION ── */
+.dict-intro {
+  margin: 4px 12px 6px;
+  background: #EDE9FE;
+  border: 1.5px solid #C4B5FD;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 12px; color: #5B21B6;
+  display: flex; align-items: center; gap: 8px; font-weight: 600;
+}
+.dict-card {
+  margin: 5px 12px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.dict-zh {
+  font-size: 13px; color: var(--text2); font-weight: 600;
+  padding: 8px 12px 6px;
+  border-bottom: 1px dashed var(--border);
+}
+.dict-input-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px 8px;
+}
+.dict-speak-btn {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: #EDE9FE; border: 1.5px solid #C4B5FD;
+  color: #7C3AED; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .15s; font-family: inherit;
+}
+.dict-speak-btn:hover { background: #7C3AED; color: #fff; border-color: #7C3AED; }
+.dict-speak-btn.playing { background: #7C3AED; color: #fff; animation: pulse .8s ease-in-out infinite; }
+.dict-input {
+  flex: 1; border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 6px 10px;
+  font-size: 13.5px; font-family: inherit; color: var(--text);
+  outline: none; transition: border-color .15s;
+  background: var(--bg);
+}
+.dict-input:focus { border-color: #7C3AED; }
+.dict-input.correct { border-color: #16A34A; background: #F0FDF4; color: #15803D; }
+.dict-input.wrong   { border-color: #DC2626; background: #FEF2F2; color: #B91C1C; }
+.dict-check-btn {
+  flex-shrink: 0; padding: 6px 12px;
+  background: #7C3AED; color: #fff;
+  border: none; border-radius: 8px;
+  font-size: 12px; font-weight: 800;
+  cursor: pointer; font-family: inherit;
+  transition: opacity .15s;
+}
+.dict-check-btn:hover { opacity: .85; }
+.dict-check-btn:disabled { opacity: .4; cursor: default; }
+.dict-result {
+  font-size: 11.5px; padding: 4px 12px 8px;
+  display: none; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.dict-result.show { display: flex; }
+.dict-result.correct { color: #15803D; }
+.dict-result.wrong   { color: #B91C1C; }
+.dict-answer {
+  font-size: 11.5px; font-style: italic;
+  color: #15803D; font-weight: 700;
+}
+.dict-score-bar {
+  margin: 8px 12px 4px;
+  background: #EDE9FE; border: 2px solid #7C3AED;
+  border-radius: 10px; padding: 10px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.dict-score-label { font-size: 13px; font-weight: 700; color: #5B21B6; }
+.dict-score-val   { font-size: 20px; font-weight: 900; color: #7C3AED; flex: 1; }
+.dict-reset-btn {
+  padding: 6px 14px; background: #7C3AED; color: #fff;
+  border: none; border-radius: 20px; font-size: 12px; font-weight: 800;
+  cursor: pointer; font-family: inherit;
+}
+
+
+/* ── HIGHLIGHT TRANSCRIPT ── */
+.ht-block {
+  margin: 4px 12px;
+  border: 2px solid #F97316;
+  border-radius: 12px; overflow: hidden;
+}
+.ht-head {
+  background: #F97316; padding: 8px 14px;
+  display: flex; align-items: center; gap: 7px;
+}
+.ht-head-title { font-size: 13px; font-weight: 900; color: #fff; }
+.ht-zh-block {
+  padding: 10px 14px 12px;
+  border-bottom: 2px dashed #FED7AA;
+  background: #FFFAF5;
+}
+.ht-en-block {
+  padding: 10px 14px 12px;
+}
+.ht-block-label {
+  font-size: 10px; font-weight: 900; letter-spacing: .08em;
+  color: #F97316; text-transform: uppercase; margin-bottom: 8px;
+}
+.ht-para {
+  font-size: 14px; line-height: 2; color: #1E1220; font-weight: 600;
+}
+.ht-zh-block .ht-para {
+  font-size: 13.5px; color: #4A3050;
+  font-family: 'PingFang SC','Helvetica Neue',Arial,sans-serif;
+}
+.ht-sent { display: inline; }
+/* highlight colours — same in zh and en */
+.hl-vocab   { color: #C94F82; font-weight: 900; background: rgba(201,79,130,.12); border-radius: 3px; padding: 0 2px; }
+.hl-pattern { color: #2A6C8F; font-weight: 900; background: rgba(42,108,143,.12); border-radius: 3px; padding: 0 2px; }
+.ht-legend {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  padding: 8px 14px; background: #FFF7ED;
+  border-top: 1px solid #FED7AA;
+  font-size: 11px; font-weight: 700;
+}
+
 /* ── PROGRESS TOAST ── */
 #toast {
   position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
@@ -330,23 +454,35 @@ body {
 <div class="video-section">
   <div class="video-label">🎬 英文原版视频</div>
   <div class="video-wrap" id="videoWrap">
-    <iframe src="https://v.qq.com/txp/iframe/player.html?vid=j0027aol7yf&auto=0" allowfullscreen="true" frameborder="0" scrolling="no"></iframe>
+    <iframe src="https://v.qq.com/txp/iframe/player.html?vid=e3228s8jndz&auto=0" allowfullscreen="true" frameborder="0" scrolling="no"></iframe>
   </div>
 </div>
 
 <!-- TTS GLOBAL CONTROLS -->
 <div class="tts-bar">
-  <span class="tts-bar-label">🔁 朗读次数：</span>
-  <div class="repeat-btns">
-    <button class="rep-btn" data-n="5">5次</button>
-    <button class="rep-btn" data-n="10">10次</button>
-    <button class="rep-btn" data-n="50">50次</button>
-    <button class="rep-btn" data-n="100">100次</button>
-    <button class="rep-btn active" data-n="1">1次</button>
-    <button class="rep-btn" data-n="0">∞ 永远</button>
-  </div>
-  <div class="tts-bar-right">
+  <div class="tts-row">
+    <span class="tts-bar-label">🔁 朗读次数：</span>
+    <div class="repeat-btns">
+      <button class="rep-btn" data-n="5">5次</button>
+      <button class="rep-btn" data-n="10">10次</button>
+      <button class="rep-btn" data-n="50">50次</button>
+      <button class="rep-btn" data-n="100">100次</button>
+      <button class="rep-btn active" data-n="1">1次</button>
+      <button class="rep-btn" data-n="0">∞ 永远</button>
+    </div>
     <button class="stop-all-btn" id="stopAllBtn" onclick="stopAll()">⏹ 停止</button>
+  </div>
+  <div class="tts-row" style="border-top:1px dashed var(--border);padding-top:8px;margin-top:4px;">
+    <span class="tts-bar-label">⏱ 暂停间隔：</span>
+    <div class="repeat-btns">
+      <button class="pause-btn active" data-p="0">不暂停</button>
+      <button class="pause-btn" data-p="-1">同句时长</button>
+      <button class="pause-btn" data-p="1">1秒</button>
+      <button class="pause-btn" data-p="2">2秒</button>
+      <button class="pause-btn" data-p="3">3秒</button>
+      <button class="pause-btn" data-p="5">5秒</button>
+    </div>
+    <span id="pause-hint" style="font-size:10px;color:var(--text2);white-space:nowrap;">100LS跟读法</span>
   </div>
 </div>
 
@@ -899,6 +1035,52 @@ body {
   <div class="v-row"><div class="vnum">15</div><span class="vword">quickly</span><span class="vpron">/ˈkwɪkli/</span><span class="vmean">快速地（副词）</span></div>
 </div>
 
+
+<!-- ═══ HIGHLIGHT TRANSCRIPT ═══ -->
+<div class="sec-head" style="padding-top:16px">
+  <div class="sec-dot" style="background:#F97316"></div>
+  <span class="sec-label" style="color:#F97316">完整台词 · 高亮展示</span>
+  <div class="sec-rule"></div>
+</div>
+<div style="margin:4px 12px 6px;background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:10px;padding:8px 12px;font-size:12px;color:#C2410C;font-weight:600;display:flex;align-items:center;gap:8px;">
+  <span>🎨</span><span>上方全部中文台词 · 下方全部英文台词，相同颜色标记相同知识点</span>
+</div>
+<div class="ht-block">
+  <div class="ht-head"><span style="font-size:15px">📜</span><span class="ht-head-title">S01E01 完整台词 · 重点高亮</span></div>
+  <div class="ht-zh-block">
+    <div class="ht-block-label">🇨🇳 中文台词</div>
+    <div class="ht-para"><span class="ht-sent" title="第1句">我是<span class='hl-vocab'>小猪佩奇</span>。这是我的<span class='hl-vocab'>弟弟</span>乔治。这是猪妈妈。这是猪爸爸。</span> <span class="ht-sent" title="第2句">今天<span class='hl-vocab'>下雨</span>了。所以佩奇和乔治<span class='hl-vocab'>不能</span>出去玩。</span> <span class="ht-sent" title="第3句">爸爸！雨<span class='hl-vocab'>停了</span>。<span class='hl-pattern'>我们可以出去玩吗？</span></span> <span class="ht-sent" title="第4句">哈哈！<span class='hl-pattern'>好吧</span>，你们两个去跑跑吧。</span> <span class="ht-sent" title="第5句">佩奇<span class='hl-vocab'>喜欢</span>在<span class='hl-vocab'>泥坑</span>里跳来跳去。</span> <span class="ht-sent" title="第6句"><span class='hl-pattern'>我喜欢泥坑！</span></span> <span class="ht-sent" title="第7句">佩奇！<span class='hl-pattern'>如果你要跳泥坑，就必须穿靴子。</span></span> <span class="ht-sent" title="第8句">对不起，妈妈。</span> <span class="ht-sent" title="第9句">乔治<span class='hl-vocab'>也</span>喜欢跳<span class='hl-vocab'>泥坑</span>。</span> <span class="ht-sent" title="第10句">乔治！<span class='hl-pattern'>如果你要跳泥坑，就必须穿靴子。</span></span> <span class="ht-sent" title="第11句">佩奇喜欢<span class='hl-vocab'>照顾</span>她的弟弟乔治。</span> <span class="ht-sent" title="第12句"><span class='hl-pattern'>我们去找更多泥坑吧！</span></span> <span class="ht-sent" title="第13句">佩奇<span class='hl-vocab'>找到了</span>一个小泥坑。乔治<span class='hl-vocab'>找到了</span>一个大泥坑。</span> <span class="ht-sent" title="第14句">停，乔治！我<span class='hl-vocab'>必须</span>先<span class='hl-vocab'>检查</span>对你来说是否<span class='hl-vocab'>安全</span>。</span> <span class="ht-sent" title="第15句">好了！<span class='hl-vocab'>安全</span>的。对不起，乔治。</span> <span class="ht-sent" title="第16句"><span class='hl-pattern'>猜猜我们刚才在做什么！</span></span> <span class="ht-sent" title="第17句">让我想想……<span class='hl-pattern'>你们是在看电视吗？</span></span> <span class="ht-sent" title="第18句">我知道了！<span class='hl-pattern'>你们一直在泥坑里跳！</span></span> <span class="ht-sent" title="第19句">你们搞得<span class='hl-vocab'>一团糟</span>啊！</span> <span class="ht-sent" title="第20句">哦好吧，<span class='hl-pattern'>不过是泥巴嘛</span>。<span class='hl-pattern'>趁妈妈看到之前快点<span class='hl-vocab'>收拾干净</span>。</span></span> <span class="ht-sent" title="第21句">爸爸，收拾好以后，<span class='hl-pattern'>你和妈妈也来一起玩好吗？</span></span> <span class="ht-sent" title="第22句">佩奇和乔治<span class='hl-vocab'>穿上了</span><span class='hl-vocab'>靴子</span>。猪妈妈和猪爸爸也<span class='hl-vocab'>穿上了</span><span class='hl-vocab'>靴子</span>。</span> <span class="ht-sent" title="第23句"><span class='hl-vocab'>所有人</span>都喜欢在泥坑里跳<span class='hl-vocab'>上跳下</span>。</span> <span class="ht-sent" title="第24句">哦，猪爸爸！看你弄得多<span class='hl-vocab'>乱</span>啊！</span> <span class="ht-sent" title="第25句"><span class='hl-pattern'>不过是泥巴嘛。</span></span></div>
+  </div>
+  <div class="ht-en-block">
+    <div class="ht-block-label">🇬🇧 英文台词</div>
+    <div class="ht-para"><span class="ht-sent" title="Sentence 1">I'm <span class='hl-vocab'>Peppa Pig</span>. This is my <span class='hl-vocab'>little brother</span>, George. This is Mummy Pig. And this is Daddy Pig.</span> <span class="ht-sent" title="Sentence 2">It is <span class='hl-vocab'>raining</span> today. So Peppa and George <span class='hl-vocab'>cannot</span> play <span class='hl-vocab'>outside</span>.</span> <span class="ht-sent" title="Sentence 3">Daddy! It's <span class='hl-vocab'>stopped</span> raining. <span class='hl-pattern'>Can we go out to play?</span></span> <span class="ht-sent" title="Sentence 4">Ha, ha! <span class='hl-pattern'>Alright.</span> Run along, you two.</span> <span class="ht-sent" title="Sentence 5">Peppa <span class='hl-vocab'>loves</span> jumping in <span class='hl-vocab'>muddy puddles</span>.</span> <span class="ht-sent" title="Sentence 6"><span class='hl-pattern'>I love muddy puddles!</span></span> <span class="ht-sent" title="Sentence 7">Peppa! <span class='hl-pattern'>If you jump in muddy puddles, you <span class='hl-vocab'>must</span> wear your <span class='hl-vocab'>boots</span>.</span></span> <span class="ht-sent" title="Sentence 8">Sorry, Mummy.</span> <span class="ht-sent" title="Sentence 9">George likes to jump in <span class='hl-vocab'>muddy puddles</span>, <span class='hl-vocab'>too</span>.</span> <span class="ht-sent" title="Sentence 10">George! <span class='hl-pattern'>If you jump in muddy puddles, you <span class='hl-vocab'>must</span> wear your <span class='hl-vocab'>boots</span>.</span></span> <span class="ht-sent" title="Sentence 11">Peppa likes to <span class='hl-vocab'>look after</span> her little brother George.</span> <span class="ht-sent" title="Sentence 12"><span class='hl-pattern'>Let's find some more puddles!</span></span> <span class="ht-sent" title="Sentence 13">Peppa <span class='hl-vocab'>has found</span> a little puddle. George <span class='hl-vocab'>has found</span> a big puddle.</span> <span class="ht-sent" title="Sentence 14">Stop, George! I <span class='hl-vocab'>must</span> <span class='hl-vocab'>check</span> if it is <span class='hl-vocab'>safe</span> for you.</span> <span class="ht-sent" title="Sentence 15">Good! It is <span class='hl-vocab'>safe</span>. Sorry, George.</span> <span class="ht-sent" title="Sentence 16"><span class='hl-pattern'>Guess what we've been doing!</span></span> <span class="ht-sent" title="Sentence 17">Let me think... <span class='hl-pattern'>Have you been watching television?</span></span> <span class="ht-sent" title="Sentence 18">I know! <span class='hl-pattern'>You've been jumping in muddy puddles!</span></span> <span class="ht-sent" title="Sentence 19">And look at the <span class='hl-vocab'>mess</span> you're in!</span> <span class="ht-sent" title="Sentence 20">Oh well, <span class='hl-pattern'>it's only <span class='hl-vocab'>mud</span></span>. <span class='hl-pattern'>Let's <span class='hl-vocab'>clean up</span> <span class='hl-vocab'>quickly</span> before Mummy sees the <span class='hl-vocab'>mess</span>.</span></span> <span class="ht-sent" title="Sentence 21">Daddy, when we've cleaned up, <span class='hl-pattern'>will you and Mummy come and play too?</span></span> <span class="ht-sent" title="Sentence 22">Peppa and George are <span class='hl-vocab'>wearing</span> their <span class='hl-vocab'>boots</span>. Mummy and Daddy are <span class='hl-vocab'>wearing</span> their <span class='hl-vocab'>boots</span>.</span> <span class="ht-sent" title="Sentence 23"><span class='hl-vocab'>Everyone</span> loves jumping <span class='hl-vocab'>up and down</span> in <span class='hl-vocab'>muddy puddles</span>.</span> <span class="ht-sent" title="Sentence 24">Oh, Daddy Pig! Look at the <span class='hl-vocab'>mess</span> you're in!</span> <span class="ht-sent" title="Sentence 25"><span class='hl-pattern'>It's only <span class='hl-vocab'>mud</span>.</span></span></div>
+  </div>
+  <div class="ht-legend">
+  <span><span class="hl-vocab">■</span> 重点词汇</span>
+  <span><span class="hl-pattern">■</span> 固定句型</span>
+</div>
+</div>
+
+<!-- ═══ DICTATION ═══ -->
+<div class="sec-head" style="padding-top:16px">
+  <div class="sec-dot" style="background:#7C3AED"></div>
+  <span class="sec-label" style="color:#7C3AED">听力练习 · 听写训练</span>
+  <div class="sec-rule"></div>
+</div>
+
+<div class="dict-intro">
+  <span>🎧</span>
+  <span>听英文朗读，根据中文提示，在输入框打出英文台词（不区分大小写）</span>
+</div>
+
+<div id="dictation-list"></div>
+
+<div class="dict-score-bar" id="dictScoreBar" style="display:none">
+  <span class="dict-score-label">本次得分</span>
+  <span class="dict-score-val" id="dictScoreVal">0 / 0</span>
+  <button class="dict-reset-btn" onclick="resetDictation()">🔄 重新练习</button>
+</div>
+
 <!-- FOOTER -->
 <div class="footer">
   <div class="footer-emoji">🐷 💦 🥾</div>
@@ -915,80 +1097,106 @@ body {
 <div id="toast"></div>
 
 <script>
-// ── State ──
-let currentRepeat = 1;   // 1 = 默认一次
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
+let currentRepeat = 1;
 let activeBtn     = null;
 let utterance     = null;
 let repeatCount   = 0;
 let targetRepeats = 1;
 let isForever     = false;
 let currentText   = '';
+let pauseMode     = 0;      // 0=no pause, -1=same duration, N=fixed seconds
+let speakStartTime = 0;     // when current utterance started (ms)
 
-// ── Repeat selector ──
+// ══════════════════════════════════════
+// VOICE HELPERS
+// ══════════════════════════════════════
+function getBritishVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  return voices.find(v => v.lang === 'en-GB') ||
+         voices.find(v => v.lang.startsWith('en')) || null;
+}
+
+function makeUtterance(text, rate = 0.88) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang  = 'en-GB';
+  u.rate  = rate;
+  u.pitch = 1.05;
+  const v = getBritishVoice();
+  if (v) u.voice = v;
+  return u;
+}
+
+// ══════════════════════════════════════
+// REPEAT SELECTOR
+// ══════════════════════════════════════
 document.querySelectorAll('.rep-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.rep-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const n = parseInt(btn.dataset.n);
-    if (n === 0) { isForever = true; currentRepeat = 999999; }
+    if (n === 0) { isForever = true;  currentRepeat = 999999; }
     else         { isForever = false; currentRepeat = n; }
-    // Update all visible count badges
     document.querySelectorAll('.tts-count').forEach(el => {
       el.textContent = isForever ? '∞' : '×' + currentRepeat;
     });
   });
 });
 
-// ── Speak ──
-function speak(btn, text) {
-  // If clicking same button while playing → stop
-  if (activeBtn === btn && window.speechSynthesis.speaking) {
-    stopAll();
-    return;
-  }
-  stopAll(false);
+// ══════════════════════════════════════
+// PAUSE SELECTOR
+// ══════════════════════════════════════
+document.querySelectorAll('.pause-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pause-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    pauseMode = parseInt(btn.dataset.p);
+    const hint = document.getElementById('pause-hint');
+    if (pauseMode === 0)  hint.textContent = '连续朗读';
+    else if (pauseMode === -1) hint.textContent = '朗读多久，暂停多久（100LS推荐）';
+    else hint.textContent = `每次朗读后暂停 ${pauseMode} 秒`;
+  });
+});
 
+// ══════════════════════════════════════
+// SENTENCE SPEAK
+// ══════════════════════════════════════
+function speak(btn, text) {
+  if (activeBtn === btn && window.speechSynthesis.speaking) { stopAll(); return; }
+  stopAll(false);
   currentText   = text;
   repeatCount   = 0;
   targetRepeats = currentRepeat;
   activeBtn     = btn;
-
-  const card = btn.closest('.card');
-  card.classList.add('playing');
+  btn.closest('.card').classList.add('playing');
   btn.classList.add('playing');
   btn.querySelector('.tts-icon').textContent = '⏸';
   document.getElementById('stopAllBtn').classList.add('visible');
-
   doSpeak();
 }
 
 function doSpeak() {
   if (!activeBtn) return;
   if (!isForever && repeatCount >= targetRepeats) { finish(); return; }
-
   repeatCount++;
-  const remaining = isForever ? '∞' : (targetRepeats - repeatCount + 1);
-  showToast(isForever
-    ? `🔊 朗读中... ∞`
-    : `🔊 第 ${repeatCount} / ${targetRepeats} 次`
-  );
-
-  utterance = new SpeechSynthesisUtterance(currentText);
-  utterance.lang  = 'en-GB';
-  utterance.rate  = 0.88;
-  utterance.pitch = 1.05;
-
-  // Prefer a British English voice if available
-  const voices = window.speechSynthesis.getVoices();
-  const preferred = voices.find(v => v.lang === 'en-GB') ||
-                    voices.find(v => v.lang.startsWith('en'));
-  if (preferred) utterance.voice = preferred;
-
+  showToast(isForever ? `🔊 朗读中 ∞` : `🔊 第 ${repeatCount} / ${targetRepeats} 次`);
+  speakStartTime = Date.now();
+  utterance = makeUtterance(currentText);
   utterance.onend = () => {
-    if (activeBtn) setTimeout(doSpeak, 220);
+    if (!activeBtn) return;
+    const elapsed = Date.now() - speakStartTime; // ms the speech took
+    let delayMs = 220;
+    if (pauseMode === -1) delayMs = Math.max(500, elapsed);   // same as speech duration
+    else if (pauseMode > 0) delayMs = pauseMode * 1000;
+    if (pauseMode !== 0) {
+      const sec = pauseMode === -1 ? Math.round(elapsed/1000) : pauseMode;
+      showToast(`⏱ 暂停中 ${sec}s — 试着跟读！`);
+    }
+    setTimeout(doSpeak, delayMs);
   };
   utterance.onerror = () => finish();
-
   window.speechSynthesis.speak(utterance);
 }
 
@@ -998,8 +1206,7 @@ function finish() {
     activeBtn.classList.remove('playing');
     activeBtn.closest('.card').classList.remove('playing');
   }
-  activeBtn = null;
-  utterance = null;
+  activeBtn = null; utterance = null;
   document.getElementById('stopAllBtn').classList.remove('visible');
   hideToast();
 }
@@ -1011,64 +1218,206 @@ function stopAll(showFeedback = true) {
     activeBtn.classList.remove('playing');
     activeBtn.closest('.card').classList.remove('playing');
   }
-  activeBtn = null;
-  utterance = null;
+  activeBtn = null; utterance = null;
   document.getElementById('stopAllBtn').classList.remove('visible');
   if (showFeedback) hideToast();
 }
 
-// ── Toast ──
-let toastTimer;
+// ══════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════
 function showToast(msg) {
   const t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  clearTimeout(toastTimer);
 }
 function hideToast() {
   document.getElementById('toast').classList.remove('show');
 }
 
-// ── Speak single word (vocab pill) ──
+// ══════════════════════════════════════
+// VOCAB PILL SPEAK
+// ══════════════════════════════════════
 let wordUtterance = null;
 function speakWord(word) {
-  // stop any word currently playing
   if (wordUtterance) {
     window.speechSynthesis.cancel();
     document.querySelectorAll('.vp.speaking').forEach(el => el.classList.remove('speaking'));
     wordUtterance = null;
   }
-  // find the pill that was clicked (match by word text)
-  const pills = [...document.querySelectorAll('.vp')];
-  const pill = pills.find(p => {
+  const pill = [...document.querySelectorAll('.vp')].find(p => {
     const vw = p.querySelector('.vw');
     return vw && vw.textContent.trim() === word;
   });
   if (pill) pill.classList.add('speaking');
-
-  wordUtterance = new SpeechSynthesisUtterance(word);
-  wordUtterance.lang  = 'en-GB';
-  wordUtterance.rate  = 0.8;
-  wordUtterance.pitch = 1.05;
-  const voices = window.speechSynthesis.getVoices();
-  const preferred = voices.find(v => v.lang === 'en-GB') || voices.find(v => v.lang.startsWith('en'));
-  if (preferred) wordUtterance.voice = preferred;
-  wordUtterance.onend = () => {
-    if (pill) pill.classList.remove('speaking');
-    wordUtterance = null;
-  };
-  wordUtterance.onerror = () => {
+  wordUtterance = makeUtterance(word, 0.8);
+  wordUtterance.onend = wordUtterance.onerror = () => {
     if (pill) pill.classList.remove('speaking');
     wordUtterance = null;
   };
   window.speechSynthesis.speak(wordUtterance);
 }
 
-// Load voices (some browsers need this trigger)
-window.speechSynthesis.onvoiceschanged = () => {};
-if (window.speechSynthesis.getVoices().length === 0) {
-  window.speechSynthesis.getVoices();
+// ══════════════════════════════════════
+// DICTATION
+// ══════════════════════════════════════
+const DICT_LINES = [
+  { zh: "我是小猪佩奇。这是我的弟弟乔治。这是猪妈妈。这是猪爸爸。",
+    en: "I'm Peppa Pig. This is my little brother, George. This is Mummy Pig. And this is Daddy Pig." },
+  { zh: "今天下雨了，所以佩奇和乔治不能出去玩。",
+    en: "It is raining today. So Peppa and George cannot play outside." },
+  { zh: "爸爸！雨停了。我们可以出去玩吗？",
+    en: "Daddy! It's stopped raining. Can we go out to play?" },
+  { zh: "哈哈！好吧，你们两个去跑跑吧。",
+    en: "Ha, ha! Alright. Run along, you two." },
+  { zh: "佩奇喜欢在泥坑里跳来跳去。",
+    en: "Peppa loves jumping in muddy puddles." },
+  { zh: "我喜欢泥坑！",
+    en: "I love muddy puddles!" },
+  { zh: "佩奇！如果你要跳泥坑，就必须穿靴子。",
+    en: "Peppa! If you jump in muddy puddles, you must wear your boots." },
+  { zh: "对不起，妈妈。",
+    en: "Sorry, Mummy." },
+  { zh: "乔治也喜欢跳泥坑。",
+    en: "George likes to jump in muddy puddles, too." },
+  { zh: "乔治！如果你要跳泥坑，就必须穿靴子。",
+    en: "George! If you jump in muddy puddles, you must wear your boots." },
+  { zh: "佩奇喜欢照顾她的弟弟乔治。",
+    en: "Peppa likes to look after her little brother George." },
+  { zh: "乔治，我们去找更多泥坑吧！",
+    en: "George, let's find some more puddles!" },
+  { zh: "佩奇找到了一个小泥坑。乔治找到了一个大泥坑。",
+    en: "Peppa has found a little puddle. George has found a big puddle." },
+  { zh: "停，乔治！我必须先检查对你来说是否安全。",
+    en: "Stop, George! I must check if it is safe for you." },
+  { zh: "好了！安全的。对不起，乔治。",
+    en: "Good! It is safe. Sorry, George." },
+  { zh: "爸爸！爸爸！猜猜我们刚才在做什么！",
+    en: "Daddy! Daddy! Guess what we've been doing!" },
+  { zh: "让我想想……你们是在看电视吗？",
+    en: "Let me think... Have you been watching television?" },
+  { zh: "我知道了！你们一直在泥坑里跳！",
+    en: "I know! You've been jumping in muddy puddles!" },
+  { zh: "你们搞得一团糟啊！",
+    en: "And look at the mess you're in!" },
+  { zh: "哦好吧，不过是泥巴嘛。趁妈妈看到之前快点收拾干净。",
+    en: "Oh well, it's only mud. Let's clean up quickly before Mummy sees the mess." },
+  { zh: "爸爸，收拾好以后，你和妈妈也来一起玩好吗？",
+    en: "Daddy, when we've cleaned up, will you and Mummy come and play too?" },
+  { zh: "佩奇和乔治穿上了靴子。猪妈妈和猪爸爸也穿上了靴子。",
+    en: "Peppa and George are wearing their boots. Mummy and Daddy are wearing their boots." },
+  { zh: "所有人都喜欢在泥坑里跳上跳下。",
+    en: "Everyone loves jumping up and down in muddy puddles." },
+  { zh: "哦，猪爸爸！看你弄得多乱啊！",
+    en: "Oh, Daddy Pig! Look at the mess you're in!" },
+  { zh: "不过是泥巴嘛。",
+    en: "It's only mud." },
+];
+
+let dictSpeaking = null; // currently speaking dict utterance
+
+function buildDictation() {
+  const container = document.getElementById('dictation-list');
+  DICT_LINES.forEach((line, i) => {
+    const card = document.createElement('div');
+    card.className = 'dict-card';
+    card.innerHTML = `
+      <div class="dict-zh">${i+1}. ${line.zh}</div>
+      <div class="dict-input-row">
+        <button class="dict-speak-btn" id="dsb-${i}" onclick="dictSpeak(${i})" title="点击朗读">🔊</button>
+        <input class="dict-input" id="di-${i}" type="text"
+          placeholder="输入英文台词…"
+          oninput="dictClearResult(${i})"
+          onkeydown="if(event.key==='Enter')dictCheck(${i})">
+        <button class="dict-check-btn" id="dcb-${i}" onclick="dictCheck(${i})">检查</button>
+      </div>
+      <div class="dict-result" id="dr-${i}"></div>`;
+    container.appendChild(card);
+  });
 }
+
+function dictSpeak(i) {
+  // stop any existing dict speech
+  if (dictSpeaking !== null) {
+    window.speechSynthesis.cancel();
+    document.querySelectorAll('.dict-speak-btn.playing').forEach(b => {
+      b.classList.remove('playing'); b.textContent = '🔊';
+    });
+    if (dictSpeaking === i) { dictSpeaking = null; return; }
+  }
+  dictSpeaking = i;
+  const btn = document.getElementById(`dsb-${i}`);
+  btn.classList.add('playing'); btn.textContent = '⏸';
+  const u = makeUtterance(DICT_LINES[i].en, 0.82);
+  u.onend = u.onerror = () => {
+    btn.classList.remove('playing'); btn.textContent = '🔊';
+    dictSpeaking = null;
+  };
+  window.speechSynthesis.speak(u);
+}
+
+function dictClearResult(i) {
+  const dr = document.getElementById(`dr-${i}`);
+  const inp = document.getElementById(`di-${i}`);
+  dr.classList.remove('show','correct','wrong');
+  inp.classList.remove('correct','wrong');
+}
+
+function dictCheck(i) {
+  const inp = document.getElementById(`di-${i}`);
+  const dr  = document.getElementById(`dr-${i}`);
+  const userVal = inp.value.trim();
+  if (!userVal) return;
+  const correct = DICT_LINES[i].en;
+  // Only compare letters (a-z), ignore ALL punctuation, spaces, case
+  const lettersOnly = s => s.toLowerCase().replace(/[^a-z]/g, '');
+  const isCorrect = lettersOnly(userVal) === lettersOnly(correct);
+
+  inp.classList.remove('correct','wrong');
+  inp.classList.add(isCorrect ? 'correct' : 'wrong');
+  dr.classList.remove('show','correct','wrong');
+  dr.classList.add('show', isCorrect ? 'correct' : 'wrong');
+
+  if (isCorrect) {
+    dr.innerHTML = `✅ <strong>完全正确！</strong>`;
+  } else {
+    dr.innerHTML = `❌ 参考答案：<span class="dict-answer">${correct}</span>`;
+  }
+  updateDictScore();
+}
+
+function updateDictScore() {
+  let correct = 0, answered = 0;
+  DICT_LINES.forEach((_, i) => {
+    const inp = document.getElementById(`di-${i}`);
+    if (!inp) return;
+    if (inp.classList.contains('correct') || inp.classList.contains('wrong')) answered++;
+    if (inp.classList.contains('correct')) correct++;
+  });
+  const bar = document.getElementById('dictScoreBar');
+  bar.style.display = answered > 0 ? 'flex' : 'none';
+  document.getElementById('dictScoreVal').textContent = `${correct} / ${answered} 题正确`;
+}
+
+function resetDictation() {
+  DICT_LINES.forEach((_, i) => {
+    const inp = document.getElementById(`di-${i}`);
+    const dr  = document.getElementById(`dr-${i}`);
+    const btn = document.getElementById(`dsb-${i}`);
+    if (inp) { inp.value = ''; inp.classList.remove('correct','wrong'); }
+    if (dr)  { dr.classList.remove('show','correct','wrong'); }
+    if (btn) { btn.classList.remove('playing'); btn.textContent = '🔊'; }
+  });
+  document.getElementById('dictScoreBar').style.display = 'none';
+  if (dictSpeaking !== null) { window.speechSynthesis.cancel(); dictSpeaking = null; }
+}
+
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
+window.speechSynthesis.onvoiceschanged = () => {};
+if (window.speechSynthesis.getVoices().length === 0) window.speechSynthesis.getVoices();
+buildDictation();
 </script>
 </body>
 </html>

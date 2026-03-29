@@ -5,47 +5,72 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>🐷 小猪佩奇英语学习</title>
 <style>
-* { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: linear-gradient(150deg,#FFE0EF 0%,#FFF4D6 55%,#E4F0FF 100%);
-  min-height: 100vh;
-  font-family: 'PingFang SC','Helvetica Neue',Arial,sans-serif;
-  display: flex; align-items: center; justify-content: center; padding: 24px;
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  background:linear-gradient(150deg,#FFE0EF 0%,#FFF4D6 55%,#E4F0FF 100%);
+  min-height:100vh;font-family:'PingFang SC','Helvetica Neue',Arial,sans-serif;
+  display:flex;align-items:center;justify-content:center;padding:24px;
 }
-.wrap { max-width: 480px; width: 100%; text-align: center; }
-.pig { font-size: 72px; display: block; margin-bottom: 12px; animation: bounce 2s ease-in-out infinite; }
-@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
-h1 { font-size: 22px; font-weight: 900; color: #C94F82; margin-bottom: 4px; }
-.sub { font-size: 14px; color: #6B3F1A; margin-bottom: 28px; font-weight: 600; }
-.ep-list { display: flex; flex-direction: column; gap: 10px; }
-.ep-card {
-  background: #fff;
-  border: 2px solid #F4A7C3;
-  border-radius: 14px;
-  padding: 14px 18px;
-  text-decoration: none;
-  display: flex; align-items: center; gap: 14px;
-  transition: all .2s;
+.wrap{max-width:480px;width:100%;text-align:center;}
+.pig{font-size:72px;display:block;margin-bottom:12px;animation:bounce 2s ease-in-out infinite;}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+h1{font-size:22px;font-weight:900;color:#C94F82;margin-bottom:4px;}
+.sub{font-size:14px;color:#6B3F1A;margin-bottom:28px;font-weight:600;}
+.ep-list{display:flex;flex-direction:column;gap:10px;}
+.ep-card{
+  background:#fff;border:2px solid #F4A7C3;border-radius:14px;
+  padding:14px 18px;text-decoration:none;
+  display:flex;align-items:center;gap:14px;transition:all .2s;cursor:pointer;
 }
-.ep-card:hover { background: #FFF0F6; border-color: #C94F82; transform: translateY(-2px); box-shadow: 0 4px 16px rgba(201,79,130,.15); }
-.ep-num {
-  width: 42px; height: 42px; border-radius: 10px;
-  background: #C94F82; color: #fff;
-  font-size: 12px; font-weight: 900;
-  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-  line-height: 1.2; text-align: center;
+.ep-card:hover{background:#FFF0F6;border-color:#C94F82;transform:translateY(-2px);box-shadow:0 4px 16px rgba(201,79,130,.15);}
+.ep-card.coming{opacity:.5;pointer-events:none;border-style:dashed;}
+.ep-card.locked{border-color:#7C3AED;}
+.ep-card.locked:hover{background:#F5F3FF;border-color:#5B21B6;box-shadow:0 4px 16px rgba(124,58,237,.15);}
+.ep-num{
+  width:42px;height:42px;border-radius:10px;background:#C94F82;color:#fff;
+  font-size:12px;font-weight:900;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;line-height:1.2;text-align:center;
 }
-.ep-info { text-align: left; flex: 1; }
-.ep-title { font-size: 15px; font-weight: 800; color: #1E1220; margin-bottom: 2px; }
-.ep-sub { font-size: 12px; color: #5C3D5C; }
-.ep-arrow { font-size: 18px; color: #C94F82; flex-shrink: 0; }
-.ep-card.coming {
-  opacity: .5; pointer-events: none; border-style: dashed;
+.ep-card.locked .ep-num{background:#7C3AED;}
+.ep-info{text-align:left;flex:1;}
+.ep-title{font-size:15px;font-weight:800;color:#1E1220;margin-bottom:2px;}
+.ep-sub{font-size:12px;color:#5C3D5C;}
+.ep-arrow{font-size:18px;color:#C94F82;flex-shrink:0;}
+.ep-card.locked .ep-arrow{color:#7C3AED;}
+.coming-badge{font-size:10px;background:#EDD5E5;color:#C94F82;padding:2px 8px;border-radius:20px;font-weight:700;margin-top:2px;display:inline-block;}
+.lock-badge{font-size:10px;background:#EDE9FE;color:#7C3AED;padding:2px 8px;border-radius:20px;font-weight:700;margin-top:2px;display:inline-block;}
+.free-badge{font-size:10px;background:#DCFCE7;color:#166534;padding:2px 8px;border-radius:20px;font-weight:700;margin-top:2px;display:inline-block;}
+
+/* MODAL */
+.modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);
+  z-index:1000;align-items:center;justify-content:center;padding:20px;
 }
-.coming-badge {
-  font-size: 10px; background: #EDD5E5; color: #C94F82;
-  padding: 2px 8px; border-radius: 20px; font-weight: 700; margin-top: 2px; display: inline-block;
+.modal-overlay.show{display:flex;}
+.modal{
+  background:#fff;border-radius:20px;padding:28px 24px;
+  width:100%;max-width:360px;text-align:center;
+  box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
+.modal-pig{font-size:44px;margin-bottom:8px;}
+.modal-title{font-size:18px;font-weight:900;color:#7C3AED;margin-bottom:4px;}
+.modal-sub{font-size:12px;color:#5C3D5C;margin-bottom:20px;}
+.modal-field{
+  width:100%;border:1.5px solid #C4B5FD;border-radius:10px;
+  padding:10px 14px;font-size:14px;font-family:inherit;
+  outline:none;margin-bottom:10px;transition:border-color .15s;
+}
+.modal-field:focus{border-color:#7C3AED;}
+.modal-field.error{border-color:#DC2626;background:#FEF2F2;}
+.modal-err{font-size:12px;color:#DC2626;margin-bottom:10px;display:none;}
+.modal-err.show{display:block;}
+.modal-btn{
+  width:100%;padding:11px;background:#7C3AED;color:#fff;border:none;
+  border-radius:10px;font-size:14px;font-weight:800;
+  cursor:pointer;font-family:inherit;transition:opacity .15s;
+}
+.modal-btn:hover{opacity:.88;}
+.modal-hint{font-size:11px;color:#9CA3AF;margin-top:12px;}
 </style>
 </head>
 <body>
@@ -53,13 +78,13 @@ h1 { font-size: 22px; font-weight: 900; color: #C94F82; margin-bottom: 4px; }
   <span class="pig">🐷</span>
   <h1>小猪佩奇英语学习</h1>
   <div class="sub">Peppa Pig English Learning · 点击集数开始学习</div>
-
   <div class="ep-list">
+
     <a class="ep-card" href="s01e01.html">
       <div class="ep-num">S01<br>E01</div>
       <div class="ep-info">
         <div class="ep-title">Muddy Puddles · 泥坑</div>
-        <div class="ep-sub">📖 台词 · 🔊 朗读 · 📝 语法 · 💬 句型 · ✨ 生词</div>
+        <div class="ep-sub"><span class="free-badge">✓ 免费</span>&nbsp;📖 台词 · 🔊 朗读 · 📝 语法 · 💬 句型 · 🎧 听写</div>
       </div>
       <span class="ep-arrow">→</span>
     </a>
@@ -68,7 +93,7 @@ h1 { font-size: 22px; font-weight: 900; color: #C94F82; margin-bottom: 4px; }
       <div class="ep-num">S01<br>E02</div>
       <div class="ep-info">
         <div class="ep-title">The Swimming Pool · 游泳池</div>
-        <div class="ep-sub"><span class="coming-badge">即将更新</span></div>
+        <div class="ep-sub"><span class="free-badge">✓ 免费</span>&nbsp;<span class="coming-badge">即将更新</span></div>
       </div>
       <span class="ep-arrow">→</span>
     </a>
@@ -77,20 +102,94 @@ h1 { font-size: 22px; font-weight: 900; color: #C94F82; margin-bottom: 4px; }
       <div class="ep-num">S01<br>E03</div>
       <div class="ep-info">
         <div class="ep-title">Daddy Loses His Glasses · 爸爸找眼镜</div>
-        <div class="ep-sub"><span class="coming-badge">即将更新</span></div>
+        <div class="ep-sub"><span class="free-badge">✓ 免费</span>&nbsp;<span class="coming-badge">即将更新</span></div>
       </div>
       <span class="ep-arrow">→</span>
     </a>
 
-    <a class="ep-card coming" href="#">
+    <div class="ep-card locked" onclick="tryUnlock('s01e04.html')">
       <div class="ep-num">S01<br>E04</div>
       <div class="ep-info">
         <div class="ep-title">Polly Parrot · 波利鹦鹉</div>
-        <div class="ep-sub"><span class="coming-badge">即将更新</span></div>
+        <div class="ep-sub"><span class="lock-badge">🔒 需要密码</span></div>
       </div>
       <span class="ep-arrow">→</span>
-    </a>
+    </div>
+
+    <div class="ep-card locked" onclick="tryUnlock('s01e05.html')">
+      <div class="ep-num">S01<br>E05</div>
+      <div class="ep-info">
+        <div class="ep-title">Arts and Crafts · 美工课</div>
+        <div class="ep-sub"><span class="lock-badge">🔒 需要密码</span></div>
+      </div>
+      <span class="ep-arrow">→</span>
+    </div>
+
+    <div class="ep-card locked" onclick="tryUnlock('s01e06.html')">
+      <div class="ep-num">S01<br>E06</div>
+      <div class="ep-info">
+        <div class="ep-title">The Playground · 操场</div>
+        <div class="ep-sub"><span class="lock-badge">🔒 需要密码</span></div>
+      </div>
+      <span class="ep-arrow">→</span>
+    </div>
+
   </div>
 </div>
+
+<!-- PASSWORD MODAL -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <div class="modal-pig">🔒</div>
+    <div class="modal-title">会员内容</div>
+    <div class="modal-sub">请输入用户名和密码以继续访问</div>
+    <input class="modal-field" id="inputUser" type="text" placeholder="用户名" autocomplete="username">
+    <input class="modal-field" id="inputPass" type="password" placeholder="密码" autocomplete="current-password"
+      onkeydown="if(event.key==='Enter')doLogin()">
+    <div class="modal-err" id="loginErr">❌ 用户名或密码错误，请重试</div>
+    <button class="modal-btn" onclick="doLogin()">进入课程 →</button>
+    <div class="modal-hint">前三集（S01E01–E03）无需密码，免费学习</div>
+  </div>
+</div>
+
+<script>
+const CORRECT_USER = 'Peppa Pig';
+const CORRECT_PASS = '2006';
+const AUTH_KEY = 'peppa_auth_ok';
+let pendingUrl = '';
+
+function isAuthed() { return localStorage.getItem(AUTH_KEY) === '1'; }
+
+function tryUnlock(url) {
+  if (isAuthed()) { window.location.href = url; return; }
+  pendingUrl = url;
+  ['inputUser','inputPass'].forEach(id => {
+    const el = document.getElementById(id);
+    el.value = ''; el.classList.remove('error');
+  });
+  document.getElementById('loginErr').classList.remove('show');
+  document.getElementById('modal').classList.add('show');
+  setTimeout(() => document.getElementById('inputUser').focus(), 100);
+}
+
+function doLogin() {
+  const u = document.getElementById('inputUser').value.trim();
+  const p = document.getElementById('inputPass').value;
+  if (u === CORRECT_USER && p === CORRECT_PASS) {
+    localStorage.setItem(AUTH_KEY, '1');
+    document.getElementById('modal').classList.remove('show');
+    window.location.href = pendingUrl;
+  } else {
+    document.getElementById('loginErr').classList.add('show');
+    ['inputUser','inputPass'].forEach(id => document.getElementById(id).classList.add('error'));
+    document.getElementById('inputPass').value = '';
+    setTimeout(() => document.getElementById('inputPass').focus(), 50);
+  }
+}
+
+document.getElementById('modal').addEventListener('click', function(e){
+  if (e.target === this) this.classList.remove('show');
+});
+</script>
 </body>
 </html>
