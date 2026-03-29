@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>🐷 小猪佩奇英语 · S01E01 泥坑</title>
+<style>
+:root {
+  --pink:     #F4A7C3;
+  --pink-d:   #C94F82;
+  --pink-bg:  #FFF0F6;
+  --yellow:   #FFD166;
+  --yellow-d: #B8860B;
+  --blue:     #90CAE0;
+  --blue-d:   #2A6C8F;
+  --teal:     #A8E6CF;
+  --teal-d:   #2D7A5A;
+  --mud-d:    #6B3F1A;
+  --white:    #FFFFFF;
+  --bg:       #FFF7FA;
+  --text:     #1E1220;
+  --text2:    #5C3D5C;
+  --border:   #EDD5E5;
+  --green-d:  #3A6820;
+  --purple-d: #5A3FB0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #f0e0ec;
+  font-family: 'PingFang SC','Helvetica Neue',Arial,sans-serif;
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+/* ── COVER ── */
+.cover {
+  background: linear-gradient(150deg,#FFE0EF 0%,#FFF4D6 55%,#E4F0FF 100%);
+  padding: 22px 18px 18px;
+  text-align: center;
+  border-bottom: 3px dashed var(--pink);
+}
+.cover-pig { font-size: 52px; display: block; margin-bottom: 6px; animation: bounce 2s ease-in-out infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.cover-badge {
+  display: inline-block; background: var(--pink-d); color: #fff;
+  font-size: 10px; font-weight: 800; letter-spacing: .12em;
+  padding: 3px 12px; border-radius: 20px; margin-bottom: 8px;
+}
+.cover-title { font-size: 26px; font-weight: 900; color: var(--pink-d); margin-bottom: 3px; }
+.cover-sub   { font-size: 14px; font-weight: 700; color: var(--mud-d); margin-bottom: 12px; }
+.cover-tags  { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
+.cover-tag {
+  background: rgba(255,255,255,.7); border: 1.5px solid var(--pink);
+  color: var(--pink-d); font-size: 11px; font-weight: 700;
+  padding: 2px 9px; border-radius: 20px;
+}
+
+/* ── VIDEO ── */
+.video-section {
+  padding: 12px 12px 6px;
+}
+.video-label {
+  font-size: 10px; font-weight: 800; letter-spacing: .1em;
+  color: var(--pink-d); text-transform: uppercase;
+  margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+}
+.video-label::after { content:''; flex:1; height:1px; background:var(--border); }
+.video-wrap {
+  position: relative; width: 100%; padding-bottom: 56.25%;
+  background: #1a0a12; border-radius: 10px; overflow: hidden;
+  border: 1.5px solid var(--border);
+}
+.video-wrap iframe {
+  position: absolute; top:0; left:0; width:100%; height:100%; border:none;
+}
+.video-placeholder {
+  position: absolute; top:0; left:0; width:100%; height:100%;
+  display: flex; flex-direction:column; align-items:center; justify-content:center;
+  color: rgba(255,255,255,.6); font-size: 13px; gap: 10px; padding: 16px; text-align:center;
+}
+.video-placeholder .vp-icon { font-size: 40px; opacity:.7; }
+.video-placeholder a {
+  color: var(--yellow); font-weight: 700; font-size: 11px;
+  background: rgba(255,255,255,.1); padding: 4px 12px; border-radius: 20px;
+  text-decoration: none; border: 1px solid rgba(255,255,255,.2);
+}
+
+/* ── TTS GLOBAL CONTROLS ── */
+.tts-bar {
+  margin: 8px 12px 4px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 12px;
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.tts-bar-label { font-size: 11px; font-weight: 700; color: var(--text2); white-space: nowrap; }
+.repeat-btns { display: flex; gap: 4px; flex-wrap: wrap; }
+.rep-btn {
+  font-size: 11px; font-weight: 800; color: var(--text2);
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 20px; padding: 3px 9px; cursor: pointer;
+  transition: all .15s; white-space: nowrap; font-family: inherit;
+}
+.rep-btn:hover { background: var(--pink-bg); border-color: var(--pink); color: var(--pink-d); }
+.rep-btn.active { background: var(--pink-d); border-color: var(--pink-d); color: #fff; }
+
+.tts-bar-right { margin-left: auto; display: flex; align-items: center; gap: 6px; }
+.stop-all-btn {
+  font-size: 11px; font-weight: 800; color: #fff;
+  background: #e74c3c; border: none;
+  border-radius: 20px; padding: 4px 12px; cursor: pointer;
+  font-family: inherit; display: none;
+}
+.stop-all-btn.visible { display: block; }
+
+/* ── SECTION HEADER ── */
+.sec-head {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 12px 5px;
+}
+.sec-dot { width:8px;height:8px;border-radius:50%;background:var(--pink-d);flex-shrink:0; }
+.sec-label {
+  font-size: 10.5px; font-weight: 800; letter-spacing: .1em;
+  color: var(--pink-d); text-transform: uppercase; white-space: nowrap;
+}
+.sec-rule { flex:1; height:1px; background:var(--border); }
+
+/* ── LINE CARD ── */
+.card {
+  margin: 4px 12px;
+  background: var(--white);
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.card.playing { border-color: var(--pink-d); box-shadow: 0 0 0 2px rgba(201,79,130,.15); }
+
+.card-top {
+  display: flex; align-items: center; gap: 7px;
+  padding: 6px 10px 5px;
+  border-bottom: 1px solid var(--border);
+}
+.av {
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 900; flex-shrink: 0;
+}
+.av-N { background:#EDE8FF; color:var(--purple-d); }
+.av-P { background:#FFE0EE; color:var(--pink-d); }
+.av-M { background:#FFF3CD; color:var(--yellow-d); }
+.av-D { background:#E0F7E9; color:var(--green-d); }
+.av-G { background:#E0F0FF; color:var(--blue-d); }
+.sp-name { font-size: 10.5px; font-weight: 700; color: var(--text2); flex: 1; }
+
+/* ── TTS BUTTON ── */
+.tts-btn {
+  display: flex; align-items: center; gap: 4px;
+  background: var(--pink-bg); border: 1.5px solid var(--pink);
+  border-radius: 20px; padding: 3px 9px;
+  cursor: pointer; font-family: inherit; color: var(--pink-d);
+  font-size: 11px; font-weight: 800;
+  transition: all .15s; white-space: nowrap; flex-shrink: 0;
+}
+.tts-btn:hover { background: var(--pink-d); color: #fff; border-color: var(--pink-d); }
+.tts-btn.playing { background: var(--pink-d); color: #fff; border-color: var(--pink-d); animation: pulse .8s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.75} }
+.tts-icon { font-size: 13px; }
+.tts-count {
+  background: rgba(255,255,255,.3); border-radius: 10px;
+  padding: 0 5px; font-size: 10px; min-width: 18px; text-align: center;
+}
+.tts-btn:not(.playing) .tts-count { background: rgba(201,79,130,.15); }
+
+.card-en {
+  font-size: 14.5px; font-weight: 700; color: var(--text);
+  line-height: 1.55; padding: 7px 10px 4px;
+}
+.card-en.highlight { color: var(--pink-d); }
+
+.card-vocab {
+  padding: 3px 10px 4px; display: flex; flex-wrap: wrap; gap: 4px;
+}
+.vp {
+  display: inline-flex; align-items: center; gap: 3px;
+  background: var(--pink-bg); border: 1px solid var(--pink);
+  border-radius: 20px; padding: 1px 8px; font-size: 11px;
+  cursor: pointer; transition: all .15s; user-select: none;
+}
+.vp:hover { background: var(--pink-d); border-color: var(--pink-d); }
+.vp:hover .vw, .vp:hover .vi, .vp:hover .vp-icon { color: #fff; opacity: 1; }
+.vp:active { transform: scale(0.96); }
+.vp.speaking { background: var(--pink-d); border-color: var(--pink-d); animation: pulse .6s ease-in-out infinite; }
+.vp.speaking .vw, .vp.speaking .vi, .vp.speaking .vp-icon { color: #fff; }
+.vw { font-weight: 800; color: var(--pink-d); transition: color .15s; }
+.vi { font-style: italic; color: var(--text2); font-size: 10px; transition: color .15s; }
+.vp-icon { font-size: 10px; opacity: 0.45; flex-shrink: 0; transition: color .15s, opacity .15s; }
+
+.card-zh {
+  font-size: 12.5px; color: var(--text2);
+  padding: 4px 10px 8px;
+  border-top: 1px dashed var(--border);
+  line-height: 1.55;
+}
+
+/* ── GRAMMAR ── */
+.g-block {
+  margin: 4px 12px;
+  border: 2px solid var(--yellow);
+  border-radius: 12px; overflow: hidden;
+}
+.g-head {
+  background: var(--yellow); padding: 8px 14px;
+  display: flex; align-items: center; gap: 7px;
+}
+.g-head-title { font-size: 13px; font-weight: 900; color: var(--mud-d); }
+.g-body { padding: 10px 14px; }
+.g-row { margin-bottom: 9px; }
+.g-row:last-child { margin-bottom: 0; }
+.g-tag { font-size: 10px; font-weight: 900; letter-spacing:.07em; color:var(--mud-d); text-transform:uppercase; margin-bottom:4px; }
+.g-box {
+  background: var(--white); border: 1.5px solid var(--yellow);
+  border-radius: 7px; padding: 6px 10px;
+  font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.65; margin-bottom:5px;
+}
+.g-box em { font-style:normal; color:var(--pink-d); font-weight:900; background:rgba(212,95,142,.1); padding:0 2px; border-radius:3px; }
+.g-note {
+  font-size: 11.5px; color: var(--text2); line-height: 1.65;
+  padding-left: 8px; border-left: 3px solid var(--yellow);
+}
+.g-note b { color: var(--text); }
+.g-note .en { font-weight:700; color:var(--text); font-family:'Helvetica Neue',Arial,sans-serif; }
+.g-note .bad { color: #e74c3c; }
+
+/* ── PATTERNS ── */
+.p-block {
+  margin: 4px 12px;
+  border: 2px solid var(--teal);
+  border-radius: 12px; overflow: hidden;
+}
+.p-head { background: var(--teal); padding: 8px 14px; display:flex; align-items:center; gap:7px; }
+.p-head-title { font-size: 13px; font-weight: 900; color: var(--teal-d); }
+.p-body { padding: 10px 14px; }
+.p-item { margin-bottom: 12px; }
+.p-item:last-child { margin-bottom: 0; }
+.p-name { font-size: 10px; font-weight:900; letter-spacing:.07em; color:var(--teal-d); text-transform:uppercase; margin-bottom:4px; }
+.p-formula {
+  background:var(--white); border:1.5px solid var(--teal);
+  border-radius:7px; padding:6px 10px;
+  font-size:13px; font-weight:700; color:var(--text); line-height:1.65; margin-bottom:5px;
+}
+.p-formula em { font-style:normal; color:var(--teal-d); font-weight:900; background:rgba(45,122,90,.1); padding:0 2px; border-radius:3px; }
+.p-egs { padding-left:8px; border-left:3px solid var(--teal); }
+.p-eg { font-size:11.5px; color:var(--text2); line-height:1.7; }
+.p-eg .en { font-weight:700; color:var(--text); font-family:'Helvetica Neue',Arial,sans-serif; }
+.p-eg .zh { font-size:11px; color:#888; }
+.p-eg .tip { font-size:11px; color:var(--teal-d); }
+
+/* ── VOCAB ── */
+.v-block { margin:4px 12px; border:1.5px solid var(--blue); border-radius:12px; overflow:hidden; }
+.v-head { background:var(--blue); padding:8px 14px; display:flex; align-items:center; gap:7px; }
+.v-head-title { font-size:13px; font-weight:900; color:var(--blue-d); }
+.v-row {
+  display:flex; align-items:center; gap:8px;
+  padding:7px 12px; border-bottom:1px solid #E8F4FA;
+}
+.v-row:last-child { border-bottom:none; }
+.vnum {
+  width:18px;height:18px;background:var(--blue);color:var(--blue-d);
+  font-size:9px;font-weight:900;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.vword { font-size:12.5px; font-weight:800; color:var(--text); }
+.vpron { font-size:9.5px; color:var(--text2); font-style:italic; }
+.vmean { font-size:11px; color:var(--text2); margin-left:auto; }
+
+/* ── FOOTER ── */
+.footer {
+  text-align:center; padding:14px 12px 32px;
+  border-top:3px dashed var(--pink); margin-top:8px;
+}
+.footer-emoji { font-size:22px; margin-bottom:4px; }
+.footer-text { font-size:11.5px; color:var(--text2); line-height:1.8; }
+.footer-btn {
+  display:inline-block; margin-top:8px;
+  background:var(--pink-d); color:#fff;
+  font-size:11.5px; font-weight:800;
+  padding:5px 16px; border-radius:20px; text-decoration:none;
+}
+
+/* ── PROGRESS TOAST ── */
+#toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: rgba(30,18,32,.88); color:#fff;
+  font-size:12px; font-weight:700; padding:8px 18px;
+  border-radius:20px; white-space:nowrap;
+  opacity:0; transition:opacity .3s; pointer-events:none;
+  z-index:999;
+}
+#toast.show { opacity:1; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- COVER -->
+<div class="cover">
+  <span class="cover-pig">🐷</span>
+  <div class="cover-badge">小猪佩奇英语学习 · S01 E01</div>
+  <div class="cover-title">Muddy Puddles</div>
+  <div class="cover-sub">🌧 泥坑</div>
+  <div class="cover-tags">
+    <span class="cover-tag">📖 台词精讲</span>
+    <span class="cover-tag">🔊 跟读朗读</span>
+    <span class="cover-tag">📝 语法讲解</span>
+    <span class="cover-tag">💬 固定句型</span>
+    <span class="cover-tag">✨ 生词汇总</span>
+  </div>
+</div>
+
+<!-- VIDEO -->
+<div class="video-section">
+  <div class="video-label">🎬 英文原版视频</div>
+  <div class="video-wrap" id="videoWrap">
+    <iframe src="https://v.qq.com/txp/iframe/player.html?vid=j0027aol7yf&auto=0" allowfullscreen="true" frameborder="0" scrolling="no"></iframe>
+  </div>
+</div>
+
+<!-- TTS GLOBAL CONTROLS -->
+<div class="tts-bar">
+  <span class="tts-bar-label">🔁 朗读次数：</span>
+  <div class="repeat-btns">
+    <button class="rep-btn" data-n="5">5次</button>
+    <button class="rep-btn" data-n="10">10次</button>
+    <button class="rep-btn" data-n="50">50次</button>
+    <button class="rep-btn" data-n="100">100次</button>
+    <button class="rep-btn active" data-n="1">1次</button>
+    <button class="rep-btn" data-n="0">∞ 永远</button>
+  </div>
+  <div class="tts-bar-right">
+    <button class="stop-all-btn" id="stopAllBtn" onclick="stopAll()">⏹ 停止</button>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════
+     SCENE LINES
+═══════════════════════════════════ -->
+
+<div class="sec-head">
+  <div class="sec-dot"></div><span class="sec-label">场景一 · 雨天，无法出门</span><div class="sec-rule"></div>
+</div>
+
+<div class="card" id="c0">
+  <div class="card-top">
+    <div class="av av-P">P</div><span class="sp-name">Peppa · 旁白</span>
+    <button class="tts-btn" onclick="speak(this,'I\'m Peppa Pig. This is my little brother, George. This is Mummy Pig. And this is Daddy Pig.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-0">×1</span>
+    </button>
+  </div>
+  <div class="card-en">I'm Peppa Pig. This is my little brother, George. This is Mummy Pig. And this is Daddy Pig.</div>
+  <div class="card-zh">我是小猪佩奇。这是我的弟弟乔治。这是猪妈妈。这是猪爸爸。</div>
+</div>
+
+<div class="card" id="c1">
+  <div class="card-top">
+    <div class="av av-N">N</div><span class="sp-name">Narrator 旁白</span>
+    <button class="tts-btn" onclick="speak(this,'It is raining today. So Peppa and George cannot play outside.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-1">×1</span>
+    </button>
+  </div>
+  <div class="card-en">It is raining today. So Peppa and George cannot play outside.</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('raining')"><span class="vp-icon">🔈</span><span class="vw">raining</span><span class="vi">/ˈreɪnɪŋ/</span></span>
+    <span class="vp" onclick="speakWord('outside')"><span class="vp-icon">🔈</span><span class="vw">outside</span><span class="vi">/ˌaʊtˈsaɪd/</span></span>
+    <span class="vp" onclick="speakWord('cannot')"><span class="vp-icon">🔈</span><span class="vw">cannot</span><span class="vi">/ˈkænɒt/</span></span>
+  </div>
+  <div class="card-zh">今天下雨了。所以佩奇和乔治不能出去玩。</div>
+</div>
+
+<div class="sec-head">
+  <div class="sec-dot"></div><span class="sec-label">场景二 · 雨停了，出去玩！</span><div class="sec-rule"></div>
+</div>
+
+<div class="card" id="c2">
+  <div class="card-top">
+    <div class="av av-P">P</div><span class="sp-name">Peppa 佩奇</span>
+    <button class="tts-btn" onclick="speak(this,'Daddy! It\'s stopped raining. Can we go out to play?')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-2">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Daddy! It's stopped raining. Can we go out to play?</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('stopped')"><span class="vp-icon">🔈</span><span class="vw">stopped</span><span class="vi">/stɒpt/ 停止了</span></span>
+  </div>
+  <div class="card-zh">爸爸！雨停了。我们可以出去玩吗？</div>
+</div>
+
+<div class="card" id="c3">
+  <div class="card-top">
+    <div class="av av-D">D</div><span class="sp-name">Daddy Pig 猪爸爸</span>
+    <button class="tts-btn" onclick="speak(this,'Ha ha! Alright. Run along, you two.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-3">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Ha, ha! Alright. Run along, you two.</div>
+  <div class="card-zh">哈哈！好吧，你们两个去跑跑吧。</div>
+</div>
+
+<div class="card" id="c4">
+  <div class="card-top">
+    <div class="av av-N">N</div><span class="sp-name">Narrator 旁白</span>
+    <button class="tts-btn" onclick="speak(this,'Peppa loves jumping in muddy puddles.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-4">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Peppa loves jumping in muddy puddles.</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('muddy')"><span class="vp-icon">🔈</span><span class="vw">muddy</span><span class="vi">/ˈmʌdi/ 泥泞的</span></span>
+    <span class="vp" onclick="speakWord('puddles')"><span class="vp-icon">🔈</span><span class="vw">puddles</span><span class="vi">/ˈpʌdlz/ 水坑</span></span>
+  </div>
+  <div class="card-zh">佩奇喜欢在泥坑里跳来跳去。</div>
+</div>
+
+<div class="card" id="c5">
+  <div class="card-top">
+    <div class="av av-P">P</div><span class="sp-name">Peppa 佩奇</span>
+    <button class="tts-btn" onclick="speak(this,'I love muddy puddles!')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-5">×1</span>
+    </button>
+  </div>
+  <div class="card-en">I love muddy puddles!</div>
+  <div class="card-zh">我喜欢泥坑！</div>
+</div>
+
+<div class="sec-head">
+  <div class="sec-dot"></div><span class="sec-label">场景三 · 跳泥坑要穿靴子</span><div class="sec-rule"></div>
+</div>
+
+<div class="card" id="c6">
+  <div class="card-top">
+    <div class="av av-M">M</div><span class="sp-name">Mummy Pig 猪妈妈</span>
+    <button class="tts-btn" onclick="speak(this,'Peppa! If you jump in muddy puddles, you must wear your boots.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-6">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Peppa! If you jump in muddy puddles, you must wear your boots.</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('must')"><span class="vp-icon">🔈</span><span class="vw">must</span><span class="vi">/mʌst/ 必须</span></span>
+    <span class="vp" onclick="speakWord('wear')"><span class="vp-icon">🔈</span><span class="vw">wear</span><span class="vi">/weər/ 穿</span></span>
+    <span class="vp" onclick="speakWord('boots')"><span class="vp-icon">🔈</span><span class="vw">boots</span><span class="vi">/buːts/ 靴子</span></span>
+  </div>
+  <div class="card-zh">佩奇！如果你要跳泥坑，就必须穿靴子。</div>
+</div>
+
+<div class="card" id="c7">
+  <div class="card-top">
+    <div class="av av-P">P</div><span class="sp-name">Peppa 佩奇</span>
+    <button class="tts-btn" onclick="speak(this,'Sorry, Mummy.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-7">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Sorry, Mummy.</div>
+  <div class="card-zh">对不起，妈妈。</div>
+</div>
+
+<div class="card" id="c8">
+  <div class="card-top">
+    <div class="av av-N">N</div><span class="sp-name">Narrator 旁白</span>
+    <button class="tts-btn" onclick="speak(this,'George likes to jump in muddy puddles, too.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-8">×1</span>
+    </button>
+  </div>
+  <div class="card-en">George likes to jump in muddy puddles, too.</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('too')"><span class="vp-icon">🔈</span><span class="vw">too</span><span class="vi">/tuː/ 也</span></span>
+  </div>
+  <div class="card-zh">乔治也喜欢跳泥坑。</div>
+</div>
+
+<div class="card" id="c9">
+  <div class="card-top">
+    <div class="av av-P">P</div><span class="sp-name">Peppa 佩奇</span>
+    <button class="tts-btn" onclick="speak(this,'George! If you jump in muddy puddles, you must wear your boots.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-9">×1</span>
+    </button>
+  </div>
+  <div class="card-en">George! If you jump in muddy puddles, you must wear your boots.</div>
+  <div class="card-zh">乔治！如果你要跳泥坑，就必须穿靴子。</div>
+</div>
+
+<div class="card" id="c10">
+  <div class="card-top">
+    <div class="av av-N">N</div><span class="sp-name">Narrator 旁白</span>
+    <button class="tts-btn" onclick="speak(this,'Peppa likes to look after her little brother George.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-10">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Peppa likes to look after her little brother George.</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('look after')"><span class="vp-icon">🔈</span><span class="vw">look after</span><span class="vi">/lʊk ˈɑːftə/ 照顾</span></span>
+  </div>
+  <div class="card-zh">佩奇喜欢照顾她的弟弟乔治。</div>
+</div>
+
+<div class="sec-head">
+  <div class="sec-dot"></div><span class="sec-label">场景四 · 寻找更多泥坑</span><div class="sec-rule"></div>
+</div>
+
+<div class="card" id="c11">
+  <div class="card-top">
+    <div class="av av-P">P</div><span class="sp-name">Peppa 佩奇</span>
+    <button class="tts-btn" onclick="speak(this,'George, let\'s find some more puddles!')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-11">×1</span>
+    </button>
+  </div>
+  <div class="card-en">George, let's find some more puddles!</div>
+  <div class="card-zh">乔治，我们去找更多泥坑吧！</div>
+</div>
+
+<div class="card" id="c12">
+  <div class="card-top">
+    <div class="av av-N">N</div><span class="sp-name">Narrator 旁白</span>
+    <button class="tts-btn" onclick="speak(this,'Peppa has found a little puddle. George has found a big puddle.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-12">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Peppa has found a little puddle. George has found a big puddle.</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('has found')"><span class="vp-icon">🔈</span><span class="vw">has found</span><span class="vi">现在完成时</span></span>
+  </div>
+  <div class="card-zh">佩奇找到了一个小泥坑。乔治找到了一个大泥坑。</div>
+</div>
+
+<div class="card" id="c13">
+  <div class="card-top">
+    <div class="av av-P">P</div><span class="sp-name">Peppa 佩奇</span>
+    <button class="tts-btn" onclick="speak(this,'Stop, George! I must check if it is safe for you.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-13">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Stop, George! I must check if it is safe for you.</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('check')"><span class="vp-icon">🔈</span><span class="vw">check</span><span class="vi">/tʃek/ 检查</span></span>
+    <span class="vp" onclick="speakWord('safe')"><span class="vp-icon">🔈</span><span class="vw">safe</span><span class="vi">/seɪf/ 安全的</span></span>
+  </div>
+  <div class="card-zh">停，乔治！我必须先检查对你来说是否安全。</div>
+</div>
+
+<div class="card" id="c14">
+  <div class="card-top">
+    <div class="av av-P">P</div><span class="sp-name">Peppa 佩奇</span>
+    <button class="tts-btn" onclick="speak(this,'Good! It is safe. Sorry, George.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-14">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Good! It is safe. Sorry, George.</div>
+  <div class="card-zh">好了！安全的。对不起，乔治。</div>
+</div>
+
+<div class="sec-head">
+  <div class="sec-dot"></div><span class="sec-label">场景五 · 回家给爸爸看</span><div class="sec-rule"></div>
+</div>
+
+<div class="card" id="c15">
+  <div class="card-top">
+    <div class="av av-P">P</div><span class="sp-name">Peppa 佩奇</span>
+    <button class="tts-btn" onclick="speak(this,'Daddy! Daddy! Guess what we\'ve been doing!')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-15">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Daddy! Daddy! Guess what we've been doing!</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('guess')"><span class="vp-icon">🔈</span><span class="vw">guess</span><span class="vi">/ɡes/ 猜</span></span>
+    <span class="vp" onclick="speakWord('we've been doing')"><span class="vp-icon">🔈</span><span class="vw">we've been doing</span><span class="vi">完成进行时</span></span>
+  </div>
+  <div class="card-zh">爸爸！爸爸！猜猜我们刚才在做什么！</div>
+</div>
+
+<div class="card" id="c16">
+  <div class="card-top">
+    <div class="av av-D">D</div><span class="sp-name">Daddy Pig 猪爸爸</span>
+    <button class="tts-btn" onclick="speak(this,'Let me think. Have you been watching television?')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-16">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Let me think... Have you been watching television?</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('television')"><span class="vp-icon">🔈</span><span class="vw">television</span><span class="vi">/ˈtelɪvɪʒn/ 电视</span></span>
+  </div>
+  <div class="card-zh">让我想想……你们是在看电视吗？</div>
+</div>
+
+<div class="card" id="c17">
+  <div class="card-top">
+    <div class="av av-D">D</div><span class="sp-name">Daddy Pig 猪爸爸</span>
+    <button class="tts-btn" onclick="speak(this,'I know! You\'ve been jumping in muddy puddles!')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-17">×1</span>
+    </button>
+  </div>
+  <div class="card-en">I know! You've been jumping in muddy puddles!</div>
+  <div class="card-zh">我知道了！你们一直在泥坑里跳！</div>
+</div>
+
+<div class="card" id="c18">
+  <div class="card-top">
+    <div class="av av-D">D</div><span class="sp-name">Daddy Pig 猪爸爸</span>
+    <button class="tts-btn" onclick="speak(this,'And look at the mess you\'re in!')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-18">×1</span>
+    </button>
+  </div>
+  <div class="card-en">And look at the mess you're in!</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('mess')"><span class="vp-icon">🔈</span><span class="vw">mess</span><span class="vi">/mes/ 一团糟</span></span>
+  </div>
+  <div class="card-zh">你们搞得一团糟啊！</div>
+</div>
+
+<div class="card" id="c19">
+  <div class="card-top">
+    <div class="av av-D">D</div><span class="sp-name">Daddy Pig 猪爸爸</span>
+    <button class="tts-btn" onclick="speak(this,'Oh well, it\'s only mud. Let\'s clean up quickly before Mummy sees the mess.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-19">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Oh well, it's only mud. Let's clean up quickly before Mummy sees the mess.</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('mud')"><span class="vp-icon">🔈</span><span class="vw">mud</span><span class="vi">/mʌd/ 泥</span></span>
+    <span class="vp" onclick="speakWord('clean up')"><span class="vp-icon">🔈</span><span class="vw">clean up</span><span class="vi">收拾</span></span>
+    <span class="vp" onclick="speakWord('quickly')"><span class="vp-icon">🔈</span><span class="vw">quickly</span><span class="vi">/ˈkwɪkli/ 快速地</span></span>
+  </div>
+  <div class="card-zh">哦好吧，不过是泥巴嘛。趁妈妈看到之前快点收拾干净。</div>
+</div>
+
+<div class="card" id="c20">
+  <div class="card-top">
+    <div class="av av-P">P</div><span class="sp-name">Peppa 佩奇</span>
+    <button class="tts-btn" onclick="speak(this,'Daddy, when we\'ve cleaned up, will you and Mummy come and play too?')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-20">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Daddy, when we've cleaned up, will you and Mummy come and play too?</div>
+  <div class="card-zh">爸爸，收拾好以后，你和妈妈也来一起玩好吗？</div>
+</div>
+
+<div class="sec-head">
+  <div class="sec-dot"></div><span class="sec-label">场景六 · 全家一起跳泥坑！</span><div class="sec-rule"></div>
+</div>
+
+<div class="card" id="c21">
+  <div class="card-top">
+    <div class="av av-N">N</div><span class="sp-name">Narrator 旁白</span>
+    <button class="tts-btn" onclick="speak(this,'Peppa and George are wearing their boots. Mummy and Daddy are wearing their boots.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-21">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Peppa and George are wearing their boots. Mummy and Daddy are wearing their boots.</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('wearing')"><span class="vp-icon">🔈</span><span class="vw">wearing</span><span class="vi">/ˈweərɪŋ/ 穿着</span></span>
+  </div>
+  <div class="card-zh">佩奇和乔治穿上了靴子。猪妈妈和猪爸爸也穿上了靴子。</div>
+</div>
+
+<div class="card" id="c22">
+  <div class="card-top">
+    <div class="av av-N">N</div><span class="sp-name">Narrator 旁白</span>
+    <button class="tts-btn" onclick="speak(this,'Everyone loves jumping up and down in muddy puddles.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-22">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Everyone loves jumping up and down in muddy puddles.</div>
+  <div class="card-vocab">
+    <span class="vp" onclick="speakWord('everyone')"><span class="vp-icon">🔈</span><span class="vw">everyone</span><span class="vi">/ˈevrɪwʌn/ 所有人</span></span>
+    <span class="vp" onclick="speakWord('up and down')"><span class="vp-icon">🔈</span><span class="vw">up and down</span><span class="vi">上上下下</span></span>
+  </div>
+  <div class="card-zh">所有人都喜欢在泥坑里跳上跳下。</div>
+</div>
+
+<div class="card" id="c23">
+  <div class="card-top">
+    <div class="av av-M">M</div><span class="sp-name">Mummy Pig 猪妈妈</span>
+    <button class="tts-btn" onclick="speak(this,'Oh, Daddy Pig! Look at the mess you\'re in!')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-23">×1</span>
+    </button>
+  </div>
+  <div class="card-en">Oh, Daddy Pig! Look at the mess you're in!</div>
+  <div class="card-zh">哦，猪爸爸！看你弄得多乱啊！</div>
+</div>
+
+<div class="card" id="c24">
+  <div class="card-top">
+    <div class="av av-P">P</div><span class="sp-name">Peppa 佩奇</span>
+    <button class="tts-btn" onclick="speak(this,'It\'s only mud.')">
+      <span class="tts-icon">🔊</span><span class="tts-count" id="cnt-24">×1</span>
+    </button>
+  </div>
+  <div class="card-en">It's only mud. 😄</div>
+  <div class="card-zh">不过是泥巴嘛。（模仿爸爸口气）</div>
+</div>
+
+<!-- ═══ GRAMMAR ═══ -->
+<div class="sec-head" style="padding-top:14px">
+  <div class="sec-dot" style="background:var(--yellow-d)"></div>
+  <span class="sec-label" style="color:var(--yellow-d)">本集语法讲解</span>
+  <div class="sec-rule"></div>
+</div>
+
+<div class="g-block">
+  <div class="g-head"><span style="font-size:15px">📌</span><span class="g-head-title">语法一：If 零条件句</span></div>
+  <div class="g-body">
+    <div class="g-row">
+      <div class="g-tag">句型结构</div>
+      <div class="g-box"><em>If</em> + 主语 + 动词原形，主语 + <em>must / can</em> + 动词原形</div>
+    </div>
+    <div class="g-row">
+      <div class="g-tag">用法</div>
+      <div class="g-note">表示"只要做了前面的事，就一定/必须发生后面的事"，常用于规则和惯例。<br>
+      <span class="en">If you jump in muddy puddles, you must wear your boots.</span><br>
+      如果跳泥坑 → 必须穿靴子（规定，无讨论余地）</div>
+    </div>
+    <div class="g-row">
+      <div class="g-tag">举一反三</div>
+      <div class="g-note">
+        <span class="en">If it rains, we cannot play outside.</span> 如果下雨，就不能出去玩。<br>
+        <span class="en">If you are tired, you must rest.</span> 如果累了，就必须休息。
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="g-block">
+  <div class="g-head"><span style="font-size:15px">📌</span><span class="g-head-title">语法二：现在完成时 have/has + 过去分词</span></div>
+  <div class="g-body">
+    <div class="g-row">
+      <div class="g-tag">句型结构</div>
+      <div class="g-box">主语 + <em>have / has</em> + <em>过去分词</em></div>
+    </div>
+    <div class="g-row">
+      <div class="g-tag">用法</div>
+      <div class="g-note">过去发生的动作对现在有影响。第三人称单数用 <b>has</b>，其余用 <b>have</b>。<br>
+        <span class="en">It's stopped raining.</span> 雨停了 → 现在可以出门<br>
+        <span class="en">Peppa has found a little puddle.</span> 找到了 → 就在那里
+      </div>
+    </div>
+    <div class="g-row">
+      <div class="g-tag">举一反三</div>
+      <div class="g-note">
+        <span class="en">I have finished my homework.</span> 我做完作业了。<br>
+        <span class="en">She has eaten lunch.</span> 她吃过午饭了。
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="g-block">
+  <div class="g-head"><span style="font-size:15px">📌</span><span class="g-head-title">语法三：现在完成进行时 have been + doing</span></div>
+  <div class="g-body">
+    <div class="g-row">
+      <div class="g-tag">句型结构</div>
+      <div class="g-box">主语 + <em>have / has been</em> + <em>动词 -ing</em></div>
+    </div>
+    <div class="g-row">
+      <div class="g-tag">用法</div>
+      <div class="g-note">强调从过去某时开始、持续到现在的动作，结果往往可见。<br>
+        <span class="en">You've been jumping in muddy puddles!</span><br>
+        一直在跳 → 满身是泥（结果显而易见）
+      </div>
+    </div>
+    <div class="g-row">
+      <div class="g-tag">与完成时的区别</div>
+      <div class="g-note">
+        <span class="en">I have read the book.</span> 读完了（强调完成）<br>
+        <span class="en">I have been reading the book.</span> 一直在读（强调持续）
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="g-block">
+  <div class="g-head"><span style="font-size:15px">📌</span><span class="g-head-title">语法四：情态动词 must / cannot</span></div>
+  <div class="g-body">
+    <div class="g-row">
+      <div class="g-tag">句型结构</div>
+      <div class="g-box"><em>must</em> + 动词原形 → 必须（义务/规定）<br><em>cannot</em> + 动词原形 → 不能（禁止/不允许）</div>
+    </div>
+    <div class="g-row">
+      <div class="g-tag">小提示</div>
+      <div class="g-note">情态动词后永远接<b>动词原形</b>，不加 to，不加 -s。<br>
+        <span class="en">✅ must wear &nbsp; ✅ cannot play</span><br>
+        <span class="en bad">❌ must to wear &nbsp; ❌ cannot plays</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ PATTERNS ═══ -->
+<div class="sec-head" style="padding-top:14px">
+  <div class="sec-dot" style="background:var(--teal-d)"></div>
+  <span class="sec-label" style="color:var(--teal-d)">本集固定句型</span>
+  <div class="sec-rule"></div>
+</div>
+
+<div class="p-block">
+  <div class="p-head"><span style="font-size:15px">💬</span><span class="p-head-title">6个超实用日常句型</span></div>
+  <div class="p-body">
+
+    <div class="p-item">
+      <div class="p-name">句型① 打招呼 · 自我介绍</div>
+      <div class="p-formula">I'm ___. This is my ___, ___.</div>
+      <div class="p-egs">
+        <div class="p-eg"><span class="en">I'm Peppa Pig. This is my little brother, George.</span> <span class="zh">→ 我是佩奇，这是我弟弟乔治。</span></div>
+        <div class="p-eg"><span class="en">I'm Tom. This is my best friend, Lucy.</span> <span class="zh">→ 我是汤姆，这是我好朋友露西。</span></div>
+      </div>
+    </div>
+
+    <div class="p-item">
+      <div class="p-name">句型② 请求许可 · Can we…?</div>
+      <div class="p-formula">Can we <em>go out / come in / have</em> ___?</div>
+      <div class="p-egs">
+        <div class="p-eg"><span class="en">Can we go out to play?</span> <span class="zh">→ 我们可以出去玩吗？</span></div>
+        <div class="p-eg"><span class="en">Can we have some ice cream?</span> <span class="zh">→ 我们可以吃冰淇淋吗？</span></div>
+        <div class="p-eg"><span class="en">Can we come in?</span> <span class="zh">→ 我们可以进来吗？</span></div>
+      </div>
+    </div>
+
+    <div class="p-item">
+      <div class="p-name">句型③ 发出邀请 · Let's…!</div>
+      <div class="p-formula">Let's <em>find / go / try / play</em> ___!</div>
+      <div class="p-egs">
+        <div class="p-eg"><span class="en">Let's find some more puddles!</span> <span class="zh">→ 我们去找更多泥坑吧！</span></div>
+        <div class="p-eg"><span class="en">Let's clean up quickly!</span> <span class="zh">→ 我们快点收拾吧！</span></div>
+        <div class="p-eg"><span class="en">Let's go to the park!</span> <span class="zh">→ 我们去公园吧！</span></div>
+      </div>
+    </div>
+
+    <div class="p-item">
+      <div class="p-name">句型④ 猜测提问 · Guess what…!</div>
+      <div class="p-formula">Guess what I / we <em>did / found / made</em>!</div>
+      <div class="p-egs">
+        <div class="p-eg"><span class="en">Guess what we've been doing!</span> <span class="zh">→ 猜猜我们刚才在做什么！</span></div>
+        <div class="p-eg"><span class="en">Guess what I found!</span> <span class="zh">→ 猜猜我发现了什么！</span></div>
+        <div class="p-eg"><span class="en">Guess what I made for dinner!</span> <span class="zh">→ 猜猜我做了什么晚餐！</span></div>
+      </div>
+    </div>
+
+    <div class="p-item">
+      <div class="p-name">句型⑤ 轻描淡写 · It's only…</div>
+      <div class="p-formula">It's only <em>mud / water / a joke / a scratch</em>.</div>
+      <div class="p-egs">
+        <div class="p-eg"><span class="en">Oh well, it's only mud.</span> <span class="zh">→ 哦好吧，不过是泥巴嘛。</span></div>
+        <div class="p-eg"><span class="en">Don't cry, it's only a scratch.</span> <span class="zh">→ 别哭，不过一点擦伤。</span></div>
+        <div class="p-eg"><span class="en">It's only a joke!</span> <span class="zh">→ 不过是个玩笑而已！</span></div>
+      </div>
+    </div>
+
+    <div class="p-item">
+      <div class="p-name">句型⑥ 表示惊讶 · Goodness me!</div>
+      <div class="p-formula">Goodness me! / Oh my! / Dear me!</div>
+      <div class="p-egs">
+        <div class="p-eg"><span class="en">Goodness me!</span> <span class="zh">→ 天哪！（英式，语气温和）</span></div>
+        <div class="p-eg"><span class="en">Oh my goodness!</span> <span class="zh">→ 我的天哪！（程度更强）</span></div>
+        <div class="p-eg"><span class="tip">💡 比 "Oh my God" 更礼貌，更英式日常。</span></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══ VOCAB ═══ -->
+<div class="sec-head" style="padding-top:14px">
+  <div class="sec-dot" style="background:var(--blue-d)"></div>
+  <span class="sec-label" style="color:var(--blue-d)">本集生词汇总</span>
+  <div class="sec-rule"></div>
+</div>
+
+<div class="v-block">
+  <div class="v-head"><span style="font-size:15px">📚</span><span class="v-head-title">15 个核心单词</span></div>
+  <div class="v-row"><div class="vnum">1</div><span class="vword">raining</span><span class="vpron">/ˈreɪnɪŋ/</span><span class="vmean">下雨（进行时）</span></div>
+  <div class="v-row"><div class="vnum">2</div><span class="vword">outside</span><span class="vpron">/ˌaʊtˈsaɪd/</span><span class="vmean">外面，室外</span></div>
+  <div class="v-row"><div class="vnum">3</div><span class="vword">muddy</span><span class="vpron">/ˈmʌdi/</span><span class="vmean">泥泞的</span></div>
+  <div class="v-row"><div class="vnum">4</div><span class="vword">puddle</span><span class="vpron">/ˈpʌdl/</span><span class="vmean">水坑，泥坑</span></div>
+  <div class="v-row"><div class="vnum">5</div><span class="vword">must</span><span class="vpron">/mʌst/</span><span class="vmean">必须（情态动词）</span></div>
+  <div class="v-row"><div class="vnum">6</div><span class="vword">boots</span><span class="vpron">/buːts/</span><span class="vmean">靴子（复数）</span></div>
+  <div class="v-row"><div class="vnum">7</div><span class="vword">look after</span><span class="vpron">/lʊk ˈɑːftə/</span><span class="vmean">照顾，照看</span></div>
+  <div class="v-row"><div class="vnum">8</div><span class="vword">safe</span><span class="vpron">/seɪf/</span><span class="vmean">安全的</span></div>
+  <div class="v-row"><div class="vnum">9</div><span class="vword">check</span><span class="vpron">/tʃek/</span><span class="vmean">检查，核实</span></div>
+  <div class="v-row"><div class="vnum">10</div><span class="vword">guess</span><span class="vpron">/ɡes/</span><span class="vmean">猜，猜测</span></div>
+  <div class="v-row"><div class="vnum">11</div><span class="vword">mess</span><span class="vpron">/mes/</span><span class="vmean">混乱，一团糟</span></div>
+  <div class="v-row"><div class="vnum">12</div><span class="vword">mud</span><span class="vpron">/mʌd/</span><span class="vmean">泥，泥土</span></div>
+  <div class="v-row"><div class="vnum">13</div><span class="vword">clean up</span><span class="vpron">/kliːn ʌp/</span><span class="vmean">清理，收拾</span></div>
+  <div class="v-row"><div class="vnum">14</div><span class="vword">everyone</span><span class="vpron">/ˈevrɪwʌn/</span><span class="vmean">每个人，所有人</span></div>
+  <div class="v-row"><div class="vnum">15</div><span class="vword">quickly</span><span class="vpron">/ˈkwɪkli/</span><span class="vmean">快速地（副词）</span></div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-emoji">🐷 💦 🥾</div>
+  <div class="footer-text">
+    喜欢这期内容？收藏备用，每集都会更新～<br>
+    <b>下一集：S01E02《The Swimming Pool · 游泳池》</b>
+  </div>
+  <span class="footer-btn">→ 期待下集</span>
+</div>
+
+</div><!-- .page -->
+
+<!-- TOAST -->
+<div id="toast"></div>
+
+<script>
+// ── State ──
+let currentRepeat = 1;   // 1 = 默认一次
+let activeBtn     = null;
+let utterance     = null;
+let repeatCount   = 0;
+let targetRepeats = 1;
+let isForever     = false;
+let currentText   = '';
+
+// ── Repeat selector ──
+document.querySelectorAll('.rep-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.rep-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const n = parseInt(btn.dataset.n);
+    if (n === 0) { isForever = true; currentRepeat = 999999; }
+    else         { isForever = false; currentRepeat = n; }
+    // Update all visible count badges
+    document.querySelectorAll('.tts-count').forEach(el => {
+      el.textContent = isForever ? '∞' : '×' + currentRepeat;
+    });
+  });
+});
+
+// ── Speak ──
+function speak(btn, text) {
+  // If clicking same button while playing → stop
+  if (activeBtn === btn && window.speechSynthesis.speaking) {
+    stopAll();
+    return;
+  }
+  stopAll(false);
+
+  currentText   = text;
+  repeatCount   = 0;
+  targetRepeats = currentRepeat;
+  activeBtn     = btn;
+
+  const card = btn.closest('.card');
+  card.classList.add('playing');
+  btn.classList.add('playing');
+  btn.querySelector('.tts-icon').textContent = '⏸';
+  document.getElementById('stopAllBtn').classList.add('visible');
+
+  doSpeak();
+}
+
+function doSpeak() {
+  if (!activeBtn) return;
+  if (!isForever && repeatCount >= targetRepeats) { finish(); return; }
+
+  repeatCount++;
+  const remaining = isForever ? '∞' : (targetRepeats - repeatCount + 1);
+  showToast(isForever
+    ? `🔊 朗读中... ∞`
+    : `🔊 第 ${repeatCount} / ${targetRepeats} 次`
+  );
+
+  utterance = new SpeechSynthesisUtterance(currentText);
+  utterance.lang  = 'en-GB';
+  utterance.rate  = 0.88;
+  utterance.pitch = 1.05;
+
+  // Prefer a British English voice if available
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = voices.find(v => v.lang === 'en-GB') ||
+                    voices.find(v => v.lang.startsWith('en'));
+  if (preferred) utterance.voice = preferred;
+
+  utterance.onend = () => {
+    if (activeBtn) setTimeout(doSpeak, 220);
+  };
+  utterance.onerror = () => finish();
+
+  window.speechSynthesis.speak(utterance);
+}
+
+function finish() {
+  if (activeBtn) {
+    activeBtn.querySelector('.tts-icon').textContent = '🔊';
+    activeBtn.classList.remove('playing');
+    activeBtn.closest('.card').classList.remove('playing');
+  }
+  activeBtn = null;
+  utterance = null;
+  document.getElementById('stopAllBtn').classList.remove('visible');
+  hideToast();
+}
+
+function stopAll(showFeedback = true) {
+  window.speechSynthesis.cancel();
+  if (activeBtn) {
+    activeBtn.querySelector('.tts-icon').textContent = '🔊';
+    activeBtn.classList.remove('playing');
+    activeBtn.closest('.card').classList.remove('playing');
+  }
+  activeBtn = null;
+  utterance = null;
+  document.getElementById('stopAllBtn').classList.remove('visible');
+  if (showFeedback) hideToast();
+}
+
+// ── Toast ──
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+}
+function hideToast() {
+  document.getElementById('toast').classList.remove('show');
+}
+
+// ── Speak single word (vocab pill) ──
+let wordUtterance = null;
+function speakWord(word) {
+  // stop any word currently playing
+  if (wordUtterance) {
+    window.speechSynthesis.cancel();
+    document.querySelectorAll('.vp.speaking').forEach(el => el.classList.remove('speaking'));
+    wordUtterance = null;
+  }
+  // find the pill that was clicked (match by word text)
+  const pills = [...document.querySelectorAll('.vp')];
+  const pill = pills.find(p => {
+    const vw = p.querySelector('.vw');
+    return vw && vw.textContent.trim() === word;
+  });
+  if (pill) pill.classList.add('speaking');
+
+  wordUtterance = new SpeechSynthesisUtterance(word);
+  wordUtterance.lang  = 'en-GB';
+  wordUtterance.rate  = 0.8;
+  wordUtterance.pitch = 1.05;
+  const voices = window.speechSynthesis.getVoices();
+  const preferred = voices.find(v => v.lang === 'en-GB') || voices.find(v => v.lang.startsWith('en'));
+  if (preferred) wordUtterance.voice = preferred;
+  wordUtterance.onend = () => {
+    if (pill) pill.classList.remove('speaking');
+    wordUtterance = null;
+  };
+  wordUtterance.onerror = () => {
+    if (pill) pill.classList.remove('speaking');
+    wordUtterance = null;
+  };
+  window.speechSynthesis.speak(wordUtterance);
+}
+
+// Load voices (some browsers need this trigger)
+window.speechSynthesis.onvoiceschanged = () => {};
+if (window.speechSynthesis.getVoices().length === 0) {
+  window.speechSynthesis.getVoices();
+}
+</script>
+</body>
+</html>
