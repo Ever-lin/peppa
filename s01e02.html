@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>🐷 小猪佩奇英语 · S01E02 恐龙玩具丢了</title>
+<style>
+:root {
+  --pink:     #F4A7C3;
+  --pink-d:   #C94F82;
+  --pink-bg:  #FFF0F6;
+  --yellow:   #FFD166;
+  --yellow-d: #B8860B;
+  --blue:     #90CAE0;
+  --blue-d:   #2A6C8F;
+  --teal:     #A8E6CF;
+  --teal-d:   #2D7A5A;
+  --mud-d:    #6B3F1A;
+  --white:    #FFFFFF;
+  --bg:       #FFF7FA;
+  --text:     #1E1220;
+  --text2:    #5C3D5C;
+  --border:   #EDD5E5;
+  --green-d:  #3A6820;
+  --purple-d: #5A3FB0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #f0e0ec;
+  font-family: 'PingFang SC','Helvetica Neue',Arial,sans-serif;
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+/* ── COVER ── */
+.cover {
+  background: linear-gradient(150deg,#FFE0EF 0%,#FFF4D6 55%,#E4F0FF 100%);
+  padding: 22px 18px 18px;
+  text-align: center;
+  border-bottom: 3px dashed var(--pink);
+}
+.cover-pig { font-size: 52px; display: block; margin-bottom: 6px; animation: bounce 2s ease-in-out infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.cover-badge {
+  display: inline-block; background: var(--pink-d); color: #fff;
+  font-size: 10px; font-weight: 800; letter-spacing: .12em;
+  padding: 3px 12px; border-radius: 20px; margin-bottom: 8px;
+}
+.cover-title { font-size: 26px; font-weight: 900; color: var(--pink-d); margin-bottom: 3px; }
+.cover-sub   { font-size: 14px; font-weight: 700; color: var(--mud-d); margin-bottom: 12px; }
+.cover-tags  { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
+.cover-tag {
+  background: rgba(255,255,255,.7); border: 1.5px solid var(--pink);
+  color: var(--pink-d); font-size: 11px; font-weight: 700;
+  padding: 2px 9px; border-radius: 20px;
+}
+
+/* ── VIDEO ── */
+.video-section {
+  padding: 12px 12px 6px;
+}
+.video-label {
+  font-size: 10px; font-weight: 800; letter-spacing: .1em;
+  color: var(--pink-d); text-transform: uppercase;
+  margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+}
+.video-label::after { content:''; flex:1; height:1px; background:var(--border); }
+.video-wrap {
+  position: relative; width: 100%; padding-bottom: 56.25%;
+  background: #1a0a12; border-radius: 10px; overflow: hidden;
+  border: 1.5px solid var(--border);
+}
+.video-wrap iframe {
+  position: absolute; top:0; left:0; width:100%; height:100%; border:none;
+}
+.video-placeholder {
+  position: absolute; top:0; left:0; width:100%; height:100%;
+  display: flex; flex-direction:column; align-items:center; justify-content:center;
+  color: rgba(255,255,255,.6); font-size: 13px; gap: 10px; padding: 16px; text-align:center;
+}
+.video-placeholder .vp-icon { font-size: 40px; opacity:.7; }
+.video-placeholder a {
+  color: var(--yellow); font-weight: 700; font-size: 11px;
+  background: rgba(255,255,255,.1); padding: 4px 12px; border-radius: 20px;
+  text-decoration: none; border: 1px solid rgba(255,255,255,.2);
+}
+
+/* ── TTS GLOBAL CONTROLS ── */
+.tts-bar {
+  margin: 8px 12px 4px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+.tts-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.tts-bar-label { font-size: 11px; font-weight: 700; color: var(--text2); white-space: nowrap; }
+.repeat-btns { display: flex; gap: 4px; flex-wrap: wrap; flex: 1; }
+.rep-btn, .pause-btn {
+  font-size: 11px; font-weight: 800; color: var(--text2);
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 20px; padding: 3px 9px; cursor: pointer;
+  transition: all .15s; white-space: nowrap; font-family: inherit;
+}
+.rep-btn:hover, .pause-btn:hover { background: var(--pink-bg); border-color: var(--pink); color: var(--pink-d); }
+.rep-btn.active { background: var(--pink-d); border-color: var(--pink-d); color: #fff; }
+.pause-btn.active { background: #7C3AED; border-color: #7C3AED; color: #fff; }
+
+.stop-all-btn {
+  font-size: 11px; font-weight: 800; color: #fff;
+  background: #e74c3c; border: none;
+  border-radius: 20px; padding: 4px 12px; cursor: pointer;
+  font-family: inherit; display: none; flex-shrink: 0;
+}
+.stop-all-btn.visible { display: block; }
+
+/* ── SECTION HEADER ── */
+.sec-head {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 12px 5px;
+}
+.sec-dot { width:8px;height:8px;border-radius:50%;background:var(--pink-d);flex-shrink:0; }
+.sec-label {
+  font-size: 10.5px; font-weight: 800; letter-spacing: .1em;
+  color: var(--pink-d); text-transform: uppercase; white-space: nowrap;
+}
+.sec-rule { flex:1; height:1px; background:var(--border); }
+
+/* ── LINE CARD ── */
+.card {
+  margin: 4px 12px;
+  background: var(--white);
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.card.playing { border-color: var(--pink-d); box-shadow: 0 0 0 2px rgba(201,79,130,.15); }
+
+.card-top {
+  display: flex; align-items: center; gap: 7px;
+  padding: 6px 10px 5px;
+  border-bottom: 1px solid var(--border);
+}
+.av {
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 900; flex-shrink: 0;
+}
+.av-N { background:#EDE8FF; color:var(--purple-d); }
+.av-P { background:#FFE0EE; color:var(--pink-d); }
+.av-M { background:#FFF3CD; color:var(--yellow-d); }
+.av-D { background:#E0F7E9; color:var(--green-d); }
+.av-G { background:#E0F0FF; color:var(--blue-d); }
+.sp-name { font-size: 10.5px; font-weight: 700; color: var(--text2); flex: 1; }
+
+/* ── TTS BUTTON ── */
+.tts-btn {
+  display: flex; align-items: center; gap: 4px;
+  background: var(--pink-bg); border: 1.5px solid var(--pink);
+  border-radius: 20px; padding: 3px 9px;
+  cursor: pointer; font-family: inherit; color: var(--pink-d);
+  font-size: 11px; font-weight: 800;
+  transition: all .15s; white-space: nowrap; flex-shrink: 0;
+}
+.tts-btn:hover { background: var(--pink-d); color: #fff; border-color: var(--pink-d); }
+.tts-btn.playing { background: var(--pink-d); color: #fff; border-color: var(--pink-d); animation: pulse .8s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.75} }
+.tts-icon { font-size: 13px; }
+.tts-count {
+  background: rgba(255,255,255,.3); border-radius: 10px;
+  padding: 0 5px; font-size: 10px; min-width: 18px; text-align: center;
+}
+.tts-btn:not(.playing) .tts-count { background: rgba(201,79,130,.15); }
+
+.card-en {
+  font-size: 14.5px; font-weight: 700; color: var(--text);
+  line-height: 1.55; padding: 7px 10px 4px;
+}
+.card-en.highlight { color: var(--pink-d); }
+
+.card-vocab {
+  padding: 3px 10px 4px; display: flex; flex-wrap: wrap; gap: 4px;
+}
+.vp {
+  display: inline-flex; align-items: center; gap: 3px;
+  background: var(--pink-bg); border: 1px solid var(--pink);
+  border-radius: 20px; padding: 1px 8px; font-size: 11px;
+  cursor: pointer; transition: all .15s; user-select: none;
+}
+.vp:hover { background: var(--pink-d); border-color: var(--pink-d); }
+.vp:hover .vw, .vp:hover .vi, .vp:hover .vp-icon { color: #fff; opacity: 1; }
+.vp:active { transform: scale(0.96); }
+.vp.speaking { background: var(--pink-d); border-color: var(--pink-d); animation: pulse .6s ease-in-out infinite; }
+.vp.speaking .vw, .vp.speaking .vi, .vp.speaking .vp-icon { color: #fff; }
+.vw { font-weight: 800; color: var(--pink-d); transition: color .15s; }
+.vi { font-style: italic; color: var(--text2); font-size: 10px; transition: color .15s; }
+.vp-icon { font-size: 10px; opacity: 0.45; flex-shrink: 0; transition: color .15s, opacity .15s; }
+
+.card-zh {
+  font-size: 12.5px; color: var(--text2);
+  padding: 4px 10px 8px;
+  border-top: 1px dashed var(--border);
+  line-height: 1.55;
+}
+
+/* ── GRAMMAR ── */
+.g-block {
+  margin: 4px 12px;
+  border: 2px solid var(--yellow);
+  border-radius: 12px; overflow: hidden;
+}
+.g-head {
+  background: var(--yellow); padding: 8px 14px;
+  display: flex; align-items: center; gap: 7px;
+}
+.g-head-title { font-size: 13px; font-weight: 900; color: var(--mud-d); }
+.g-body { padding: 10px 14px; }
+.g-row { margin-bottom: 9px; }
+.g-row:last-child { margin-bottom: 0; }
+.g-tag { font-size: 10px; font-weight: 900; letter-spacing:.07em; color:var(--mud-d); text-transform:uppercase; margin-bottom:4px; }
+.g-box {
+  background: var(--white); border: 1.5px solid var(--yellow);
+  border-radius: 7px; padding: 6px 10px;
+  font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.65; margin-bottom:5px;
+}
+.g-box em { font-style:normal; color:var(--pink-d); font-weight:900; background:rgba(212,95,142,.1); padding:0 2px; border-radius:3px; }
+.g-note {
+  font-size: 11.5px; color: var(--text2); line-height: 1.65;
+  padding-left: 8px; border-left: 3px solid var(--yellow);
+}
+.g-note b { color: var(--text); }
+.g-note .en { font-weight:700; color:var(--text); font-family:'Helvetica Neue',Arial,sans-serif; }
+.g-note .bad { color: #e74c3c; }
+
+/* ── PATTERNS ── */
+.p-block {
+  margin: 4px 12px;
+  border: 2px solid var(--teal);
+  border-radius: 12px; overflow: hidden;
+}
+.p-head { background: var(--teal); padding: 8px 14px; display:flex; align-items:center; gap:7px; }
+.p-head-title { font-size: 13px; font-weight: 900; color: var(--teal-d); }
+.p-body { padding: 10px 14px; }
+.p-item { margin-bottom: 12px; }
+.p-item:last-child { margin-bottom: 0; }
+.p-name { font-size: 10px; font-weight:900; letter-spacing:.07em; color:var(--teal-d); text-transform:uppercase; margin-bottom:4px; }
+.p-formula {
+  background:var(--white); border:1.5px solid var(--teal);
+  border-radius:7px; padding:6px 10px;
+  font-size:13px; font-weight:700; color:var(--text); line-height:1.65; margin-bottom:5px;
+}
+.p-formula em { font-style:normal; color:var(--teal-d); font-weight:900; background:rgba(45,122,90,.1); padding:0 2px; border-radius:3px; }
+.p-egs { padding-left:8px; border-left:3px solid var(--teal); }
+.p-eg { font-size:11.5px; color:var(--text2); line-height:1.7; }
+.p-eg .en { font-weight:700; color:var(--text); font-family:'Helvetica Neue',Arial,sans-serif; }
+.p-eg .zh { font-size:11px; color:#888; }
+.p-eg .tip { font-size:11px; color:var(--teal-d); }
+
+/* ── VOCAB ── */
+.v-block { margin:4px 12px; border:1.5px solid var(--blue); border-radius:12px; overflow:hidden; }
+.v-head { background:var(--blue); padding:8px 14px; display:flex; align-items:center; gap:7px; }
+.v-head-title { font-size:13px; font-weight:900; color:var(--blue-d); }
+.v-row {
+  display:flex; align-items:center; gap:8px;
+  padding:7px 12px; border-bottom:1px solid #E8F4FA;
+}
+.v-row:last-child { border-bottom:none; }
+.vnum {
+  width:18px;height:18px;background:var(--blue);color:var(--blue-d);
+  font-size:9px;font-weight:900;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.vword { font-size:12.5px; font-weight:800; color:var(--text); }
+.vpron { font-size:9.5px; color:var(--text2); font-style:italic; }
+.vmean { font-size:11px; color:var(--text2); margin-left:auto; }
+
+/* ── FOOTER ── */
+.footer {
+  text-align:center; padding:14px 12px 32px;
+  border-top:3px dashed var(--pink); margin-top:8px;
+}
+.footer-emoji { font-size:22px; margin-bottom:4px; }
+.footer-text { font-size:11.5px; color:var(--text2); line-height:1.8; }
+.footer-btn {
+  display:inline-block; margin-top:8px;
+  background:var(--pink-d); color:#fff;
+  font-size:11.5px; font-weight:800;
+  padding:5px 16px; border-radius:20px; text-decoration:none;
+}
+
+/* ── DICTATION ── */
+.dict-intro {
+  margin: 4px 12px 6px;
+  background: #EDE9FE;
+  border: 1.5px solid #C4B5FD;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 12px; color: #5B21B6;
+  display: flex; align-items: center; gap: 8px; font-weight: 600;
+}
+.dict-card {
+  margin: 5px 12px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.dict-zh {
+  font-size: 13px; color: var(--text2); font-weight: 600;
+  padding: 8px 12px 6px;
+  border-bottom: 1px dashed var(--border);
+}
+.dict-input-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px 8px;
+}
+.dict-speak-btn {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: #EDE9FE; border: 1.5px solid #C4B5FD;
+  color: #7C3AED; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .15s; font-family: inherit;
+}
+.dict-speak-btn:hover { background: #7C3AED; color: #fff; border-color: #7C3AED; }
+.dict-speak-btn.playing { background: #7C3AED; color: #fff; animation: pulse .8s ease-in-out infinite; }
+.dict-input {
+  flex: 1; border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 6px 10px;
+  font-size: 13.5px; font-family: inherit; color: var(--text);
+  outline: none; transition: border-color .15s;
+  background: var(--bg);
+}
+.dict-input:focus { border-color: #7C3AED; }
+.dict-input.correct { border-color: #16A34A; background: #F0FDF4; color: #15803D; }
+.dict-input.wrong   { border-color: #DC2626; background: #FEF2F2; color: #B91C1C; }
+.dict-check-btn {
+  flex-shrink: 0; padding: 6px 12px;
+  background: #7C3AED; color: #fff;
+  border: none; border-radius: 8px;
+  font-size: 12px; font-weight: 800;
+  cursor: pointer; font-family: inherit;
+  transition: opacity .15s;
+}
+.dict-check-btn:hover { opacity: .85; }
+.dict-check-btn:disabled { opacity: .4; cursor: default; }
+.dict-result {
+  font-size: 11.5px; padding: 4px 12px 8px;
+  display: none; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.dict-result.show { display: flex; }
+.dict-result.correct { color: #15803D; }
+.dict-result.wrong   { color: #B91C1C; }
+.dict-answer {
+  font-size: 11.5px; font-style: italic;
+  color: #15803D; font-weight: 700;
+}
+.dict-score-bar {
+  margin: 8px 12px 4px;
+  background: #EDE9FE; border: 2px solid #7C3AED;
+  border-radius: 10px; padding: 10px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.dict-score-label { font-size: 13px; font-weight: 700; color: #5B21B6; }
+.dict-score-val   { font-size: 20px; font-weight: 900; color: #7C3AED; flex: 1; }
+.dict-reset-btn {
+  padding: 6px 14px; background: #7C3AED; color: #fff;
+  border: none; border-radius: 20px; font-size: 12px; font-weight: 800;
+  cursor: pointer; font-family: inherit;
+}
+
+
+/* ── HIGHLIGHT TRANSCRIPT ── */
+.ht-block {
+  margin: 4px 12px;
+  border: 2px solid #F97316;
+  border-radius: 12px; overflow: hidden;
+}
+.ht-head {
+  background: #F97316; padding: 8px 14px;
+  display: flex; align-items: center; gap: 7px;
+}
+.ht-head-title { font-size: 13px; font-weight: 900; color: #fff; }
+.ht-zh-block {
+  padding: 10px 14px 12px;
+  border-bottom: 2px dashed #FED7AA;
+  background: #FFFAF5;
+}
+.ht-en-block {
+  padding: 10px 14px 12px;
+}
+.ht-block-label {
+  font-size: 10px; font-weight: 900; letter-spacing: .08em;
+  color: #F97316; text-transform: uppercase; margin-bottom: 8px;
+}
+.ht-para {
+  font-size: 14px; line-height: 2; color: #1E1220; font-weight: 600;
+}
+.ht-zh-block .ht-para {
+  font-size: 13.5px; color: #4A3050;
+  font-family: 'PingFang SC','Helvetica Neue',Arial,sans-serif;
+}
+.ht-sent { display: inline; }
+/* highlight colours — same in zh and en */
+.hl-vocab   { color: #C94F82; font-weight: 900; background: rgba(201,79,130,.12); border-radius: 3px; padding: 0 2px; }
+.hl-pattern { color: #2A6C8F; font-weight: 900; background: rgba(42,108,143,.12); border-radius: 3px; padding: 0 2px; }
+.ht-legend {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  padding: 8px 14px; background: #FFF7ED;
+  border-top: 1px solid #FED7AA;
+  font-size: 11px; font-weight: 700;
+}
+
+/* ── PROGRESS TOAST ── */
+#toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: rgba(30,18,32,.88); color:#fff;
+  font-size:12px; font-weight:700; padding:8px 18px;
+  border-radius:20px; white-space:nowrap;
+  opacity:0; transition:opacity .3s; pointer-events:none;
+  z-index:999;
+}
+#toast.show { opacity:1; }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="cover">
+  <span class="cover-pig">🦕</span>
+  <div class="cover-badge">小猪佩奇英语学习 · S01 E02</div>
+  <div class="cover-title">Mr Dinosaur is Lost</div>
+  <div class="cover-sub">🔍 恐龙玩具丢了</div>
+  <div class="cover-tags">
+    <span class="cover-tag">📖 台词精讲</span>
+    <span class="cover-tag">🔊 跟读朗读</span>
+    <span class="cover-tag">📝 语法讲解</span>
+    <span class="cover-tag">💬 固定句型</span>
+    <span class="cover-tag">🎧 听写训练</span>
+    <span class="cover-tag">✨ 生词汇总</span>
+  </div>
+</div>
+<div class="video-section">
+  <div class="video-label">🎬 英文原版视频</div>
+  <div class="video-wrap">
+    <iframe src="https://v.qq.com/txp/iframe/player.html?vid=x3532l9ivec&auto=0" allowfullscreen="true" frameborder="0" scrolling="no"></iframe>
+  </div>
+</div>
+<div class="tts-bar">
+  <div class="tts-row">
+    <span class="tts-bar-label">🔁 朗读次数：</span>
+    <div class="repeat-btns">
+      <button class="rep-btn" data-n="5">5次</button>
+      <button class="rep-btn" data-n="10">10次</button>
+      <button class="rep-btn" data-n="50">50次</button>
+      <button class="rep-btn" data-n="100">100次</button>
+      <button class="rep-btn active" data-n="1">1次</button>
+      <button class="rep-btn" data-n="0">∞ 永远</button>
+    </div>
+    <button class="stop-all-btn" id="stopAllBtn" onclick="stopAll()">⏹ 停止</button>
+  </div>
+  <div class="tts-row" style="border-top:1px dashed var(--border);padding-top:8px;margin-top:4px;">
+    <span class="tts-bar-label">⏱ 暂停间隔：</span>
+    <div class="repeat-btns">
+      <button class="pause-btn active" data-p="0">不暂停</button>
+      <button class="pause-btn" data-p="-1">同句时长</button>
+      <button class="pause-btn" data-p="1">1秒</button>
+      <button class="pause-btn" data-p="2">2秒</button>
+      <button class="pause-btn" data-p="3">3秒</button>
+      <button class="pause-btn" data-p="5">5秒</button>
+    </div>
+    <span id="pause-hint" style="font-size:10px;color:var(--text2);white-space:nowrap;">100LS跟读法</span>
+  </div>
+</div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--pink-d)"></div><span class="sec-label" style="color:var(--pink-d)">场景一 · 乔治最爱的玩具——恐龙先生</span><div class="sec-rule"></div></div>
+<div class="card" id="c0"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'George\'s favourite toy is Mr Dinosaur.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-0">x1</span></button></div><div class="card-en">George's favourite toy is Mr Dinosaur.</div><div class="card-vocab"><span class="vp" onclick="speakWord('favourite')"><span class="vp-icon">🔈</span><span class="vw">favourite</span><span class="vi">/ˈfeɪvərɪt/</span></span></div><div class="card-zh">乔治最喜欢的玩具是恐龙先生。</div></div>
+<div class="card" id="c1"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'George loves Mr Dinosaur.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-1">x1</span></button></div><div class="card-en">George loves Mr Dinosaur.</div><div class="card-zh">乔治非常爱恐龙先生。</div></div>
+<div class="card" id="c2"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'Sometimes, George likes to scare Peppa with Mr Dinosaur.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-2">x1</span></button></div><div class="card-en">Sometimes, George likes to scare Peppa with Mr Dinosaur.</div><div class="card-vocab"><span class="vp" onclick="speakWord('scare')"><span class="vp-icon">🔈</span><span class="vw">scare</span><span class="vi">/skeə/</span></span></div><div class="card-zh">有时候，乔治喜欢用恐龙先生吓佩奇。</div></div>
+<div class="card" id="c3"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'Eeek! Too scary.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-3">x1</span></button></div><div class="card-en">Eeek! Too scary.</div><div class="card-vocab"><span class="vp" onclick="speakWord('scary')"><span class="vp-icon">🔈</span><span class="vw">scary</span><span class="vi">/ˈskeəri/</span></span></div><div class="card-zh">啊！太可怕了。</div></div>
+<div class="card" id="c4"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'At suppertime, Mr Dinosaur sits next to George.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-4">x1</span></button></div><div class="card-en">At suppertime, Mr Dinosaur sits next to George.</div><div class="card-vocab"><span class="vp" onclick="speakWord('suppertime')"><span class="vp-icon">🔈</span><span class="vw">suppertime</span><span class="vi">/ˈsʌpətaɪm/</span></span></div><div class="card-zh">吃晚饭时，恐龙先生坐在乔治旁边。</div></div>
+<div class="card" id="c5"><div class="card-top"><div class="av" style="background:#FFF3CD;color:#B8860B;">M</div><span class="sp-name">Mummy Pig 猪妈妈</span><button class="tts-btn" onclick="speak(this,'I beg your pardon. Was that you George, or was it Mr Dinosaur?')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-5">x1</span></button></div><div class="card-en">I beg your pardon. Was that you George, or was it Mr Dinosaur?</div><div class="card-vocab"><span class="vp" onclick="speakWord('I beg your pardon')"><span class="vp-icon">🔈</span><span class="vw">I beg your pardon</span><span class="vi">礼貌用语</span></span></div><div class="card-zh">不好意思。那是你打嗝了，乔治，还是恐龙先生打嗝了？</div></div>
+<div class="card" id="c6"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'At bath time, George shares his bath with Mr Dinosaur.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-6">x1</span></button></div><div class="card-en">At bath time, George shares his bath with Mr Dinosaur.</div><div class="card-vocab"><span class="vp" onclick="speakWord('shares')"><span class="vp-icon">🔈</span><span class="vw">shares</span><span class="vi">/ʃeəz/</span></span></div><div class="card-zh">洗澡时，乔治和恐龙先生一起洗澡。</div></div>
+<div class="card" id="c7"><div class="card-top"><div class="av" style="background:#FFF3CD;color:#B8860B;">M</div><span class="sp-name">Mummy Pig 猪妈妈</span><button class="tts-btn" onclick="speak(this,'Good night, Peppa.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-7">x1</span></button></div><div class="card-en">Good night, Peppa.</div><div class="card-zh">晚安，佩奇。</div></div>
+<div class="card" id="c8"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'Good night, Mummy.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-8">x1</span></button></div><div class="card-en">Good night, Mummy.</div><div class="card-zh">晚安，妈妈。</div></div>
+<div class="card" id="c9"><div class="card-top"><div class="av" style="background:#FFF3CD;color:#B8860B;">M</div><span class="sp-name">Mummy Pig 猪妈妈</span><button class="tts-btn" onclick="speak(this,'Good night, George. And good night, Mr Dinosaur.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-9">x1</span></button></div><div class="card-en">Good night, George. And good night, Mr Dinosaur.</div><div class="card-zh">晚安，乔治。还有，晚安，恐龙先生。</div></div>
+<div class="card" id="c10"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'When George goes to bed, Mr Dinosaur is tucked up with him.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-10">x1</span></button></div><div class="card-en">When George goes to bed, Mr Dinosaur is tucked up with him.</div><div class="card-vocab"><span class="vp" onclick="speakWord('tucked up')"><span class="vp-icon">🔈</span><span class="vw">tucked up</span><span class="vi">/tʌkt ʌp/</span></span></div><div class="card-zh">乔治睡觉时，恐龙先生和他一起被盖好被子。</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--pink-d)"></div><span class="sec-label" style="color:var(--pink-d)">场景二 · 爸爸和佩奇下棋，乔治在花园玩</span><div class="sec-rule"></div></div>
+<div class="card" id="c11"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'George\'s favourite game is throwing Mr Dinosaur up in the air and catching him when he falls back down.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-11">x1</span></button></div><div class="card-en">George's favourite game is throwing Mr Dinosaur up in the air and catching him when he falls back down.</div><div class="card-vocab"><span class="vp" onclick="speakWord('throwing')"><span class="vp-icon">🔈</span><span class="vw">throwing</span><span class="vi">/ˈθrəʊɪŋ/</span></span><span class="vp" onclick="speakWord('catching')"><span class="vp-icon">🔈</span><span class="vw">catching</span><span class="vi">/ˈkætʃɪŋ/</span></span></div><div class="card-zh">乔治最喜欢的游戏是把恐龙先生扔向空中，然后接住落下来的它。</div></div>
+<div class="card" id="c12"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'Peppa and Daddy Pig are playing draughts.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-12">x1</span></button></div><div class="card-en">Peppa and Daddy Pig are playing draughts.</div><div class="card-vocab"><span class="vp" onclick="speakWord('draughts')"><span class="vp-icon">🔈</span><span class="vw">draughts</span><span class="vi">/drɑːfts/</span></span></div><div class="card-zh">佩奇和猪爸爸在下棋。</div></div>
+<div class="card" id="c13"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'I win, Daddy.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-13">x1</span></button></div><div class="card-en">I win, Daddy.</div><div class="card-zh">我赢了，爸爸。</div></div>
+<div class="card" id="c14"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'Oh. Well done, Peppa.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-14">x1</span></button></div><div class="card-en">Oh. Well done, Peppa.</div><div class="card-zh">哦。做得好，佩奇。</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--pink-d)"></div><span class="sec-label" style="color:var(--pink-d)">场景三 · 恐龙先生丢了！需要一位侦探</span><div class="sec-rule"></div></div>
+<div class="card" id="c15"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'George has lost Mr Dinosaur.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-15">x1</span></button></div><div class="card-en">George has lost Mr Dinosaur.</div><div class="card-vocab"><span class="vp" onclick="speakWord('lost')"><span class="vp-icon">🔈</span><span class="vw">lost</span><span class="vi">/lɒst/</span></span></div><div class="card-zh">乔治把恐龙先生弄丢了。</div></div>
+<div class="card" id="c16"><div class="card-top"><div class="av" style="background:#FFF3CD;color:#B8860B;">M</div><span class="sp-name">Mummy Pig 猪妈妈</span><button class="tts-btn" onclick="speak(this,'Don\'t worry, George. We\'ll find Mr Dinosaur.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-16">x1</span></button></div><div class="card-en">Don't worry, George. We'll find Mr Dinosaur.</div><div class="card-vocab"><span class="vp" onclick="speakWord('don\'t worry')"><span class="vp-icon">🔈</span><span class="vw">don't worry</span><span class="vi">/dəʊnt ˈwʌri/</span></span></div><div class="card-zh">别担心，乔治。我们会找到恐龙先生的。</div></div>
+<div class="card" id="c17"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'It\'s a job for a detective.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-17">x1</span></button></div><div class="card-en">It's a job for a detective.</div><div class="card-vocab"><span class="vp" onclick="speakWord('detective')"><span class="vp-icon">🔈</span><span class="vw">detective</span><span class="vi">/dɪˈtektɪv/</span></span></div><div class="card-zh">这是侦探的工作。</div></div>
+<div class="card" id="c18"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'A detective is a very important person who is good at finding things.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-18">x1</span></button></div><div class="card-en">A detective is a very important person who is good at finding things.</div><div class="card-vocab"><span class="vp" onclick="speakWord('important')"><span class="vp-icon">🔈</span><span class="vw">important</span><span class="vi">/ɪmˈpɔːtnt/</span></span></div><div class="card-zh">侦探是一个非常重要的人，擅长找东西。</div></div>
+<div class="card" id="c19"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'Me! Me! I\'m good at finding things.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-19">x1</span></button></div><div class="card-en">Me! Me! I'm good at finding things.</div><div class="card-zh">我！我！我擅长找东西。</div></div>
+<div class="card" id="c20"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'All right. Peppa is the detective.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-20">x1</span></button></div><div class="card-en">All right. Peppa is the detective.</div><div class="card-vocab"><span class="vp" onclick="speakWord('all right')"><span class="vp-icon">🔈</span><span class="vw">all right</span><span class="vi">/ɔːl raɪt/</span></span></div><div class="card-zh">好吧。佩奇就是侦探。</div></div>
+<div class="card" id="c21"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'George. I am the detective. I will help you find Mr Dinosaur.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-21">x1</span></button></div><div class="card-en">George. I am the detective. I will help you find Mr Dinosaur.</div><div class="card-zh">乔治。我是侦探。我会帮你找到恐龙先生的。</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--pink-d)"></div><span class="sec-label" style="color:var(--pink-d)">场景四 · 侦探佩奇开始调查——浴缸？</span><div class="sec-rule"></div></div>
+<div class="card" id="c22"><div class="card-top"><div class="av" style="background:#FFF3CD;color:#B8860B;">M</div><span class="sp-name">Mummy Pig 猪妈妈</span><button class="tts-btn" onclick="speak(this,'Maybe the detective should ask George some simple questions.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-22">x1</span></button></div><div class="card-en">Maybe the detective should ask George some simple questions.</div><div class="card-vocab"><span class="vp" onclick="speakWord('simple')"><span class="vp-icon">🔈</span><span class="vw">simple</span><span class="vi">/ˈsɪmpl/</span></span></div><div class="card-zh">也许侦探应该问乔治一些简单的问题。</div></div>
+<div class="card" id="c23"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'George does not know where Mr Dinosaur is.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-23">x1</span></button></div><div class="card-en">George does not know where Mr Dinosaur is.</div><div class="card-zh">乔治不知道恐龙先生在哪里。</div></div>
+<div class="card" id="c24"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'The detective could try and guess where Mr Dinosaur might be.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-24">x1</span></button></div><div class="card-en">The detective could try and guess where Mr Dinosaur might be.</div><div class="card-vocab"><span class="vp" onclick="speakWord('guess')"><span class="vp-icon">🔈</span><span class="vw">guess</span><span class="vi">/ɡes/</span></span><span class="vp" onclick="speakWord('might be')"><span class="vp-icon">🔈</span><span class="vw">might be</span><span class="vi">/maɪt biː/</span></span></div><div class="card-zh">侦探可以试着猜猜恐龙先生可能在哪里。</div></div>
+<div class="card" id="c25"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'George always has Mr Dinosaur with him in the bath.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-25">x1</span></button></div><div class="card-en">George always has Mr Dinosaur with him in the bath.</div><div class="card-vocab"><span class="vp" onclick="speakWord('always')"><span class="vp-icon">🔈</span><span class="vw">always</span><span class="vi">/ˈɔːlweɪz/</span></span></div><div class="card-zh">乔治洗澡时总是带着恐龙先生。</div></div>
+<div class="card" id="c26"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'So Mr Dinosaur is in the bath.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-26">x1</span></button></div><div class="card-en">So Mr Dinosaur is in the bath.</div><div class="card-zh">所以恐龙先生在浴缸里。</div></div>
+<div class="card" id="c27"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'Mr Dinosaur is not in the bath.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-27">x1</span></button></div><div class="card-en">Mr Dinosaur is not in the bath.</div><div class="card-zh">恐龙先生不在浴缸里。</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--pink-d)"></div><span class="sec-label" style="color:var(--pink-d)">场景五 · 继续寻找——床？花园？</span><div class="sec-rule"></div></div>
+<div class="card" id="c28"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'Oh. I know. I know where Mr Dinosaur is.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-28">x1</span></button></div><div class="card-en">Oh. I know. I know where Mr Dinosaur is.</div><div class="card-zh">哦。我知道了。我知道恐龙先生在哪里。</div></div>
+<div class="card" id="c29"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'George always has Mr Dinosaur in his bed at night.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-29">x1</span></button></div><div class="card-en">George always has Mr Dinosaur in his bed at night.</div><div class="card-zh">乔治晚上睡觉时总是把恐龙先生放在床上。</div></div>
+<div class="card" id="c30"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'So that\'s where he is.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-30">x1</span></button></div><div class="card-en">So that's where he is.</div><div class="card-zh">所以他就在那里。</div></div>
+<div class="card" id="c31"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'Mr Dinosaur is not in George\'s bed.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-31">x1</span></button></div><div class="card-en">Mr Dinosaur is not in George's bed.</div><div class="card-zh">恐龙先生不在乔治的床上。</div></div>
+<div class="card" id="c32"><div class="card-top"><div class="av" style="background:#FFF3CD;color:#B8860B;">M</div><span class="sp-name">Mummy Pig 猪妈妈</span><button class="tts-btn" onclick="speak(this,'Maybe we should try the garden.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-32">x1</span></button></div><div class="card-en">Maybe we should try the garden.</div><div class="card-vocab"><span class="vp" onclick="speakWord('garden')"><span class="vp-icon">🔈</span><span class="vw">garden</span><span class="vi">/ˈɡɑːdn/</span></span></div><div class="card-zh">也许我们应该去花园找找。</div></div>
+<div class="card" id="c33"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'Yes, the garden. I was going to say that.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-33">x1</span></button></div><div class="card-en">Yes, the garden. I was going to say that.</div><div class="card-zh">是的，花园。我正要这么说的。</div></div>
+<div class="card" id="c34"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'Mr Dinosaur is very hard to find.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-34">x1</span></button></div><div class="card-en">Mr Dinosaur is very hard to find.</div><div class="card-vocab"><span class="vp" onclick="speakWord('hard to find')"><span class="vp-icon">🔈</span><span class="vw">hard to find</span><span class="vi">/hɑːd tuː faɪnd/</span></span></div><div class="card-zh">恐龙先生非常难找。</div></div>
+<div class="card" id="c35"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'Oh. Mr Dinosaur isn\'t anywhere.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-35">x1</span></button></div><div class="card-en">Oh. Mr Dinosaur isn't anywhere.</div><div class="card-vocab"><span class="vp" onclick="speakWord('anywhere')"><span class="vp-icon">🔈</span><span class="vw">anywhere</span><span class="vi">/ˈeniweə/</span></span></div><div class="card-zh">哦。恐龙先生哪里都不在。</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--pink-d)"></div><span class="sec-label" style="color:var(--pink-d)">场景六 · 发现恐龙先生在树上！</span><div class="sec-rule"></div></div>
+<div class="card" id="c36"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'George? You do love to throw Mr Dinosaur in the air.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-36">x1</span></button></div><div class="card-en">George? You do love to throw Mr Dinosaur in the air.</div><div class="card-zh">乔治？你确实喜欢把恐龙先生扔到空中。</div></div>
+<div class="card" id="c37"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'I wonder if this time you threw Mr Dinosaur just a bit too high.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-37">x1</span></button></div><div class="card-en">I wonder if this time you threw Mr Dinosaur just a bit too high.</div><div class="card-vocab"><span class="vp" onclick="speakWord('I wonder')"><span class="vp-icon">🔈</span><span class="vw">I wonder</span><span class="vi">/aɪ ˈwʌndə/</span></span></div><div class="card-zh">我在想这次你是不是把恐龙先生扔得太高了一点。</div></div>
+<div class="card" id="c38"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'There he is. There he is. I saw him first.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-38">x1</span></button></div><div class="card-en">There he is. There he is. I saw him first.</div><div class="card-zh">在那里！在那里！是我先看到的。</div></div>
+<div class="card" id="c39"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'Well done, Peppa. You really are a very good detective.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-39">x1</span></button></div><div class="card-en">Well done, Peppa. You really are a very good detective.</div><div class="card-vocab"><span class="vp" onclick="speakWord('really')"><span class="vp-icon">🔈</span><span class="vw">really</span><span class="vi">/ˈrɪəli/</span></span></div><div class="card-zh">做得好，佩奇。你真的是一个非常好的侦探。</div></div>
+<div class="card" id="c40"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'George is so happy to have Mr Dinosaur back again.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-40">x1</span></button></div><div class="card-en">George is so happy to have Mr Dinosaur back again.</div><div class="card-zh">乔治非常高兴恐龙先生又回来了。</div></div>
+<div class="card" id="c41"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'Maybe it isn\'t a good idea to play with dinosaurs near trees.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-41">x1</span></button></div><div class="card-en">Maybe it isn't a good idea to play with dinosaurs near trees.</div><div class="card-vocab"><span class="vp" onclick="speakWord('good idea')"><span class="vp-icon">🔈</span><span class="vw">good idea</span><span class="vi">/ɡʊd aɪˈdɪə/</span></span></div><div class="card-zh">也许在树旁边玩恐龙玩具不是个好主意。</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--yellow-d)"></div><span class="sec-label" style="color:var(--yellow-d)">本集语法讲解</span><div class="sec-rule"></div></div>
+<div class="g-block"><div class="g-head"><span style="font-size:15px">📌</span><span class="g-head-title">语法一：has lost → 现在完成时表示当前仍有效的结果</span></div><div class="g-body"><div class="g-row"><div class="g-tag">句型结构</div><div class="g-box">主语 + <em>have / has</em> + <em>过去分词</em></div></div><div class="g-row"><div class="g-tag">用法</div><div class="g-note">George <em>has lost</em> Mr Dinosaur.<br>乔治把恐龙先生弄丢了（现在仍未找到）<br>用 has lost 强调丢失状态仍然存在，是目前的状况。</div></div><div class="g-row"><div class="g-tag">举一反三</div><div class="g-note">I <em>have lost</em> my keys. 我把钥匙丢了。<br>She <em>has found</em> her bag. 她找到了她的包。</div></div></div></div>
+<div class="g-block"><div class="g-head"><span style="font-size:15px">📌</span><span class="g-head-title">语法二：could → 委婉建议</span></div><div class="g-body"><div class="g-row"><div class="g-tag">句型结构</div><div class="g-box">主语 + <em>could</em> + 动词原形 → 可以…（委婉建议）</div></div><div class="g-row"><div class="g-tag">用法</div><div class="g-note">The detective <em>could</em> try and guess where Mr Dinosaur might be.<br>侦探可以试着猜猜恐龙先生可能在哪里。<br>could 比 should 更委婉，表示一种可能的选择而非命令。</div></div><div class="g-row"><div class="g-tag">举一反三</div><div class="g-note">You <em>could</em> try the garden. 你可以去花园找找。<br>We <em>could</em> ask Mummy. 我们可以问问妈妈。</div></div></div></div>
+<div class="g-block"><div class="g-head"><span style="font-size:15px">📌</span><span class="g-head-title">语法三：might be → 不确定的推测</span></div><div class="g-body"><div class="g-row"><div class="g-tag">句型结构</div><div class="g-box">主语 + <em>might</em> + 动词原形 → 可能…（不确定推测）</div></div><div class="g-row"><div class="g-tag">用法</div><div class="g-note">Where Mr Dinosaur <em>might be</em>.<br>恐龙先生可能在哪里。<br>might 表示不确定的可能，语气比 must 弱，常用于推测。</div></div><div class="g-row"><div class="g-tag">举一反三</div><div class="g-note">He <em>might be</em> in the garden. 他可能在花园里。<br>It <em>might</em> rain tomorrow. 明天可能会下雨。</div></div></div></div>
+<div class="g-block"><div class="g-head"><span style="font-size:15px">📌</span><span class="g-head-title">语法四：I wonder if… → 委婉推测/好奇</span></div><div class="g-body"><div class="g-row"><div class="g-tag">句型结构</div><div class="g-box">I wonder <em>if</em> + 句子 → 我在想…是否…</div></div><div class="g-row"><div class="g-tag">用法</div><div class="g-note">I wonder <em>if</em> this time you threw Mr Dinosaur just a bit too high.<br>我在想这次你是不是把恐龙先生扔得太高了一点。<br>I wonder if 是温和推测，比直接问句更有礼貌。</div></div><div class="g-row"><div class="g-tag">举一反三</div><div class="g-note">I wonder <em>if</em> she is at home. 我在想她是否在家。<br>I wonder <em>if</em> it will snow. 我在想会不会下雪。</div></div></div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--teal-d)"></div><span class="sec-label" style="color:var(--teal-d)">本集固定句型</span><div class="sec-rule"></div></div>
+<div class="p-block"><div class="p-head"><span style="font-size:15px">💬</span><span class="p-head-title">6个超实用日常句型</span></div><div class="p-body">
+<div class="p-item"><div class="p-name">句型① 别担心 · Don't worry!</div><div class="p-formula">Don't worry, ___. We'll <em>find / fix / help</em> ___.</div><div class="p-egs"><div class="p-eg"><span class="en">Don't worry, George. We'll find Mr Dinosaur.</span> <span class="zh">→ 别担心，乔治。我们会找到恐龙先生的。</span></div><div class="p-eg"><span class="en">Don't worry, Peppa. It'll be fine.</span> <span class="zh">→ 别担心，佩奇。会没事的。</span></div><div class="p-eg"><span class="en">Don't worry. I'll help you.</span> <span class="zh">→ 别担心。我会帮你的。</span></div></div></div>
+<div class="p-item"><div class="p-name">句型② 擅长 · be good at</div><div class="p-formula">___ is good at <em>finding / swimming / jumping</em> things.</div><div class="p-egs"><div class="p-eg"><span class="en">A detective is a very important person who is good at finding things.</span> <span class="zh">→ 侦探是擅长找东西的重要人物。</span></div><div class="p-eg"><span class="en">I'm good at finding things.</span> <span class="zh">→ 我擅长找东西。</span></div><div class="p-eg"><span class="en">Peppa is good at jumping in puddles.</span> <span class="zh">→ 佩奇很擅长跳泥坑。</span></div></div></div>
+<div class="p-item"><div class="p-name">句型③ 推断位置 · So that's where…</div><div class="p-formula">So that's where <em>he / she / it</em> is!</div><div class="p-egs"><div class="p-eg"><span class="en">George always has Mr Dinosaur in his bed. So that's where he is.</span> <span class="zh">→ 乔治总是把恐龙先生放床上，所以它就在那里。</span></div><div class="p-eg"><span class="en">I left my bag at school. So that's where it is!</span> <span class="zh">→ 我把包留在学校了，原来在那里！</span></div><div class="p-eg"><span class="en">She always reads in the garden. So that's where she is.</span> <span class="zh">→ 她总是在花园看书，原来在那里。</span></div></div></div>
+<div class="p-item"><div class="p-name">句型④ 表扬 · Well done! / You really are…</div><div class="p-formula">Well done, ___! You really are a very good ___.</div><div class="p-egs"><div class="p-eg"><span class="en">Well done, Peppa. You really are a very good detective.</span> <span class="zh">→ 做得好，佩奇。你真的是一个非常好的侦探。</span></div><div class="p-eg"><span class="en">Well done! You really are a very fast runner.</span> <span class="zh">→ 做得好！你真的跑得很快。</span></div><div class="p-eg"><span class="en">Well done, George!</span> <span class="zh">→ 做得好，乔治！</span></div></div></div>
+<div class="p-item"><div class="p-name">句型⑤ 我正要说 · I was going to say that</div><div class="p-formula">I was going to say ___. / That's what I thought.</div><div class="p-egs"><div class="p-eg"><span class="en">Yes, the garden. I was going to say that.</span> <span class="zh">→ 是的，花园。我正要这么说的。</span></div><div class="p-eg"><span class="en">I was going to ask the same question.</span> <span class="zh">→ 我正要问同一个问题。</span></div><div class="p-eg"><span class="en">That's exactly what I was thinking.</span> <span class="zh">→ 那正是我在想的。</span></div></div></div>
+<div class="p-item"><div class="p-name">句型⑥ 委婉建议 · Maybe it isn't a good idea to…</div><div class="p-formula">Maybe it isn't a good idea to <em>do sth</em> near/in ___.</div><div class="p-egs"><div class="p-eg"><span class="en">Maybe it isn't a good idea to play with dinosaurs near trees.</span> <span class="zh">→ 也许在树旁玩恐龙不是个好主意。</span></div><div class="p-eg"><span class="en">Maybe it isn't a good idea to run near the pool.</span> <span class="zh">→ 也许在泳池旁跑步不是个好主意。</span></div><div class="p-eg"><span class="en">Maybe it isn't a good idea to eat sweets before dinner.</span> <span class="zh">→ 也许饭前吃糖不是个好主意。</span></div></div></div>
+</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--blue-d)"></div><span class="sec-label" style="color:var(--blue-d)">本集生词汇总</span><div class="sec-rule"></div></div>
+<div class="v-block"><div class="v-head"><span style="font-size:15px">📚</span><span class="v-head-title">20 个核心单词</span></div>
+<div class="v-row"><div class="vnum">1</div><span class="vword">favourite</span><span class="vpron">/ˈfeɪvərɪt/</span><span class="vmean">最喜欢的</span></div>
+<div class="v-row"><div class="vnum">2</div><span class="vword">scare</span><span class="vpron">/skeə/</span><span class="vmean">吓唬</span></div>
+<div class="v-row"><div class="vnum">3</div><span class="vword">scary</span><span class="vpron">/ˈskeəri/</span><span class="vmean">可怕的</span></div>
+<div class="v-row"><div class="vnum">4</div><span class="vword">suppertime</span><span class="vpron">/ˈsʌpətaɪm/</span><span class="vmean">晚饭时间</span></div>
+<div class="v-row"><div class="vnum">5</div><span class="vword">shares</span><span class="vpron">/ʃeəz/</span><span class="vmean">共用，分享</span></div>
+<div class="v-row"><div class="vnum">6</div><span class="vword">tucked up</span><span class="vpron">/tʌkt ʌp/</span><span class="vmean">被子盖好</span></div>
+<div class="v-row"><div class="vnum">7</div><span class="vword">throwing</span><span class="vpron">/ˈθrəʊɪŋ/</span><span class="vmean">扔</span></div>
+<div class="v-row"><div class="vnum">8</div><span class="vword">catching</span><span class="vpron">/ˈkætʃɪŋ/</span><span class="vmean">接住</span></div>
+<div class="v-row"><div class="vnum">9</div><span class="vword">draughts</span><span class="vpron">/drɑːfts/</span><span class="vmean">跳棋</span></div>
+<div class="v-row"><div class="vnum">10</div><span class="vword">lost</span><span class="vpron">/lɒst/</span><span class="vmean">丢失</span></div>
+<div class="v-row"><div class="vnum">11</div><span class="vword">detective</span><span class="vpron">/dɪˈtektɪv/</span><span class="vmean">侦探</span></div>
+<div class="v-row"><div class="vnum">12</div><span class="vword">important</span><span class="vpron">/ɪmˈpɔːtnt/</span><span class="vmean">重要的</span></div>
+<div class="v-row"><div class="vnum">13</div><span class="vword">all right</span><span class="vpron">/ɔːl raɪt/</span><span class="vmean">好吧，没问题</span></div>
+<div class="v-row"><div class="vnum">14</div><span class="vword">simple</span><span class="vpron">/ˈsɪmpl/</span><span class="vmean">简单的</span></div>
+<div class="v-row"><div class="vnum">15</div><span class="vword">guess</span><span class="vpron">/ɡes/</span><span class="vmean">猜测</span></div>
+<div class="v-row"><div class="vnum">16</div><span class="vword">always</span><span class="vpron">/ˈɔːlweɪz/</span><span class="vmean">总是</span></div>
+<div class="v-row"><div class="vnum">17</div><span class="vword">garden</span><span class="vpron">/ˈɡɑːdn/</span><span class="vmean">花园</span></div>
+<div class="v-row"><div class="vnum">18</div><span class="vword">hard to find</span><span class="vpron">/hɑːd tuː faɪnd/</span><span class="vmean">很难找到</span></div>
+<div class="v-row"><div class="vnum">19</div><span class="vword">anywhere</span><span class="vpron">/ˈeniweə/</span><span class="vmean">任何地方</span></div>
+<div class="v-row"><div class="vnum">20</div><span class="vword">really</span><span class="vpron">/ˈrɪəli/</span><span class="vmean">真的，确实</span></div>
+</div>
+<div class="sec-head" style="padding-top:16px">
+  <div class="sec-dot" style="background:#F97316"></div>
+  <span class="sec-label" style="color:#F97316">完整台词 · 高亮展示</span>
+  <div class="sec-rule"></div>
+</div>
+<div style="margin:4px 12px 6px;background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:10px;padding:8px 12px;font-size:12px;color:#C2410C;font-weight:600;display:flex;align-items:center;gap:8px;">
+  <span>🎨</span><span>上方全部中文台词 · 下方全部英文台词，相同颜色标记相同知识点</span>
+</div>
+<div class="ht-block">
+  <div class="ht-head"><span style="font-size:15px">📜</span><span class="ht-head-title">S01E02 完整台词 · 重点高亮</span></div>
+  <div class="ht-zh-block"><div class="ht-block-label">🇨🇳 中文台词</div><div class="ht-para"><span class="ht-sent">乔治最<span class='hl-vocab'>喜欢</span>的玩具是恐龙先生。乔治非常爱恐龙先生。</span> <span class="ht-sent">有时候，乔治喜欢用恐龙先生<span class='hl-vocab'>吓</span>佩奇。啊！太<span class='hl-vocab'>可怕</span>了。</span> <span class="ht-sent">吃<span class='hl-vocab'>晚饭</span>时，恐龙先生坐在乔治旁边。</span> <span class="ht-sent"><span class='hl-pattern'>不好意思。那是你打嗝了，乔治，还是恐龙先生打嗝了？</span></span> <span class="ht-sent">洗澡时，乔治和恐龙先生<span class='hl-vocab'>共用</span>一个浴缸。</span> <span class="ht-sent">晚安，佩奇。晚安，乔治。还有，晚安，恐龙先生。</span> <span class="ht-sent">乔治睡觉时，恐龙先生和他一起被<span class='hl-vocab'>盖好被子</span>。</span> <span class="ht-sent">乔治最喜欢的游戏是把恐龙先生<span class='hl-vocab'>扔</span>向空中，然后<span class='hl-vocab'>接住</span>它。</span> <span class="ht-sent">佩奇和猪爸爸在下<span class='hl-vocab'>跳棋</span>。我赢了，爸爸。哦。做得好，佩奇。</span> <span class="ht-sent">乔治把恐龙先生<span class='hl-vocab'>弄丢了</span>。</span> <span class="ht-sent"><span class='hl-pattern'>别担心，乔治。我们会找到恐龙先生的。</span></span> <span class="ht-sent">这是<span class='hl-vocab'>侦探</span>的工作。侦探是一个非常<span class='hl-vocab'>重要</span>的人，<span class='hl-vocab'>擅长找</span>东西。</span> <span class="ht-sent"><span class='hl-pattern'>好吧。佩奇就是侦探。</span></span> <span class="ht-sent">也许侦探应该问乔治一些<span class='hl-vocab'>简单</span>的问题。侦探可以试着<span class='hl-vocab'>猜猜</span>恐龙先生<span class='hl-vocab'>可能</span>在哪里。</span> <span class="ht-sent">乔治洗澡时<span class='hl-vocab'>总是</span>带着恐龙先生。所以恐龙先生在浴缸里。恐龙先生不在浴缸里。</span> <span class="ht-sent">乔治晚上睡觉时总是把恐龙先生放在床上。所以他就在那里。恐龙先生不在乔治的床上。</span> <span class="ht-sent">也许我们应该去<span class='hl-vocab'>花园</span>找找。是的，<span class='hl-pattern'>我正要这么说的。</span></span> <span class="ht-sent">恐龙先生非常<span class='hl-vocab'>难找</span>。恐龙先生<span class='hl-vocab'>哪里都不在</span>。</span> <span class="ht-sent"><span class='hl-pattern'>我在想这次你是不是把恐龙先生扔得太高了一点。</span></span> <span class="ht-sent">在那里！在那里！是我先看到的。</span> <span class="ht-sent"><span class='hl-pattern'>做得好，佩奇。你<span class='hl-vocab'>真的</span>是一个非常好的侦探。</span></span> <span class="ht-sent">也许在树旁边玩恐龙玩具<span class='hl-pattern'>不是个好主意</span>。</span></div></div>
+  <div class="ht-en-block"><div class="ht-block-label">🇬🇧 英文台词</div><div class="ht-para"><span class="ht-sent">George's <span class='hl-vocab'>favourite</span> toy is Mr Dinosaur. George loves Mr Dinosaur.</span> <span class="ht-sent">Sometimes, George likes to <span class='hl-vocab'>scare</span> Peppa with Mr Dinosaur. Eeek! Too <span class='hl-vocab'>scary</span>.</span> <span class="ht-sent">At <span class='hl-vocab'>suppertime</span>, Mr Dinosaur sits next to George.</span> <span class="ht-sent"><span class='hl-pattern'>I beg your pardon. Was that you George, or was it Mr Dinosaur?</span></span> <span class="ht-sent">At bath time, George <span class='hl-vocab'>shares</span> his bath with Mr Dinosaur.</span> <span class="ht-sent">Good night, Peppa. Good night, George. And good night, Mr Dinosaur.</span> <span class="ht-sent">When George goes to bed, Mr Dinosaur is <span class='hl-vocab'>tucked up</span> with him.</span> <span class="ht-sent">George's favourite game is <span class='hl-vocab'>throwing</span> Mr Dinosaur up in the air and <span class='hl-vocab'>catching</span> him.</span> <span class="ht-sent">Peppa and Daddy Pig are playing <span class='hl-vocab'>draughts</span>. I win, Daddy. Oh. Well done, Peppa.</span> <span class="ht-sent">George has <span class='hl-vocab'>lost</span> Mr Dinosaur.</span> <span class="ht-sent"><span class='hl-pattern'>Don't worry, George. We'll find Mr Dinosaur.</span></span> <span class="ht-sent">It's a job for a <span class='hl-vocab'>detective</span>. A detective is a very <span class='hl-vocab'>important</span> person who is <span class='hl-vocab'>good at finding</span> things.</span> <span class="ht-sent"><span class='hl-pattern'>All right. Peppa is the detective.</span></span> <span class="ht-sent">Maybe the detective should ask George some <span class='hl-vocab'>simple</span> questions. The detective could try and <span class='hl-vocab'>guess</span> where Mr Dinosaur <span class='hl-vocab'>might be</span>.</span> <span class="ht-sent">George <span class='hl-vocab'>always</span> has Mr Dinosaur with him in the bath. So Mr Dinosaur is in the bath. Mr Dinosaur is not in the bath.</span> <span class="ht-sent">George always has Mr Dinosaur in his bed at night. So that's where he is. Mr Dinosaur is not in George's bed.</span> <span class="ht-sent">Maybe we should try the <span class='hl-vocab'>garden</span>. Yes, <span class='hl-pattern'>I was going to say that.</span></span> <span class="ht-sent">Mr Dinosaur is very <span class='hl-vocab'>hard to find</span>. Mr Dinosaur isn't <span class='hl-vocab'>anywhere</span>.</span> <span class="ht-sent"><span class='hl-pattern'>I wonder if this time you threw Mr Dinosaur just a bit too high.</span></span> <span class="ht-sent">There he is. There he is. I saw him first.</span> <span class="ht-sent"><span class='hl-pattern'>Well done, Peppa. You <span class='hl-vocab'>really</span> are a very good detective.</span></span> <span class="ht-sent">Maybe it <span class='hl-pattern'>isn't a good idea</span> to play with dinosaurs near trees.</span></div></div>
+  <div class="ht-legend"><span><span class="hl-vocab">■</span> 重点词汇</span><span><span class="hl-pattern">■</span> 固定句型</span></div>
+</div>
+<div class="sec-head" style="padding-top:16px">
+  <div class="sec-dot" style="background:#7C3AED"></div>
+  <span class="sec-label" style="color:#7C3AED">听力练习 · 听写训练</span>
+  <div class="sec-rule"></div>
+</div>
+<div class="dict-intro"><span>🎧</span><span>听英文朗读，根据中文提示，在输入框打出英文台词（只需字母正确，不区分大小写和标点）</span></div>
+<div id="dictation-list"></div>
+<div class="dict-score-bar" id="dictScoreBar" style="display:none">
+  <span class="dict-score-label">本次得分</span>
+  <span class="dict-score-val" id="dictScoreVal">0 / 0</span>
+  <button class="dict-reset-btn" onclick="resetDictation()">🔄 重新练习</button>
+</div>
+<div class="footer">
+  <div class="footer-emoji">🦕 🔍 🌳</div>
+  <div class="footer-text">喜欢这期内容？收藏备用，每集都会更新～<br>
+  <b>下一集：S01E03《Polly Parrot · 波利鹦鹉》</b></div>
+  <span class="footer-btn">→ 期待下集</span>
+</div>
+</div>
+<div id="toast"></div>
+<script>
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
+let currentRepeat = 1;
+let activeBtn     = null;
+let utterance     = null;
+let repeatCount   = 0;
+let targetRepeats = 1;
+let isForever     = false;
+let currentText   = '';
+let pauseMode     = 0;      // 0=no pause, -1=same duration, N=fixed seconds
+let speakStartTime = 0;     // when current utterance started (ms)
+
+// ══════════════════════════════════════
+// VOICE HELPERS
+// ══════════════════════════════════════
+function getBritishVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  return voices.find(v => v.lang === 'en-GB') ||
+         voices.find(v => v.lang.startsWith('en')) || null;
+}
+
+function makeUtterance(text, rate = 0.88) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang  = 'en-GB';
+  u.rate  = rate;
+  u.pitch = 1.05;
+  const v = getBritishVoice();
+  if (v) u.voice = v;
+  return u;
+}
+
+// ══════════════════════════════════════
+// REPEAT SELECTOR
+// ══════════════════════════════════════
+document.querySelectorAll('.rep-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.rep-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const n = parseInt(btn.dataset.n);
+    if (n === 0) { isForever = true;  currentRepeat = 999999; }
+    else         { isForever = false; currentRepeat = n; }
+    document.querySelectorAll('.tts-count').forEach(el => {
+      el.textContent = isForever ? '∞' : '×' + currentRepeat;
+    });
+  });
+});
+
+// ══════════════════════════════════════
+// PAUSE SELECTOR
+// ══════════════════════════════════════
+document.querySelectorAll('.pause-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pause-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    pauseMode = parseInt(btn.dataset.p);
+    const hint = document.getElementById('pause-hint');
+    if (pauseMode === 0)  hint.textContent = '连续朗读';
+    else if (pauseMode === -1) hint.textContent = '朗读多久，暂停多久（100LS推荐）';
+    else hint.textContent = `每次朗读后暂停 ${pauseMode} 秒`;
+  });
+});
+
+// ══════════════════════════════════════
+// SENTENCE SPEAK
+// ══════════════════════════════════════
+function speak(btn, text) {
+  if (activeBtn === btn && window.speechSynthesis.speaking) { stopAll(); return; }
+  stopAll(false);
+  currentText   = text;
+  repeatCount   = 0;
+  targetRepeats = currentRepeat;
+  activeBtn     = btn;
+  btn.closest('.card').classList.add('playing');
+  btn.classList.add('playing');
+  btn.querySelector('.tts-icon').textContent = '⏸';
+  document.getElementById('stopAllBtn').classList.add('visible');
+  doSpeak();
+}
+
+function doSpeak() {
+  if (!activeBtn) return;
+  if (!isForever && repeatCount >= targetRepeats) { finish(); return; }
+  repeatCount++;
+  showToast(isForever ? `🔊 朗读中 ∞` : `🔊 第 ${repeatCount} / ${targetRepeats} 次`);
+  speakStartTime = Date.now();
+  utterance = makeUtterance(currentText);
+  utterance.onend = () => {
+    if (!activeBtn) return;
+    const elapsed = Date.now() - speakStartTime; // ms the speech took
+    let delayMs = 220;
+    if (pauseMode === -1) delayMs = Math.max(500, elapsed);   // same as speech duration
+    else if (pauseMode > 0) delayMs = pauseMode * 1000;
+    if (pauseMode !== 0) {
+      const sec = pauseMode === -1 ? Math.round(elapsed/1000) : pauseMode;
+      showToast(`⏱ 暂停中 ${sec}s — 试着跟读！`);
+    }
+    setTimeout(doSpeak, delayMs);
+  };
+  utterance.onerror = () => finish();
+  window.speechSynthesis.speak(utterance);
+}
+
+function finish() {
+  if (activeBtn) {
+    activeBtn.querySelector('.tts-icon').textContent = '🔊';
+    activeBtn.classList.remove('playing');
+    activeBtn.closest('.card').classList.remove('playing');
+  }
+  activeBtn = null; utterance = null;
+  document.getElementById('stopAllBtn').classList.remove('visible');
+  hideToast();
+}
+
+function stopAll(showFeedback = true) {
+  window.speechSynthesis.cancel();
+  if (activeBtn) {
+    activeBtn.querySelector('.tts-icon').textContent = '🔊';
+    activeBtn.classList.remove('playing');
+    activeBtn.closest('.card').classList.remove('playing');
+  }
+  activeBtn = null; utterance = null;
+  document.getElementById('stopAllBtn').classList.remove('visible');
+  if (showFeedback) hideToast();
+}
+
+// ══════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+}
+function hideToast() {
+  document.getElementById('toast').classList.remove('show');
+}
+
+// ══════════════════════════════════════
+// VOCAB PILL SPEAK
+// ══════════════════════════════════════
+let wordUtterance = null;
+function speakWord(word) {
+  if (wordUtterance) {
+    window.speechSynthesis.cancel();
+    document.querySelectorAll('.vp.speaking').forEach(el => el.classList.remove('speaking'));
+    wordUtterance = null;
+  }
+  const pill = [...document.querySelectorAll('.vp')].find(p => {
+    const vw = p.querySelector('.vw');
+    return vw && vw.textContent.trim() === word;
+  });
+  if (pill) pill.classList.add('speaking');
+  wordUtterance = makeUtterance(word, 0.8);
+  wordUtterance.onend = wordUtterance.onerror = () => {
+    if (pill) pill.classList.remove('speaking');
+    wordUtterance = null;
+  };
+  window.speechSynthesis.speak(wordUtterance);
+}
+
+// ══════════════════════════════════════
+// DICTATION
+// ══════════════════════════════════════
+const DICT_LINES = [
+  {
+    "zh": "乔治最喜欢的玩具是恐龙先生。",
+    "en": "George's favourite toy is Mr Dinosaur."
+  },
+  {
+    "zh": "有时候，乔治喜欢用恐龙先生吓佩奇。",
+    "en": "Sometimes, George likes to scare Peppa with Mr Dinosaur."
+  },
+  {
+    "zh": "啊！太可怕了。",
+    "en": "Eeek! Too scary."
+  },
+  {
+    "zh": "吃晚饭时，恐龙先生坐在乔治旁边。",
+    "en": "At suppertime, Mr Dinosaur sits next to George."
+  },
+  {
+    "zh": "不好意思。那是你打嗝了，乔治，还是恐龙先生打嗝了？",
+    "en": "I beg your pardon. Was that you George, or was it Mr Dinosaur?"
+  },
+  {
+    "zh": "洗澡时，乔治和恐龙先生一起洗澡。",
+    "en": "At bath time, George shares his bath with Mr Dinosaur."
+  },
+  {
+    "zh": "晚安，佩奇。",
+    "en": "Good night, Peppa."
+  },
+  {
+    "zh": "晚安，乔治。还有，晚安，恐龙先生。",
+    "en": "Good night, George. And good night, Mr Dinosaur."
+  },
+  {
+    "zh": "乔治睡觉时，恐龙先生和他一起被盖好被子。",
+    "en": "When George goes to bed, Mr Dinosaur is tucked up with him."
+  },
+  {
+    "zh": "乔治最喜欢的游戏是把恐龙先生扔向空中，然后接住落下来的它。",
+    "en": "George's favourite game is throwing Mr Dinosaur up in the air and catching him when he falls back down."
+  },
+  {
+    "zh": "佩奇和猪爸爸在下棋。",
+    "en": "Peppa and Daddy Pig are playing draughts."
+  },
+  {
+    "zh": "我赢了，爸爸。",
+    "en": "I win, Daddy."
+  },
+  {
+    "zh": "乔治把恐龙先生弄丢了。",
+    "en": "George has lost Mr Dinosaur."
+  },
+  {
+    "zh": "别担心，乔治。我们会找到恐龙先生的。",
+    "en": "Don't worry, George. We'll find Mr Dinosaur."
+  },
+  {
+    "zh": "这是侦探的工作。",
+    "en": "It's a job for a detective."
+  },
+  {
+    "zh": "侦探是一个非常重要的人，擅长找东西。",
+    "en": "A detective is a very important person who is good at finding things."
+  },
+  {
+    "zh": "我！我！我擅长找东西。",
+    "en": "Me! Me! I'm good at finding things."
+  },
+  {
+    "zh": "好吧。佩奇就是侦探。",
+    "en": "All right. Peppa is the detective."
+  },
+  {
+    "zh": "乔治。我是侦探。我会帮你找到恐龙先生的。",
+    "en": "George. I am the detective. I will help you find Mr Dinosaur."
+  },
+  {
+    "zh": "也许侦探应该问乔治一些简单的问题。",
+    "en": "Maybe the detective should ask George some simple questions."
+  },
+  {
+    "zh": "侦探可以试着猜猜恐龙先生可能在哪里。",
+    "en": "The detective could try and guess where Mr Dinosaur might be."
+  },
+  {
+    "zh": "乔治洗澡时总是带着恐龙先生。所以恐龙先生在浴缸里。",
+    "en": "George always has Mr Dinosaur with him in the bath. So Mr Dinosaur is in the bath."
+  },
+  {
+    "zh": "恐龙先生不在浴缸里。",
+    "en": "Mr Dinosaur is not in the bath."
+  },
+  {
+    "zh": "乔治晚上睡觉时总是把恐龙先生放在床上。所以他就在那里。",
+    "en": "George always has Mr Dinosaur in his bed at night. So that's where he is."
+  },
+  {
+    "zh": "恐龙先生不在乔治的床上。",
+    "en": "Mr Dinosaur is not in George's bed."
+  },
+  {
+    "zh": "也许我们应该去花园找找。",
+    "en": "Maybe we should try the garden."
+  },
+  {
+    "zh": "是的，花园。我正要这么说的。",
+    "en": "Yes, the garden. I was going to say that."
+  },
+  {
+    "zh": "恐龙先生非常难找。",
+    "en": "Mr Dinosaur is very hard to find."
+  },
+  {
+    "zh": "哦。恐龙先生哪里都不在。",
+    "en": "Oh. Mr Dinosaur isn't anywhere."
+  },
+  {
+    "zh": "我在想这次你是不是把恐龙先生扔得太高了一点。",
+    "en": "I wonder if this time you threw Mr Dinosaur just a bit too high."
+  },
+  {
+    "zh": "在那里！在那里！是我先看到的。",
+    "en": "There he is. There he is. I saw him first."
+  },
+  {
+    "zh": "做得好，佩奇。你真的是一个非常好的侦探。",
+    "en": "Well done, Peppa. You really are a very good detective."
+  },
+  {
+    "zh": "乔治非常高兴恐龙先生又回来了。",
+    "en": "George is so happy to have Mr Dinosaur back again."
+  },
+  {
+    "zh": "也许在树旁边玩恐龙玩具不是个好主意。",
+    "en": "Maybe it isn't a good idea to play with dinosaurs near trees."
+  }
+];
+
+let dictSpeaking = null; // currently speaking dict utterance
+
+function buildDictation() {
+  const container = document.getElementById('dictation-list');
+  DICT_LINES.forEach((line, i) => {
+    const card = document.createElement('div');
+    card.className = 'dict-card';
+    card.innerHTML = `
+      <div class="dict-zh">${i+1}. ${line.zh}</div>
+      <div class="dict-input-row">
+        <button class="dict-speak-btn" id="dsb-${i}" onclick="dictSpeak(${i})" title="点击朗读">🔊</button>
+        <input class="dict-input" id="di-${i}" type="text"
+          placeholder="输入英文台词…"
+          oninput="dictClearResult(${i})"
+          onkeydown="if(event.key==='Enter')dictCheck(${i})">
+        <button class="dict-check-btn" id="dcb-${i}" onclick="dictCheck(${i})">检查</button>
+      </div>
+      <div class="dict-result" id="dr-${i}"></div>`;
+    container.appendChild(card);
+  });
+}
+
+function dictSpeak(i) {
+  // stop any existing dict speech
+  if (dictSpeaking !== null) {
+    window.speechSynthesis.cancel();
+    document.querySelectorAll('.dict-speak-btn.playing').forEach(b => {
+      b.classList.remove('playing'); b.textContent = '🔊';
+    });
+    if (dictSpeaking === i) { dictSpeaking = null; return; }
+  }
+  dictSpeaking = i;
+  const btn = document.getElementById(`dsb-${i}`);
+  btn.classList.add('playing'); btn.textContent = '⏸';
+  const u = makeUtterance(DICT_LINES[i].en, 0.82);
+  u.onend = u.onerror = () => {
+    btn.classList.remove('playing'); btn.textContent = '🔊';
+    dictSpeaking = null;
+  };
+  window.speechSynthesis.speak(u);
+}
+
+function dictClearResult(i) {
+  const dr = document.getElementById(`dr-${i}`);
+  const inp = document.getElementById(`di-${i}`);
+  dr.classList.remove('show','correct','wrong');
+  inp.classList.remove('correct','wrong');
+}
+
+function dictCheck(i) {
+  const inp = document.getElementById(`di-${i}`);
+  const dr  = document.getElementById(`dr-${i}`);
+  const userVal = inp.value.trim();
+  if (!userVal) return;
+  const correct = DICT_LINES[i].en;
+  // Only compare letters (a-z), ignore ALL punctuation, spaces, case
+  const lettersOnly = s => s.toLowerCase().replace(/[^a-z]/g, '');
+  const isCorrect = lettersOnly(userVal) === lettersOnly(correct);
+
+  inp.classList.remove('correct','wrong');
+  inp.classList.add(isCorrect ? 'correct' : 'wrong');
+  dr.classList.remove('show','correct','wrong');
+  dr.classList.add('show', isCorrect ? 'correct' : 'wrong');
+
+  if (isCorrect) {
+    dr.innerHTML = `✅ <strong>完全正确！</strong>`;
+  } else {
+    dr.innerHTML = `❌ 参考答案：<span class="dict-answer">${correct}</span>`;
+  }
+  updateDictScore();
+}
+
+function updateDictScore() {
+  let correct = 0, answered = 0;
+  DICT_LINES.forEach((_, i) => {
+    const inp = document.getElementById(`di-${i}`);
+    if (!inp) return;
+    if (inp.classList.contains('correct') || inp.classList.contains('wrong')) answered++;
+    if (inp.classList.contains('correct')) correct++;
+  });
+  const bar = document.getElementById('dictScoreBar');
+  bar.style.display = answered > 0 ? 'flex' : 'none';
+  document.getElementById('dictScoreVal').textContent = `${correct} / ${answered} 题正确`;
+}
+
+function resetDictation() {
+  DICT_LINES.forEach((_, i) => {
+    const inp = document.getElementById(`di-${i}`);
+    const dr  = document.getElementById(`dr-${i}`);
+    const btn = document.getElementById(`dsb-${i}`);
+    if (inp) { inp.value = ''; inp.classList.remove('correct','wrong'); }
+    if (dr)  { dr.classList.remove('show','correct','wrong'); }
+    if (btn) { btn.classList.remove('playing'); btn.textContent = '🔊'; }
+  });
+  document.getElementById('dictScoreBar').style.display = 'none';
+  if (dictSpeaking !== null) { window.speechSynthesis.cancel(); dictSpeaking = null; }
+}
+
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
+window.speechSynthesis.onvoiceschanged = () => {};
+if (window.speechSynthesis.getVoices().length === 0) window.speechSynthesis.getVoices();
+buildDictation();
+</script>
+</body>
+</html>

@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>🐷 小猪佩奇英语 · S01E03 最好的朋友</title>
+<style>
+:root {
+  --pink:     #F4A7C3;
+  --pink-d:   #C94F82;
+  --pink-bg:  #FFF0F6;
+  --yellow:   #FFD166;
+  --yellow-d: #B8860B;
+  --blue:     #90CAE0;
+  --blue-d:   #2A6C8F;
+  --teal:     #A8E6CF;
+  --teal-d:   #2D7A5A;
+  --mud-d:    #6B3F1A;
+  --white:    #FFFFFF;
+  --bg:       #FFF7FA;
+  --text:     #1E1220;
+  --text2:    #5C3D5C;
+  --border:   #EDD5E5;
+  --green-d:  #3A6820;
+  --purple-d: #5A3FB0;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: #f0e0ec;
+  font-family: 'PingFang SC','Helvetica Neue',Arial,sans-serif;
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+}
+
+/* ── COVER ── */
+.cover {
+  background: linear-gradient(150deg,#FFE0EF 0%,#FFF4D6 55%,#E4F0FF 100%);
+  padding: 22px 18px 18px;
+  text-align: center;
+  border-bottom: 3px dashed var(--pink);
+}
+.cover-pig { font-size: 52px; display: block; margin-bottom: 6px; animation: bounce 2s ease-in-out infinite; }
+@keyframes bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
+.cover-badge {
+  display: inline-block; background: var(--pink-d); color: #fff;
+  font-size: 10px; font-weight: 800; letter-spacing: .12em;
+  padding: 3px 12px; border-radius: 20px; margin-bottom: 8px;
+}
+.cover-title { font-size: 26px; font-weight: 900; color: var(--pink-d); margin-bottom: 3px; }
+.cover-sub   { font-size: 14px; font-weight: 700; color: var(--mud-d); margin-bottom: 12px; }
+.cover-tags  { display: flex; justify-content: center; gap: 6px; flex-wrap: wrap; }
+.cover-tag {
+  background: rgba(255,255,255,.7); border: 1.5px solid var(--pink);
+  color: var(--pink-d); font-size: 11px; font-weight: 700;
+  padding: 2px 9px; border-radius: 20px;
+}
+
+/* ── VIDEO ── */
+.video-section {
+  padding: 12px 12px 6px;
+}
+.video-label {
+  font-size: 10px; font-weight: 800; letter-spacing: .1em;
+  color: var(--pink-d); text-transform: uppercase;
+  margin-bottom: 6px; display: flex; align-items: center; gap: 6px;
+}
+.video-label::after { content:''; flex:1; height:1px; background:var(--border); }
+.video-wrap {
+  position: relative; width: 100%; padding-bottom: 56.25%;
+  background: #1a0a12; border-radius: 10px; overflow: hidden;
+  border: 1.5px solid var(--border);
+}
+.video-wrap iframe {
+  position: absolute; top:0; left:0; width:100%; height:100%; border:none;
+}
+.video-placeholder {
+  position: absolute; top:0; left:0; width:100%; height:100%;
+  display: flex; flex-direction:column; align-items:center; justify-content:center;
+  color: rgba(255,255,255,.6); font-size: 13px; gap: 10px; padding: 16px; text-align:center;
+}
+.video-placeholder .vp-icon { font-size: 40px; opacity:.7; }
+.video-placeholder a {
+  color: var(--yellow); font-weight: 700; font-size: 11px;
+  background: rgba(255,255,255,.1); padding: 4px 12px; border-radius: 20px;
+  text-decoration: none; border: 1px solid rgba(255,255,255,.2);
+}
+
+/* ── TTS GLOBAL CONTROLS ── */
+.tts-bar {
+  margin: 8px 12px 4px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  padding: 8px 12px;
+}
+.tts-row {
+  display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+}
+.tts-bar-label { font-size: 11px; font-weight: 700; color: var(--text2); white-space: nowrap; }
+.repeat-btns { display: flex; gap: 4px; flex-wrap: wrap; flex: 1; }
+.rep-btn, .pause-btn {
+  font-size: 11px; font-weight: 800; color: var(--text2);
+  background: var(--bg); border: 1.5px solid var(--border);
+  border-radius: 20px; padding: 3px 9px; cursor: pointer;
+  transition: all .15s; white-space: nowrap; font-family: inherit;
+}
+.rep-btn:hover, .pause-btn:hover { background: var(--pink-bg); border-color: var(--pink); color: var(--pink-d); }
+.rep-btn.active { background: var(--pink-d); border-color: var(--pink-d); color: #fff; }
+.pause-btn.active { background: #7C3AED; border-color: #7C3AED; color: #fff; }
+
+.stop-all-btn {
+  font-size: 11px; font-weight: 800; color: #fff;
+  background: #e74c3c; border: none;
+  border-radius: 20px; padding: 4px 12px; cursor: pointer;
+  font-family: inherit; display: none; flex-shrink: 0;
+}
+.stop-all-btn.visible { display: block; }
+
+/* ── SECTION HEADER ── */
+.sec-head {
+  display: flex; align-items: center; gap: 8px;
+  padding: 12px 12px 5px;
+}
+.sec-dot { width:8px;height:8px;border-radius:50%;background:var(--pink-d);flex-shrink:0; }
+.sec-label {
+  font-size: 10.5px; font-weight: 800; letter-spacing: .1em;
+  color: var(--pink-d); text-transform: uppercase; white-space: nowrap;
+}
+.sec-rule { flex:1; height:1px; background:var(--border); }
+
+/* ── LINE CARD ── */
+.card {
+  margin: 4px 12px;
+  background: var(--white);
+  border-radius: 10px;
+  border: 1.5px solid var(--border);
+  overflow: hidden;
+  transition: border-color .2s;
+}
+.card.playing { border-color: var(--pink-d); box-shadow: 0 0 0 2px rgba(201,79,130,.15); }
+
+.card-top {
+  display: flex; align-items: center; gap: 7px;
+  padding: 6px 10px 5px;
+  border-bottom: 1px solid var(--border);
+}
+.av {
+  width: 22px; height: 22px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; font-weight: 900; flex-shrink: 0;
+}
+.av-N { background:#EDE8FF; color:var(--purple-d); }
+.av-P { background:#FFE0EE; color:var(--pink-d); }
+.av-M { background:#FFF3CD; color:var(--yellow-d); }
+.av-D { background:#E0F7E9; color:var(--green-d); }
+.av-G { background:#E0F0FF; color:var(--blue-d); }
+.sp-name { font-size: 10.5px; font-weight: 700; color: var(--text2); flex: 1; }
+
+/* ── TTS BUTTON ── */
+.tts-btn {
+  display: flex; align-items: center; gap: 4px;
+  background: var(--pink-bg); border: 1.5px solid var(--pink);
+  border-radius: 20px; padding: 3px 9px;
+  cursor: pointer; font-family: inherit; color: var(--pink-d);
+  font-size: 11px; font-weight: 800;
+  transition: all .15s; white-space: nowrap; flex-shrink: 0;
+}
+.tts-btn:hover { background: var(--pink-d); color: #fff; border-color: var(--pink-d); }
+.tts-btn.playing { background: var(--pink-d); color: #fff; border-color: var(--pink-d); animation: pulse .8s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.75} }
+.tts-icon { font-size: 13px; }
+.tts-count {
+  background: rgba(255,255,255,.3); border-radius: 10px;
+  padding: 0 5px; font-size: 10px; min-width: 18px; text-align: center;
+}
+.tts-btn:not(.playing) .tts-count { background: rgba(201,79,130,.15); }
+
+.card-en {
+  font-size: 14.5px; font-weight: 700; color: var(--text);
+  line-height: 1.55; padding: 7px 10px 4px;
+}
+.card-en.highlight { color: var(--pink-d); }
+
+.card-vocab {
+  padding: 3px 10px 4px; display: flex; flex-wrap: wrap; gap: 4px;
+}
+.vp {
+  display: inline-flex; align-items: center; gap: 3px;
+  background: var(--pink-bg); border: 1px solid var(--pink);
+  border-radius: 20px; padding: 1px 8px; font-size: 11px;
+  cursor: pointer; transition: all .15s; user-select: none;
+}
+.vp:hover { background: var(--pink-d); border-color: var(--pink-d); }
+.vp:hover .vw, .vp:hover .vi, .vp:hover .vp-icon { color: #fff; opacity: 1; }
+.vp:active { transform: scale(0.96); }
+.vp.speaking { background: var(--pink-d); border-color: var(--pink-d); animation: pulse .6s ease-in-out infinite; }
+.vp.speaking .vw, .vp.speaking .vi, .vp.speaking .vp-icon { color: #fff; }
+.vw { font-weight: 800; color: var(--pink-d); transition: color .15s; }
+.vi { font-style: italic; color: var(--text2); font-size: 10px; transition: color .15s; }
+.vp-icon { font-size: 10px; opacity: 0.45; flex-shrink: 0; transition: color .15s, opacity .15s; }
+
+.card-zh {
+  font-size: 12.5px; color: var(--text2);
+  padding: 4px 10px 8px;
+  border-top: 1px dashed var(--border);
+  line-height: 1.55;
+}
+
+/* ── GRAMMAR ── */
+.g-block {
+  margin: 4px 12px;
+  border: 2px solid var(--yellow);
+  border-radius: 12px; overflow: hidden;
+}
+.g-head {
+  background: var(--yellow); padding: 8px 14px;
+  display: flex; align-items: center; gap: 7px;
+}
+.g-head-title { font-size: 13px; font-weight: 900; color: var(--mud-d); }
+.g-body { padding: 10px 14px; }
+.g-row { margin-bottom: 9px; }
+.g-row:last-child { margin-bottom: 0; }
+.g-tag { font-size: 10px; font-weight: 900; letter-spacing:.07em; color:var(--mud-d); text-transform:uppercase; margin-bottom:4px; }
+.g-box {
+  background: var(--white); border: 1.5px solid var(--yellow);
+  border-radius: 7px; padding: 6px 10px;
+  font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.65; margin-bottom:5px;
+}
+.g-box em { font-style:normal; color:var(--pink-d); font-weight:900; background:rgba(212,95,142,.1); padding:0 2px; border-radius:3px; }
+.g-note {
+  font-size: 11.5px; color: var(--text2); line-height: 1.65;
+  padding-left: 8px; border-left: 3px solid var(--yellow);
+}
+.g-note b { color: var(--text); }
+.g-note .en { font-weight:700; color:var(--text); font-family:'Helvetica Neue',Arial,sans-serif; }
+.g-note .bad { color: #e74c3c; }
+
+/* ── PATTERNS ── */
+.p-block {
+  margin: 4px 12px;
+  border: 2px solid var(--teal);
+  border-radius: 12px; overflow: hidden;
+}
+.p-head { background: var(--teal); padding: 8px 14px; display:flex; align-items:center; gap:7px; }
+.p-head-title { font-size: 13px; font-weight: 900; color: var(--teal-d); }
+.p-body { padding: 10px 14px; }
+.p-item { margin-bottom: 12px; }
+.p-item:last-child { margin-bottom: 0; }
+.p-name { font-size: 10px; font-weight:900; letter-spacing:.07em; color:var(--teal-d); text-transform:uppercase; margin-bottom:4px; }
+.p-formula {
+  background:var(--white); border:1.5px solid var(--teal);
+  border-radius:7px; padding:6px 10px;
+  font-size:13px; font-weight:700; color:var(--text); line-height:1.65; margin-bottom:5px;
+}
+.p-formula em { font-style:normal; color:var(--teal-d); font-weight:900; background:rgba(45,122,90,.1); padding:0 2px; border-radius:3px; }
+.p-egs { padding-left:8px; border-left:3px solid var(--teal); }
+.p-eg { font-size:11.5px; color:var(--text2); line-height:1.7; }
+.p-eg .en { font-weight:700; color:var(--text); font-family:'Helvetica Neue',Arial,sans-serif; }
+.p-eg .zh { font-size:11px; color:#888; }
+.p-eg .tip { font-size:11px; color:var(--teal-d); }
+
+/* ── VOCAB ── */
+.v-block { margin:4px 12px; border:1.5px solid var(--blue); border-radius:12px; overflow:hidden; }
+.v-head { background:var(--blue); padding:8px 14px; display:flex; align-items:center; gap:7px; }
+.v-head-title { font-size:13px; font-weight:900; color:var(--blue-d); }
+.v-row {
+  display:flex; align-items:center; gap:8px;
+  padding:7px 12px; border-bottom:1px solid #E8F4FA;
+}
+.v-row:last-child { border-bottom:none; }
+.vnum {
+  width:18px;height:18px;background:var(--blue);color:var(--blue-d);
+  font-size:9px;font-weight:900;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.vword { font-size:12.5px; font-weight:800; color:var(--text); }
+.vpron { font-size:9.5px; color:var(--text2); font-style:italic; }
+.vmean { font-size:11px; color:var(--text2); margin-left:auto; }
+
+/* ── FOOTER ── */
+.footer {
+  text-align:center; padding:14px 12px 32px;
+  border-top:3px dashed var(--pink); margin-top:8px;
+}
+.footer-emoji { font-size:22px; margin-bottom:4px; }
+.footer-text { font-size:11.5px; color:var(--text2); line-height:1.8; }
+.footer-btn {
+  display:inline-block; margin-top:8px;
+  background:var(--pink-d); color:#fff;
+  font-size:11.5px; font-weight:800;
+  padding:5px 16px; border-radius:20px; text-decoration:none;
+}
+
+/* ── DICTATION ── */
+.dict-intro {
+  margin: 4px 12px 6px;
+  background: #EDE9FE;
+  border: 1.5px solid #C4B5FD;
+  border-radius: 10px;
+  padding: 8px 12px;
+  font-size: 12px; color: #5B21B6;
+  display: flex; align-items: center; gap: 8px; font-weight: 600;
+}
+.dict-card {
+  margin: 5px 12px;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+.dict-zh {
+  font-size: 13px; color: var(--text2); font-weight: 600;
+  padding: 8px 12px 6px;
+  border-bottom: 1px dashed var(--border);
+}
+.dict-input-row {
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px 8px;
+}
+.dict-speak-btn {
+  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  background: #EDE9FE; border: 1.5px solid #C4B5FD;
+  color: #7C3AED; font-size: 15px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; transition: all .15s; font-family: inherit;
+}
+.dict-speak-btn:hover { background: #7C3AED; color: #fff; border-color: #7C3AED; }
+.dict-speak-btn.playing { background: #7C3AED; color: #fff; animation: pulse .8s ease-in-out infinite; }
+.dict-input {
+  flex: 1; border: 1.5px solid var(--border);
+  border-radius: 8px; padding: 6px 10px;
+  font-size: 13.5px; font-family: inherit; color: var(--text);
+  outline: none; transition: border-color .15s;
+  background: var(--bg);
+}
+.dict-input:focus { border-color: #7C3AED; }
+.dict-input.correct { border-color: #16A34A; background: #F0FDF4; color: #15803D; }
+.dict-input.wrong   { border-color: #DC2626; background: #FEF2F2; color: #B91C1C; }
+.dict-check-btn {
+  flex-shrink: 0; padding: 6px 12px;
+  background: #7C3AED; color: #fff;
+  border: none; border-radius: 8px;
+  font-size: 12px; font-weight: 800;
+  cursor: pointer; font-family: inherit;
+  transition: opacity .15s;
+}
+.dict-check-btn:hover { opacity: .85; }
+.dict-check-btn:disabled { opacity: .4; cursor: default; }
+.dict-result {
+  font-size: 11.5px; padding: 4px 12px 8px;
+  display: none; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.dict-result.show { display: flex; }
+.dict-result.correct { color: #15803D; }
+.dict-result.wrong   { color: #B91C1C; }
+.dict-answer {
+  font-size: 11.5px; font-style: italic;
+  color: #15803D; font-weight: 700;
+}
+.dict-score-bar {
+  margin: 8px 12px 4px;
+  background: #EDE9FE; border: 2px solid #7C3AED;
+  border-radius: 10px; padding: 10px 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+.dict-score-label { font-size: 13px; font-weight: 700; color: #5B21B6; }
+.dict-score-val   { font-size: 20px; font-weight: 900; color: #7C3AED; flex: 1; }
+.dict-reset-btn {
+  padding: 6px 14px; background: #7C3AED; color: #fff;
+  border: none; border-radius: 20px; font-size: 12px; font-weight: 800;
+  cursor: pointer; font-family: inherit;
+}
+
+
+/* ── HIGHLIGHT TRANSCRIPT ── */
+.ht-block {
+  margin: 4px 12px;
+  border: 2px solid #F97316;
+  border-radius: 12px; overflow: hidden;
+}
+.ht-head {
+  background: #F97316; padding: 8px 14px;
+  display: flex; align-items: center; gap: 7px;
+}
+.ht-head-title { font-size: 13px; font-weight: 900; color: #fff; }
+.ht-zh-block {
+  padding: 10px 14px 12px;
+  border-bottom: 2px dashed #FED7AA;
+  background: #FFFAF5;
+}
+.ht-en-block {
+  padding: 10px 14px 12px;
+}
+.ht-block-label {
+  font-size: 10px; font-weight: 900; letter-spacing: .08em;
+  color: #F97316; text-transform: uppercase; margin-bottom: 8px;
+}
+.ht-para {
+  font-size: 14px; line-height: 2; color: #1E1220; font-weight: 600;
+}
+.ht-zh-block .ht-para {
+  font-size: 13.5px; color: #4A3050;
+  font-family: 'PingFang SC','Helvetica Neue',Arial,sans-serif;
+}
+.ht-sent { display: inline; }
+/* highlight colours — same in zh and en */
+.hl-vocab   { color: #C94F82; font-weight: 900; background: rgba(201,79,130,.12); border-radius: 3px; padding: 0 2px; }
+.hl-pattern { color: #2A6C8F; font-weight: 900; background: rgba(42,108,143,.12); border-radius: 3px; padding: 0 2px; }
+.ht-legend {
+  display: flex; gap: 16px; flex-wrap: wrap;
+  padding: 8px 14px; background: #FFF7ED;
+  border-top: 1px solid #FED7AA;
+  font-size: 11px; font-weight: 700;
+}
+
+/* ── PROGRESS TOAST ── */
+#toast {
+  position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+  background: rgba(30,18,32,.88); color:#fff;
+  font-size:12px; font-weight:700; padding:8px 18px;
+  border-radius:20px; white-space:nowrap;
+  opacity:0; transition:opacity .3s; pointer-events:none;
+  z-index:999;
+}
+#toast.show { opacity:1; }
+</style>
+</head>
+<body>
+<div class="page">
+<div class="cover">
+  <span class="cover-pig">🐑</span>
+  <div class="cover-badge">小猪佩奇英语学习 · S01 E03</div>
+  <div class="cover-title">Best Friend</div>
+  <div class="cover-sub">👯 最好的朋友</div>
+  <div class="cover-tags">
+    <span class="cover-tag">📖 台词精讲</span>
+    <span class="cover-tag">🔊 跟读朗读</span>
+    <span class="cover-tag">📝 语法讲解</span>
+    <span class="cover-tag">💬 固定句型</span>
+    <span class="cover-tag">🎧 听写训练</span>
+    <span class="cover-tag">✨ 生词汇总</span>
+  </div>
+</div>
+<div class="video-section">
+  <div class="video-label">🎬 英文原版视频</div>
+  <div class="video-wrap">
+    <iframe src="https://v.qq.com/txp/iframe/player.html?vid=u3532d3iwae&auto=0" allowfullscreen="true" frameborder="0" scrolling="no"></iframe>
+  </div>
+</div>
+<div class="tts-bar">
+  <div class="tts-row">
+    <span class="tts-bar-label">🔁 朗读次数：</span>
+    <div class="repeat-btns">
+      <button class="rep-btn" data-n="5">5次</button>
+      <button class="rep-btn" data-n="10">10次</button>
+      <button class="rep-btn" data-n="50">50次</button>
+      <button class="rep-btn" data-n="100">100次</button>
+      <button class="rep-btn active" data-n="1">1次</button>
+      <button class="rep-btn" data-n="0">∞ 永远</button>
+    </div>
+    <button class="stop-all-btn" id="stopAllBtn" onclick="stopAll()">⏹ 停止</button>
+  </div>
+  <div class="tts-row" style="border-top:1px dashed var(--border);padding-top:8px;margin-top:4px;">
+    <span class="tts-bar-label">⏱ 暂停间隔：</span>
+    <div class="repeat-btns">
+      <button class="pause-btn active" data-p="0">不暂停</button>
+      <button class="pause-btn" data-p="-1">同句时长</button>
+      <button class="pause-btn" data-p="1">1秒</button>
+      <button class="pause-btn" data-p="2">2秒</button>
+      <button class="pause-btn" data-p="3">3秒</button>
+      <button class="pause-btn" data-p="5">5秒</button>
+    </div>
+    <span id="pause-hint" style="font-size:10px;color:var(--text2);white-space:nowrap;">100LS跟读法</span>
+  </div>
+</div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--pink-d)"></div><span class="sec-label" style="color:var(--pink-d)">场景一 · 苏西来了！最好的朋友</span><div class="sec-rule"></div></div>
+<div class="card" id="c0"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'Peppa is waiting for her best friend, Suzy Sheep.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-0">x1</span></button></div><div class="card-en">Peppa is waiting for her best friend, Suzy Sheep.</div><div class="card-vocab"><span class="vp" onclick="speakWord('best friend')"><span class="vp-icon">🔈</span><span class="vw">best friend</span><span class="vi">/best frend/</span></span><span class="vp" onclick="speakWord('waiting for')"><span class="vp-icon">🔈</span><span class="vw">waiting for</span><span class="vi">/ˈweɪtɪŋ fɔː/</span></span></div><div class="card-zh">佩奇正在等待她最好的朋友苏西羊。</div></div>
+<div class="card" id="c1"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'Hello, Suzy.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-1">x1</span></button></div><div class="card-en">Hello, Suzy.</div><div class="card-zh">你好，苏西。</div></div>
+<div class="card" id="c2"><div class="card-top"><div class="av" style="background:#F0FFF0;color:#166534;">S</div><span class="sp-name">Suzy Sheep 苏西羊</span><button class="tts-btn" onclick="speak(this,'Hello, Peppa.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-2">x1</span></button></div><div class="card-en">Hello, Peppa.</div><div class="card-zh">你好，佩奇。</div></div>
+<div class="card" id="c3"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'Suzy Sheep has come to play with Peppa.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-3">x1</span></button></div><div class="card-en">Suzy Sheep has come to play with Peppa.</div><div class="card-zh">苏西羊来和佩奇一起玩了。</div></div>
+<div class="card" id="c4"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'Peppa loves Suzy. Suzy loves Peppa. They are best friends.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-4">x1</span></button></div><div class="card-en">Peppa loves Suzy. Suzy loves Peppa. They are best friends.</div><div class="card-zh">佩奇爱苏西。苏西爱佩奇。她们是最好的朋友。</div></div>
+<div class="card" id="c5"><div class="card-top"><div class="av" style="background:#FFF3CD;color:#B8860B;">M</div><span class="sp-name">Mummy Pig 猪妈妈</span><button class="tts-btn" onclick="speak(this,'Peppa, why don\'t you and Suzy play in your bedroom?')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-5">x1</span></button></div><div class="card-en">Peppa, why don't you and Suzy play in your bedroom?</div><div class="card-vocab"><span class="vp" onclick="speakWord('bedroom')"><span class="vp-icon">🔈</span><span class="vw">bedroom</span><span class="vi">/ˈbedruːm/</span></span></div><div class="card-zh">佩奇，你和苏西为什么不去你的卧室里玩呢？</div></div>
+<div class="card" id="c6"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'Yes, Mummy.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-6">x1</span></button></div><div class="card-en">Yes, Mummy.</div><div class="card-zh">好的，妈妈。</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--pink-d)"></div><span class="sec-label" style="color:var(--pink-d)">场景二 · 乔治被排除在外</span><div class="sec-rule"></div></div>
+<div class="card" id="c7"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'George wants to play, too.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-7">x1</span></button></div><div class="card-en">George wants to play, too.</div><div class="card-zh">乔治也想一起玩。</div></div>
+<div class="card" id="c8"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'Peppa and Suzy love playing in Peppa\'s bedroom. So does George.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-8">x1</span></button></div><div class="card-en">Peppa and Suzy love playing in Peppa's bedroom. So does George.</div><div class="card-vocab"><span class="vp" onclick="speakWord('so does')"><span class="vp-icon">🔈</span><span class="vw">so does</span><span class="vi">/səʊ dʌz/</span></span></div><div class="card-zh">佩奇和苏西喜欢在佩奇的卧室里玩。乔治也是。</div></div>
+<div class="card" id="c9"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'No, George. This game is just for big girls. Go and play with your own toys.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-9">x1</span></button></div><div class="card-en">No, George. This game is just for big girls. Go and play with your own toys.</div><div class="card-vocab"><span class="vp" onclick="speakWord('just for')"><span class="vp-icon">🔈</span><span class="vw">just for</span><span class="vi">只适合</span></span><span class="vp" onclick="speakWord('own')"><span class="vp-icon">🔈</span><span class="vw">own</span><span class="vi">/əʊn/</span></span></div><div class="card-zh">不，乔治。这个游戏只适合大女孩。去玩你自己的玩具吧。</div></div>
+<div class="card" id="c10"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'Peppa and Suzy want to play on their own.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-10">x1</span></button></div><div class="card-en">Peppa and Suzy want to play on their own.</div><div class="card-vocab"><span class="vp" onclick="speakWord('on their own')"><span class="vp-icon">🔈</span><span class="vw">on their own</span><span class="vi">/ɒn ðeə əʊn/</span></span></div><div class="card-zh">佩奇和苏西想自己玩。</div></div>
+<div class="card" id="c11"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'I\'m a tiny little fairy princess. I\'m going to wave my magic wand and turn you into a frog.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-11">x1</span></button></div><div class="card-en">I'm a tiny little fairy princess. I'm going to wave my magic wand and turn you into a frog.</div><div class="card-vocab"><span class="vp" onclick="speakWord('fairy princess')"><span class="vp-icon">🔈</span><span class="vw">fairy princess</span><span class="vi">/ˈfeəri ˈprɪnsɪs/</span></span><span class="vp" onclick="speakWord('magic wand')"><span class="vp-icon">🔈</span><span class="vw">magic wand</span><span class="vi">/ˈmædʒɪk wɒnd/</span></span><span class="vp" onclick="speakWord('turn into')"><span class="vp-icon">🔈</span><span class="vw">turn into</span><span class="vi">/tɜːn ˈɪntə/</span></span></div><div class="card-zh">我是一个小仙女公主。我要挥动我的魔法棒把你变成一只青蛙。</div></div>
+<div class="card" id="c12"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'George doesn\'t like playing on his own. George wants to play, too.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-12">x1</span></button></div><div class="card-en">George doesn't like playing on his own. George wants to play, too.</div><div class="card-zh">乔治不喜欢自己一个人玩。乔治也想一起玩。</div></div>
+<div class="card" id="c13"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'No, George! I\'m playing with Suzy. You have to play somewhere else.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-13">x1</span></button></div><div class="card-en">No, George! I'm playing with Suzy. You have to play somewhere else.</div><div class="card-vocab"><span class="vp" onclick="speakWord('somewhere else')"><span class="vp-icon">🔈</span><span class="vw">somewhere else</span><span class="vi">/ˈsʌmweə els/</span></span></div><div class="card-zh">不，乔治！我在和苏西玩。你得去别的地方玩。</div></div>
+<div class="card" id="c14"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'George wants to play with Peppa. He feels a bit lonely.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-14">x1</span></button></div><div class="card-en">George wants to play with Peppa. He feels a bit lonely.</div><div class="card-vocab"><span class="vp" onclick="speakWord('lonely')"><span class="vp-icon">🔈</span><span class="vw">lonely</span><span class="vi">/ˈləʊnli/</span></span><span class="vp" onclick="speakWord('feels')"><span class="vp-icon">🔈</span><span class="vw">feels</span><span class="vi">/fiːlz/</span></span></div><div class="card-zh">乔治想和佩奇玩。他感到有点孤单。</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--pink-d)"></div><span class="sec-label" style="color:var(--pink-d)">场景三 · 妈妈请乔治帮忙做饼干</span><div class="sec-rule"></div></div>
+<div class="card" id="c15"><div class="card-top"><div class="av" style="background:#FFF3CD;color:#B8860B;">M</div><span class="sp-name">Mummy Pig 猪妈妈</span><button class="tts-btn" onclick="speak(this,'George, I need your help. Come and help me make some cookies.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-15">x1</span></button></div><div class="card-en">George, I need your help. Come and help me make some cookies.</div><div class="card-vocab"><span class="vp" onclick="speakWord('help')"><span class="vp-icon">🔈</span><span class="vw">help</span><span class="vi">/help/</span></span><span class="vp" onclick="speakWord('make cookies')"><span class="vp-icon">🔈</span><span class="vw">make cookies</span><span class="vi">/meɪk ˈkʊkɪz/</span></span></div><div class="card-zh">乔治，我需要你的帮助。来帮我做一些饼干吧。</div></div>
+<div class="card" id="c16"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'Mummy Pig is making cookies. George is helping.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-16">x1</span></button></div><div class="card-en">Mummy Pig is making cookies. George is helping.</div><div class="card-zh">猪妈妈在做饼干。乔治在帮忙。</div></div>
+<div class="card" id="c17"><div class="card-top"><div class="av" style="background:#FFF3CD;color:#B8860B;">M</div><span class="sp-name">Mummy Pig 猪妈妈</span><button class="tts-btn" onclick="speak(this,'Thank you, George. You can lick out the bowl.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-17">x1</span></button></div><div class="card-en">Thank you, George. You can lick out the bowl.</div><div class="card-vocab"><span class="vp" onclick="speakWord('lick out')"><span class="vp-icon">🔈</span><span class="vw">lick out</span><span class="vi">/lɪk aʊt/</span></span><span class="vp" onclick="speakWord('bowl')"><span class="vp-icon">🔈</span><span class="vw">bowl</span><span class="vi">/bəʊl/</span></span></div><div class="card-zh">谢谢你，乔治。你可以舔干净碗里剩下的。</div></div>
+<div class="card" id="c18"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'George is happy helping Mummy Pig. But then he hears Peppa and Suzy laughing upstairs.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-18">x1</span></button></div><div class="card-en">George is happy helping Mummy Pig. But then he hears Peppa and Suzy laughing upstairs.</div><div class="card-vocab"><span class="vp" onclick="speakWord('upstairs')"><span class="vp-icon">🔈</span><span class="vw">upstairs</span><span class="vi">/ˌʌpˈsteəz/</span></span></div><div class="card-zh">乔治帮猪妈妈很开心。但是他听到佩奇和苏西在楼上笑。</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--pink-d)"></div><span class="sec-label" style="color:var(--pink-d)">场景四 · 玩医生游戏，乔治当病人</span><div class="sec-rule"></div></div>
+<div class="card" id="c19"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'We need a sick person. George! George can be the patient!')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-19">x1</span></button></div><div class="card-en">We need a sick person. George! George can be the patient!</div><div class="card-vocab"><span class="vp" onclick="speakWord('patient')"><span class="vp-icon">🔈</span><span class="vw">patient</span><span class="vi">/ˈpeɪʃnt/</span></span><span class="vp" onclick="speakWord('sick')"><span class="vp-icon">🔈</span><span class="vw">sick</span><span class="vi">/sɪk/</span></span></div><div class="card-zh">我们需要一个病人。乔治！乔治可以做病人！</div></div>
+<div class="card" id="c20"><div class="card-top"><div class="av" style="background:#F0FFF0;color:#166534;">S</div><span class="sp-name">Suzy Sheep 苏西羊</span><button class="tts-btn" onclick="speak(this,'George, would you like to be our patient?')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-20">x1</span></button></div><div class="card-en">George, would you like to be our patient?</div><div class="card-zh">乔治，你想做我们的病人吗？</div></div>
+<div class="card" id="c21"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'Now, George, take a big breath in... then cough.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-21">x1</span></button></div><div class="card-en">Now, George, take a big breath in... then cough.</div><div class="card-vocab"><span class="vp" onclick="speakWord('breath')"><span class="vp-icon">🔈</span><span class="vw">breath</span><span class="vi">/breθ/</span></span><span class="vp" onclick="speakWord('cough')"><span class="vp-icon">🔈</span><span class="vw">cough</span><span class="vi">/kɒf/</span></span></div><div class="card-zh">好了，乔治，深吸一口气，然后咳嗽。</div></div>
+<div class="card" id="c22"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'Mmm, I think your heart\'s a bit loose. I\'ll put a plaster on it.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-22">x1</span></button></div><div class="card-en">Mmm, I think your heart's a bit loose. I'll put a plaster on it.</div><div class="card-vocab"><span class="vp" onclick="speakWord('loose')"><span class="vp-icon">🔈</span><span class="vw">loose</span><span class="vi">/luːs/</span></span><span class="vp" onclick="speakWord('plaster')"><span class="vp-icon">🔈</span><span class="vw">plaster</span><span class="vi">/ˈplɑːstə/</span></span></div><div class="card-zh">嗯，我觉得你的心脏有点松了。我给你贴一块创可贴。</div></div>
+<div class="card" id="c23"><div class="card-top"><div class="av" style="background:#F0FFF0;color:#166534;">S</div><span class="sp-name">Suzy Sheep 苏西羊</span><button class="tts-btn" onclick="speak(this,'Open wide, please.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-23">x1</span></button></div><div class="card-en">Open wide, please.</div><div class="card-vocab"><span class="vp" onclick="speakWord('open wide')"><span class="vp-icon">🔈</span><span class="vw">open wide</span><span class="vi">/ˈəʊpən waɪd/</span></span></div><div class="card-zh">请张大嘴巴。</div></div>
+<div class="card" id="c24"><div class="card-top"><div class="av" style="background:#F0FFF0;color:#166534;">S</div><span class="sp-name">Suzy Sheep 苏西羊</span><button class="tts-btn" onclick="speak(this,'Oh, dear. You\'re very, very hot. I think you have to stay in bed for three years.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-24">x1</span></button></div><div class="card-en">Oh, dear. You're very, very hot. I think you have to stay in bed for three years.</div><div class="card-vocab"><span class="vp" onclick="speakWord('stay in bed')"><span class="vp-icon">🔈</span><span class="vw">stay in bed</span><span class="vi">/steɪ ɪn bed/</span></span></div><div class="card-zh">哦，天哪。你非常非常烫。我觉得你需要在床上躺三年。</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--pink-d)"></div><span class="sec-label" style="color:var(--pink-d)">场景五 · 爸爸也来看病！</span><div class="sec-rule"></div></div>
+<div class="card" id="c25"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'What\'s wrong with George?')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-25">x1</span></button></div><div class="card-en">What's wrong with George?</div><div class="card-vocab"><span class="vp" onclick="speakWord('what\'s wrong')"><span class="vp-icon">🔈</span><span class="vw">what's wrong</span><span class="vi">/wɒts rɒŋ/</span></span></div><div class="card-zh">乔治怎么了？</div></div>
+<div class="card" id="c26"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'Don\'t worry, Daddy. It\'s only a game.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-26">x1</span></button></div><div class="card-en">Don't worry, Daddy. It's only a game.</div><div class="card-zh">别担心，爸爸。这只是在玩游戏。</div></div>
+<div class="card" id="c27"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'Oh, I see.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-27">x1</span></button></div><div class="card-en">Oh, I see.</div><div class="card-vocab"><span class="vp" onclick="speakWord('I see')"><span class="vp-icon">🔈</span><span class="vw">I see</span><span class="vi">/aɪ siː/</span></span></div><div class="card-zh">哦，我明白了。</div></div>
+<div class="card" id="c28"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'Can the patient have a visitor?')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-28">x1</span></button></div><div class="card-en">Can the patient have a visitor?</div><div class="card-vocab"><span class="vp" onclick="speakWord('visitor')"><span class="vp-icon">🔈</span><span class="vw">visitor</span><span class="vi">/ˈvɪzɪtə/</span></span></div><div class="card-zh">病人可以有访客吗？</div></div>
+<div class="card" id="c29"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'Just for a little while. He might get tired.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-29">x1</span></button></div><div class="card-en">Just for a little while. He might get tired.</div><div class="card-vocab"><span class="vp" onclick="speakWord('a little while')"><span class="vp-icon">🔈</span><span class="vw">a little while</span><span class="vi">/ə ˈlɪtl waɪl/</span></span><span class="vp" onclick="speakWord('might')"><span class="vp-icon">🔈</span><span class="vw">might</span><span class="vi">/maɪt/</span></span></div><div class="card-zh">只能待一小会儿。他可能会累的。</div></div>
+<div class="card" id="c30"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'Um, excuse me, doctor. Can you help me? I have a sore tummy.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-30">x1</span></button></div><div class="card-en">Um, excuse me, doctor. Can you help me? I have a sore tummy.</div><div class="card-vocab"><span class="vp" onclick="speakWord('excuse me')"><span class="vp-icon">🔈</span><span class="vw">excuse me</span><span class="vi">/ɪkˈskjuːz miː/</span></span><span class="vp" onclick="speakWord('sore tummy')"><span class="vp-icon">🔈</span><span class="vw">sore tummy</span><span class="vi">/sɔː ˈtʌmi/</span></span></div><div class="card-zh">嗯，打扰一下，医生。你能帮帮我吗？我肚子很痛。</div></div>
+<div class="card" id="c31"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'I can hear it rumbling.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-31">x1</span></button></div><div class="card-en">I can hear it rumbling.</div><div class="card-vocab"><span class="vp" onclick="speakWord('rumbling')"><span class="vp-icon">🔈</span><span class="vw">rumbling</span><span class="vi">/ˈrʌmblɪŋ/</span></span></div><div class="card-zh">我能听到它在咕噜叫。</div></div>
+<div class="card" id="c32"><div class="card-top"><div class="av" style="background:#FFE0EE;color:#C94F82;">P</div><span class="sp-name">Peppa 佩奇</span><button class="tts-btn" onclick="speak(this,'I think you\'re hungry, Daddy.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-32">x1</span></button></div><div class="card-en">I think you're hungry, Daddy.</div><div class="card-zh">我觉得你饿了，爸爸。</div></div>
+<div class="card" id="c33"><div class="card-top"><div class="av" style="background:#E0F7E9;color:#3A6820;">D</div><span class="sp-name">Daddy Pig 猪爸爸</span><button class="tts-btn" onclick="speak(this,'Then I think I need lots of cookies to make me better.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-33">x1</span></button></div><div class="card-en">Then I think I need lots of cookies to make me better.</div><div class="card-vocab"><span class="vp" onclick="speakWord('make me better')"><span class="vp-icon">🔈</span><span class="vw">make me better</span><span class="vi">让我好起来</span></span></div><div class="card-zh">那我觉得我需要很多饼干才能好起来。</div></div>
+<div class="card" id="c34"><div class="card-top"><div class="av" style="background:#FFF3CD;color:#B8860B;">M</div><span class="sp-name">Mummy Pig 猪妈妈</span><button class="tts-btn" onclick="speak(this,'Cookies! Yes, they\'re for George. They\'re his medicine to make him feel better.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-34">x1</span></button></div><div class="card-en">Cookies! Yes, they're for George. They're his medicine to make him feel better.</div><div class="card-vocab"><span class="vp" onclick="speakWord('medicine')"><span class="vp-icon">🔈</span><span class="vw">medicine</span><span class="vi">/ˈmedɪsn/</span></span></div><div class="card-zh">饼干！是的，这些是给乔治的。这是让他好起来的药。</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--pink-d)"></div><span class="sec-label" style="color:var(--pink-d)">场景六 · 饼干时间，皆大欢喜</span><div class="sec-rule"></div></div>
+<div class="card" id="c35"><div class="card-top"><div class="av" style="background:#EDE8FF;color:#5A3FB0;">N</div><span class="sp-name">Narrator 旁白</span><button class="tts-btn" onclick="speak(this,'Everyone has a cookie. And everyone is happy.')"><span class="tts-icon">🔊</span><span class="tts-count" id="cnt-35">x1</span></button></div><div class="card-en">Everyone has a cookie. And everyone is happy.</div><div class="card-zh">每个人都有一块饼干。大家都很开心。</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--yellow-d)"></div><span class="sec-label" style="color:var(--yellow-d)">本集语法讲解</span><div class="sec-rule"></div></div>
+<div class="g-block"><div class="g-head"><span style="font-size:15px">📌</span><span class="g-head-title">语法一：So does / So do 表示也是</span></div><div class="g-body"><div class="g-row"><div class="g-tag">句型结构</div><div class="g-box">So + <em>does / do / is</em> + 主语</div></div><div class="g-row"><div class="g-tag">用法</div><div class="g-note">Peppa and Suzy love playing in Peppa's bedroom. <em>So does</em> George.<br>佩奇和苏西喜欢在卧室玩。乔治也是。<br>So does 用于第三人称单数；So do 用于其他人称。</div></div><div class="g-row"><div class="g-tag">举一反三</div><div class="g-note">Peppa loves cookies. <em>So does</em> George. 佩奇爱饼干，乔治也是。<br>I like swimming. <em>So do</em> I. 我喜欢游泳，我也是。</div></div></div></div>
+<div class="g-block"><div class="g-head"><span style="font-size:15px">📌</span><span class="g-head-title">语法二：might 表示不确定推测</span></div><div class="g-body"><div class="g-row"><div class="g-tag">句型结构</div><div class="g-box">主语 + <em>might</em> + 动词原形</div></div><div class="g-row"><div class="g-tag">用法</div><div class="g-note">He <em>might</em> get tired.<br>他可能会累的。<br>might 表示不确定的可能性，比 will 弱，常用于推测和担心。</div></div><div class="g-row"><div class="g-tag">举一反三</div><div class="g-note">It <em>might</em> rain later. 稍后可能会下雨。<br>She <em>might</em> be at home. 她可能在家。</div></div></div></div>
+<div class="g-block"><div class="g-head"><span style="font-size:15px">📌</span><span class="g-head-title">语法三：turn into 把...变成</span></div><div class="g-body"><div class="g-row"><div class="g-tag">句型结构</div><div class="g-box">turn + 宾语 + <em>into</em> + 名词</div></div><div class="g-row"><div class="g-tag">用法</div><div class="g-note">I'm going to <em>turn</em> you <em>into</em> a frog.<br>我要把你变成一只青蛙。<br>turn into 表示变形或转化，也可以表示事物的演变。</div></div><div class="g-row"><div class="g-tag">举一反三</div><div class="g-note">The caterpillar <em>turns into</em> a butterfly. 毛毛虫变成了蝴蝶。<br>Water <em>turns into</em> ice when it's cold. 水冷了会变成冰。</div></div></div></div>
+<div class="g-block"><div class="g-head"><span style="font-size:15px">📌</span><span class="g-head-title">语法四：What's wrong? 询问哪里不对</span></div><div class="g-body"><div class="g-row"><div class="g-tag">句型结构</div><div class="g-box"><em>What's wrong</em> with ___? / What's the matter?</div></div><div class="g-row"><div class="g-tag">用法</div><div class="g-note">What's wrong with George?<br>乔治怎么了？<br>这是询问某人或某物出了什么问题的口语常用句，非常实用。</div></div><div class="g-row"><div class="g-tag">举一反三</div><div class="g-note">What's wrong with the computer? 电脑怎么了？<br>What's wrong? You look sad. 怎么了？你看起来很难过。</div></div></div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--teal-d)"></div><span class="sec-label" style="color:var(--teal-d)">本集固定句型</span><div class="sec-rule"></div></div>
+<div class="p-block"><div class="p-head"><span style="font-size:15px">💬</span><span class="p-head-title">6个超实用日常句型</span></div><div class="p-body">
+<div class="p-item"><div class="p-name">句型① 最好的朋友</div><div class="p-formula">___ is my <em>best friend</em>. We are <em>best friends</em>.</div><div class="p-egs"><div class="p-eg"><span class="en">Peppa loves Suzy. Suzy loves Peppa. They are best friends.</span> <span class="zh">→ 佩奇爱苏西。苏西爱佩奇。她们是最好的朋友。</span></div><div class="p-eg"><span class="en">She is my best friend.</span> <span class="zh">→ 她是我最好的朋友。</span></div><div class="p-eg"><span class="en">We have been best friends for years.</span> <span class="zh">→ 我们做了多年的好朋友。</span></div></div></div>
+<div class="p-item"><div class="p-name">句型② 只适合 · just for</div><div class="p-formula">This game / room / movie is <em>just for</em> ___.</div><div class="p-egs"><div class="p-eg"><span class="en">This game is just for big girls.</span> <span class="zh">→ 这个游戏只适合大女孩。</span></div><div class="p-eg"><span class="en">This room is just for adults.</span> <span class="zh">→ 这个房间只供成人使用。</span></div><div class="p-eg"><span class="en">That movie is just for big kids.</span> <span class="zh">→ 那部电影只适合大孩子看。</span></div></div></div>
+<div class="p-item"><div class="p-name">句型③ 自己玩 · play on your own</div><div class="p-formula">Go and play <em>on your own</em> / with your own toys.</div><div class="p-egs"><div class="p-eg"><span class="en">Go and play with your own toys.</span> <span class="zh">→ 去玩你自己的玩具吧。</span></div><div class="p-eg"><span class="en">Peppa and Suzy want to play on their own.</span> <span class="zh">→ 佩奇和苏西想自己玩。</span></div><div class="p-eg"><span class="en">Can you play on your own for a bit?</span> <span class="zh">→ 你能自己玩一会儿吗？</span></div></div></div>
+<div class="p-item"><div class="p-name">句型④ 打扰一下 · Excuse me</div><div class="p-formula"><em>Excuse me</em>, ___. Can you help me?</div><div class="p-egs"><div class="p-eg"><span class="en">Excuse me, doctor. Can you help me? I have a sore tummy.</span> <span class="zh">→ 打扰一下，医生。你能帮帮我吗？我肚子很痛。</span></div><div class="p-eg"><span class="en">Excuse me, where is the library?</span> <span class="zh">→ 打扰一下，图书馆在哪里？</span></div><div class="p-eg"><span class="en">Excuse me, could I ask a question?</span> <span class="zh">→ 打扰一下，我可以问个问题吗？</span></div></div></div>
+<div class="p-item"><div class="p-name">句型⑤ 没什么大不了 · It's only a game</div><div class="p-formula">It's only a <em>game / joke / scratch</em>.</div><div class="p-egs"><div class="p-eg"><span class="en">Don't worry, Daddy. It's only a game.</span> <span class="zh">→ 别担心，爸爸。这只是在玩游戏。</span></div><div class="p-eg"><span class="en">It's only a joke!</span> <span class="zh">→ 这只是个玩笑！</span></div><div class="p-eg"><span class="en">Don't cry. It's only a scratch.</span> <span class="zh">→ 别哭了。不过是一点擦伤。</span></div></div></div>
+<div class="p-item"><div class="p-name">句型⑥ 让某人好起来 · make sb better</div><div class="p-formula">___ to <em>make</em> me / him / her <em>better</em>.</div><div class="p-egs"><div class="p-eg"><span class="en">I need lots of cookies to make me better.</span> <span class="zh">→ 我需要很多饼干才能好起来。</span></div><div class="p-eg"><span class="en">They're his medicine to make him feel better.</span> <span class="zh">→ 这是让他好起来的药。</span></div><div class="p-eg"><span class="en">Rest will make you better soon.</span> <span class="zh">→ 休息会让你很快好起来的。</span></div></div></div>
+</div></div>
+<div class="sec-head"><div class="sec-dot" style="background:var(--blue-d)"></div><span class="sec-label" style="color:var(--blue-d)">本集生词汇总</span><div class="sec-rule"></div></div>
+<div class="v-block"><div class="v-head"><span style="font-size:15px">📚</span><span class="v-head-title">20 个核心单词</span></div>
+<div class="v-row"><div class="vnum">1</div><span class="vword">best friend</span><span class="vpron">/best frend/</span><span class="vmean">最好的朋友</span></div>
+<div class="v-row"><div class="vnum">2</div><span class="vword">waiting for</span><span class="vpron">/ˈweɪtɪŋ fɔː/</span><span class="vmean">等待</span></div>
+<div class="v-row"><div class="vnum">3</div><span class="vword">bedroom</span><span class="vpron">/ˈbedruːm/</span><span class="vmean">卧室</span></div>
+<div class="v-row"><div class="vnum">4</div><span class="vword">on their own</span><span class="vpron">/ɒn ðeə əʊn/</span><span class="vmean">独自</span></div>
+<div class="v-row"><div class="vnum">5</div><span class="vword">fairy princess</span><span class="vpron">/ˈfeəri ˈprɪnsɪs/</span><span class="vmean">仙女公主</span></div>
+<div class="v-row"><div class="vnum">6</div><span class="vword">magic wand</span><span class="vpron">/ˈmædʒɪk wɒnd/</span><span class="vmean">魔法棒</span></div>
+<div class="v-row"><div class="vnum">7</div><span class="vword">turn into</span><span class="vpron">/tɜːn ˈɪntə/</span><span class="vmean">把...变成</span></div>
+<div class="v-row"><div class="vnum">8</div><span class="vword">lonely</span><span class="vpron">/ˈləʊnli/</span><span class="vmean">孤单的</span></div>
+<div class="v-row"><div class="vnum">9</div><span class="vword">lick out</span><span class="vpron">/lɪk aʊt/</span><span class="vmean">舔干净</span></div>
+<div class="v-row"><div class="vnum">10</div><span class="vword">upstairs</span><span class="vpron">/ˌʌpˈsteəz/</span><span class="vmean">楼上</span></div>
+<div class="v-row"><div class="vnum">11</div><span class="vword">patient</span><span class="vpron">/ˈpeɪʃnt/</span><span class="vmean">病人</span></div>
+<div class="v-row"><div class="vnum">12</div><span class="vword">breath</span><span class="vpron">/breθ/</span><span class="vmean">呼吸</span></div>
+<div class="v-row"><div class="vnum">13</div><span class="vword">cough</span><span class="vpron">/kɒf/</span><span class="vmean">咳嗽</span></div>
+<div class="v-row"><div class="vnum">14</div><span class="vword">plaster</span><span class="vpron">/ˈplɑːstə/</span><span class="vmean">创可贴</span></div>
+<div class="v-row"><div class="vnum">15</div><span class="vword">open wide</span><span class="vpron">/ˈəʊpən waɪd/</span><span class="vmean">张大嘴</span></div>
+<div class="v-row"><div class="vnum">16</div><span class="vword">stay in bed</span><span class="vpron">/steɪ ɪn bed/</span><span class="vmean">卧床休息</span></div>
+<div class="v-row"><div class="vnum">17</div><span class="vword">what's wrong</span><span class="vpron">/wɒts rɒŋ/</span><span class="vmean">怎么了</span></div>
+<div class="v-row"><div class="vnum">18</div><span class="vword">excuse me</span><span class="vpron">/ɪkˈskjuːz miː/</span><span class="vmean">打扰一下</span></div>
+<div class="v-row"><div class="vnum">19</div><span class="vword">rumbling</span><span class="vpron">/ˈrʌmblɪŋ/</span><span class="vmean">咕噜声</span></div>
+<div class="v-row"><div class="vnum">20</div><span class="vword">medicine</span><span class="vpron">/ˈmedɪsn/</span><span class="vmean">药，药物</span></div>
+</div>
+<div class="sec-head" style="padding-top:16px">
+  <div class="sec-dot" style="background:#F97316"></div>
+  <span class="sec-label" style="color:#F97316">完整台词 · 高亮展示</span>
+  <div class="sec-rule"></div>
+</div>
+<div style="margin:4px 12px 6px;background:#FFF7ED;border:1.5px solid #FED7AA;border-radius:10px;padding:8px 12px;font-size:12px;color:#C2410C;font-weight:600;display:flex;align-items:center;gap:8px;">
+  <span>🎨</span><span>上方全部中文台词，下方全部英文台词，相同颜色标记相同知识点</span>
+</div>
+<div class="ht-block">
+  <div class="ht-head"><span style="font-size:15px">📜</span><span class="ht-head-title">S01E03 完整台词 · 重点高亮</span></div>
+  <div class="ht-zh-block"><div class="ht-block-label">🇨🇳 中文台词</div><div class="ht-para"><span class="ht-sent">佩奇正在<span class='hl-vocab'>等待</span>她<span class='hl-vocab'>最好的朋友</span>苏西羊。</span> <span class="ht-sent">苏西羊来和佩奇一起玩了。佩奇爱苏西。苏西爱佩奇。她们是<span class='hl-vocab'>最好的朋友</span>。</span> <span class="ht-sent">佩奇，你和苏西为什么不去你的<span class='hl-vocab'>卧室</span>里玩呢？</span> <span class="ht-sent">佩奇和苏西喜欢在佩奇的卧室里玩。乔治<span class='hl-pattern'>也是</span>。</span> <span class="ht-sent">不，乔治。这个游戏<span class='hl-pattern'>只适合大女孩</span>。去玩你<span class='hl-vocab'>自己的</span>玩具吧。</span> <span class="ht-sent">佩奇和苏西想<span class='hl-vocab'>自己玩</span>。乔治感到有点<span class='hl-vocab'>孤单</span>。</span> <span class="ht-sent">我是一个<span class='hl-vocab'>小仙女公主</span>。我要挥动我的<span class='hl-vocab'>魔法棒</span>把你<span class='hl-vocab'>变成</span>一只青蛙。</span> <span class="ht-sent">妈妈请乔治来帮忙做饼干。你可以<span class='hl-vocab'>舔干净</span>碗里剩下的。</span> <span class="ht-sent">他听到佩奇和苏西在<span class='hl-vocab'>楼上</span>笑。</span> <span class="ht-sent">我们需要一个<span class='hl-vocab'>病人</span>。乔治可以做<span class='hl-vocab'>病人</span>！</span> <span class="ht-sent">好了，乔治，深<span class='hl-vocab'>吸一口气</span>，然后<span class='hl-vocab'>咳嗽</span>。</span> <span class="ht-sent">我给你贴一块<span class='hl-vocab'>创可贴</span>。<span class='hl-pattern'>请张大嘴巴。</span></span> <span class="ht-sent">你非常非常烫。你需要<span class='hl-vocab'>卧床休息</span>三年。</span> <span class="ht-sent"><span class='hl-pattern'>乔治怎么了？</span></span> <span class="ht-sent"><span class='hl-pattern'>别担心，爸爸。这只是在玩游戏。</span> 哦，我明白了。</span> <span class="ht-sent"><span class='hl-pattern'>打扰一下</span>，医生。我<span class='hl-vocab'>肚子很痛</span>。我能听到它在<span class='hl-vocab'>咕噜</span>叫。</span> <span class="ht-sent">我需要很多饼干才能好起来。这是让他好起来的<span class='hl-vocab'>药</span>。</span> <span class="ht-sent">每个人都有一块饼干。大家都很开心。</span></div></div>
+  <div class="ht-en-block"><div class="ht-block-label">🇬🇧 英文台词</div><div class="ht-para"><span class="ht-sent">Peppa is <span class='hl-vocab'>waiting for</span> her <span class='hl-vocab'>best friend</span>, Suzy Sheep.</span> <span class="ht-sent">Suzy Sheep has come to play with Peppa. Peppa loves Suzy. Suzy loves Peppa. They are <span class='hl-vocab'>best friends</span>.</span> <span class="ht-sent">Peppa, why don't you and Suzy play in your <span class='hl-vocab'>bedroom</span>?</span> <span class="ht-sent">Peppa and Suzy love playing in Peppa's bedroom. <span class='hl-pattern'>So does</span> George.</span> <span class="ht-sent">No, George. This game is <span class='hl-pattern'>just for big girls</span>. Go and play with your <span class='hl-vocab'>own</span> toys.</span> <span class="ht-sent">Peppa and Suzy want to play <span class='hl-vocab'>on their own</span>. He feels a bit <span class='hl-vocab'>lonely</span>.</span> <span class="ht-sent">I'm a tiny little <span class='hl-vocab'>fairy princess</span>. I'm going to wave my <span class='hl-vocab'>magic wand</span> and <span class='hl-vocab'>turn</span> you <span class='hl-vocab'>into</span> a frog.</span> <span class="ht-sent">Mummy Pig asks George to help make cookies. You can <span class='hl-vocab'>lick out</span> the bowl.</span> <span class="ht-sent">He hears Peppa and Suzy laughing <span class='hl-vocab'>upstairs</span>.</span> <span class="ht-sent">We need a <span class='hl-vocab'>sick</span> person. George can be the <span class='hl-vocab'>patient</span>!</span> <span class="ht-sent">Now, George, take a big <span class='hl-vocab'>breath</span> in... then <span class='hl-vocab'>cough</span>.</span> <span class="ht-sent">I'll put a <span class='hl-vocab'>plaster</span> on it. <span class='hl-pattern'>Open wide, please.</span></span> <span class="ht-sent">You're very, very hot. You have to <span class='hl-vocab'>stay in bed</span> for three years.</span> <span class="ht-sent"><span class='hl-pattern'>What's wrong with George?</span></span> <span class="ht-sent"><span class='hl-pattern'>Don't worry, Daddy. It's only a game.</span> Oh, I see.</span> <span class="ht-sent"><span class='hl-pattern'>Excuse me</span>, doctor. I have a <span class='hl-vocab'>sore tummy</span>. I can hear it <span class='hl-vocab'>rumbling</span>.</span> <span class="ht-sent">I need lots of cookies to make me better. They're his <span class='hl-vocab'>medicine</span> to make him feel better.</span> <span class="ht-sent">Everyone has a cookie. And everyone is happy.</span></div></div>
+  <div class="ht-legend"><span><span class="hl-vocab">■</span> 重点词汇</span><span><span class="hl-pattern">■</span> 固定句型</span></div>
+</div>
+<div class="sec-head" style="padding-top:16px">
+  <div class="sec-dot" style="background:#7C3AED"></div>
+  <span class="sec-label" style="color:#7C3AED">听力练习 · 听写训练</span>
+  <div class="sec-rule"></div>
+</div>
+<div class="dict-intro"><span>🎧</span><span>听英文朗读，根据中文提示，在输入框打出英文台词（只需字母正确，不区分大小写和标点）</span></div>
+<div id="dictation-list"></div>
+<div class="dict-score-bar" id="dictScoreBar" style="display:none">
+  <span class="dict-score-label">本次得分</span>
+  <span class="dict-score-val" id="dictScoreVal">0 / 0</span>
+  <button class="dict-reset-btn" onclick="resetDictation()">🔄 重新练习</button>
+</div>
+<div class="footer">
+  <div class="footer-emoji">🐑 🩺 🍪</div>
+  <div class="footer-text">喜欢这期内容？收藏备用，每集都会更新～<br>
+  <b>下一集：S01E04 需要密码解锁</b></div>
+  <span class="footer-btn">→ 期待下集</span>
+</div>
+</div><div id="toast"></div>
+<script>
+// ══════════════════════════════════════
+// STATE
+// ══════════════════════════════════════
+let currentRepeat = 1;
+let activeBtn     = null;
+let utterance     = null;
+let repeatCount   = 0;
+let targetRepeats = 1;
+let isForever     = false;
+let currentText   = '';
+let pauseMode     = 0;      // 0=no pause, -1=same duration, N=fixed seconds
+let speakStartTime = 0;     // when current utterance started (ms)
+
+// ══════════════════════════════════════
+// VOICE HELPERS
+// ══════════════════════════════════════
+function getBritishVoice() {
+  const voices = window.speechSynthesis.getVoices();
+  return voices.find(v => v.lang === 'en-GB') ||
+         voices.find(v => v.lang.startsWith('en')) || null;
+}
+
+function makeUtterance(text, rate = 0.88) {
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang  = 'en-GB';
+  u.rate  = rate;
+  u.pitch = 1.05;
+  const v = getBritishVoice();
+  if (v) u.voice = v;
+  return u;
+}
+
+// ══════════════════════════════════════
+// REPEAT SELECTOR
+// ══════════════════════════════════════
+document.querySelectorAll('.rep-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.rep-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const n = parseInt(btn.dataset.n);
+    if (n === 0) { isForever = true;  currentRepeat = 999999; }
+    else         { isForever = false; currentRepeat = n; }
+    document.querySelectorAll('.tts-count').forEach(el => {
+      el.textContent = isForever ? '∞' : '×' + currentRepeat;
+    });
+  });
+});
+
+// ══════════════════════════════════════
+// PAUSE SELECTOR
+// ══════════════════════════════════════
+document.querySelectorAll('.pause-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.pause-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    pauseMode = parseInt(btn.dataset.p);
+    const hint = document.getElementById('pause-hint');
+    if (pauseMode === 0)  hint.textContent = '连续朗读';
+    else if (pauseMode === -1) hint.textContent = '朗读多久，暂停多久（100LS推荐）';
+    else hint.textContent = `每次朗读后暂停 ${pauseMode} 秒`;
+  });
+});
+
+// ══════════════════════════════════════
+// SENTENCE SPEAK
+// ══════════════════════════════════════
+function speak(btn, text) {
+  if (activeBtn === btn && window.speechSynthesis.speaking) { stopAll(); return; }
+  stopAll(false);
+  currentText   = text;
+  repeatCount   = 0;
+  targetRepeats = currentRepeat;
+  activeBtn     = btn;
+  btn.closest('.card').classList.add('playing');
+  btn.classList.add('playing');
+  btn.querySelector('.tts-icon').textContent = '⏸';
+  document.getElementById('stopAllBtn').classList.add('visible');
+  doSpeak();
+}
+
+function doSpeak() {
+  if (!activeBtn) return;
+  if (!isForever && repeatCount >= targetRepeats) { finish(); return; }
+  repeatCount++;
+  showToast(isForever ? `🔊 朗读中 ∞` : `🔊 第 ${repeatCount} / ${targetRepeats} 次`);
+  speakStartTime = Date.now();
+  utterance = makeUtterance(currentText);
+  utterance.onend = () => {
+    if (!activeBtn) return;
+    const elapsed = Date.now() - speakStartTime; // ms the speech took
+    let delayMs = 220;
+    if (pauseMode === -1) delayMs = Math.max(500, elapsed);   // same as speech duration
+    else if (pauseMode > 0) delayMs = pauseMode * 1000;
+    if (pauseMode !== 0) {
+      const sec = pauseMode === -1 ? Math.round(elapsed/1000) : pauseMode;
+      showToast(`⏱ 暂停中 ${sec}s — 试着跟读！`);
+    }
+    setTimeout(doSpeak, delayMs);
+  };
+  utterance.onerror = () => finish();
+  window.speechSynthesis.speak(utterance);
+}
+
+function finish() {
+  if (activeBtn) {
+    activeBtn.querySelector('.tts-icon').textContent = '🔊';
+    activeBtn.classList.remove('playing');
+    activeBtn.closest('.card').classList.remove('playing');
+  }
+  activeBtn = null; utterance = null;
+  document.getElementById('stopAllBtn').classList.remove('visible');
+  hideToast();
+}
+
+function stopAll(showFeedback = true) {
+  window.speechSynthesis.cancel();
+  if (activeBtn) {
+    activeBtn.querySelector('.tts-icon').textContent = '🔊';
+    activeBtn.classList.remove('playing');
+    activeBtn.closest('.card').classList.remove('playing');
+  }
+  activeBtn = null; utterance = null;
+  document.getElementById('stopAllBtn').classList.remove('visible');
+  if (showFeedback) hideToast();
+}
+
+// ══════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+}
+function hideToast() {
+  document.getElementById('toast').classList.remove('show');
+}
+
+// ══════════════════════════════════════
+// VOCAB PILL SPEAK
+// ══════════════════════════════════════
+let wordUtterance = null;
+function speakWord(word) {
+  if (wordUtterance) {
+    window.speechSynthesis.cancel();
+    document.querySelectorAll('.vp.speaking').forEach(el => el.classList.remove('speaking'));
+    wordUtterance = null;
+  }
+  const pill = [...document.querySelectorAll('.vp')].find(p => {
+    const vw = p.querySelector('.vw');
+    return vw && vw.textContent.trim() === word;
+  });
+  if (pill) pill.classList.add('speaking');
+  wordUtterance = makeUtterance(word, 0.8);
+  wordUtterance.onend = wordUtterance.onerror = () => {
+    if (pill) pill.classList.remove('speaking');
+    wordUtterance = null;
+  };
+  window.speechSynthesis.speak(wordUtterance);
+}
+
+// ══════════════════════════════════════
+// DICTATION
+// ══════════════════════════════════════
+const DICT_LINES = [
+  {
+    "zh": "佩奇正在等待她最好的朋友苏西羊。",
+    "en": "Peppa is waiting for her best friend, Suzy Sheep."
+  },
+  {
+    "zh": "你好，苏西。",
+    "en": "Hello, Suzy."
+  },
+  {
+    "zh": "你好，佩奇。",
+    "en": "Hello, Peppa."
+  },
+  {
+    "zh": "苏西羊来和佩奇一起玩了。",
+    "en": "Suzy Sheep has come to play with Peppa."
+  },
+  {
+    "zh": "佩奇爱苏西。苏西爱佩奇。她们是最好的朋友。",
+    "en": "Peppa loves Suzy. Suzy loves Peppa. They are best friends."
+  },
+  {
+    "zh": "佩奇，你和苏西为什么不去你的卧室里玩呢？",
+    "en": "Peppa, why don't you and Suzy play in your bedroom?"
+  },
+  {
+    "zh": "乔治也想一起玩。",
+    "en": "George wants to play, too."
+  },
+  {
+    "zh": "佩奇和苏西喜欢在佩奇的卧室里玩。乔治也是。",
+    "en": "Peppa and Suzy love playing in Peppa's bedroom. So does George."
+  },
+  {
+    "zh": "不，乔治。这个游戏只适合大女孩。去玩你自己的玩具吧。",
+    "en": "No, George. This game is just for big girls. Go and play with your own toys."
+  },
+  {
+    "zh": "佩奇和苏西想自己玩。",
+    "en": "Peppa and Suzy want to play on their own."
+  },
+  {
+    "zh": "我是一个小仙女公主。我要挥动我的魔法棒把你变成一只青蛙。",
+    "en": "I'm a tiny little fairy princess. I'm going to wave my magic wand and turn you into a frog."
+  },
+  {
+    "zh": "乔治不喜欢自己一个人玩。他感到有点孤单。",
+    "en": "George doesn't like playing on his own. He feels a bit lonely."
+  },
+  {
+    "zh": "不，乔治！我在和苏西玩。你得去别的地方玩。",
+    "en": "No, George! I'm playing with Suzy. You have to play somewhere else."
+  },
+  {
+    "zh": "乔治，我需要你的帮助。来帮我做一些饼干吧。",
+    "en": "George, I need your help. Come and help me make some cookies."
+  },
+  {
+    "zh": "谢谢你，乔治。你可以舔干净碗里剩下的。",
+    "en": "Thank you, George. You can lick out the bowl."
+  },
+  {
+    "zh": "我们需要一个病人。乔治可以做病人！",
+    "en": "We need a sick person. George can be the patient!"
+  },
+  {
+    "zh": "乔治，你想做我们的病人吗？",
+    "en": "George, would you like to be our patient?"
+  },
+  {
+    "zh": "好了，乔治，深吸一口气，然后咳嗽。",
+    "en": "Now, George, take a big breath in... then cough."
+  },
+  {
+    "zh": "我觉得你的心脏有点松了。我给你贴一块创可贴。",
+    "en": "I think your heart's a bit loose. I'll put a plaster on it."
+  },
+  {
+    "zh": "请张大嘴巴。",
+    "en": "Open wide, please."
+  },
+  {
+    "zh": "哦，天哪。你非常非常烫。我觉得你需要在床上躺三年。",
+    "en": "Oh, dear. You're very, very hot. I think you have to stay in bed for three years."
+  },
+  {
+    "zh": "乔治怎么了？",
+    "en": "What's wrong with George?"
+  },
+  {
+    "zh": "别担心，爸爸。这只是在玩游戏。",
+    "en": "Don't worry, Daddy. It's only a game."
+  },
+  {
+    "zh": "哦，我明白了。",
+    "en": "Oh, I see."
+  },
+  {
+    "zh": "病人可以有访客吗？",
+    "en": "Can the patient have a visitor?"
+  },
+  {
+    "zh": "只能待一小会儿。他可能会累的。",
+    "en": "Just for a little while. He might get tired."
+  },
+  {
+    "zh": "打扰一下，医生。你能帮帮我吗？我肚子很痛。",
+    "en": "Um, excuse me, doctor. Can you help me? I have a sore tummy."
+  },
+  {
+    "zh": "我能听到它在咕噜叫。",
+    "en": "I can hear it rumbling."
+  },
+  {
+    "zh": "我觉得你饿了，爸爸。",
+    "en": "I think you're hungry, Daddy."
+  },
+  {
+    "zh": "那我觉得我需要很多饼干才能好起来。",
+    "en": "Then I think I need lots of cookies to make me better."
+  },
+  {
+    "zh": "饼干！是的，这些是给乔治的。这是让他好起来的药。",
+    "en": "Cookies! Yes, they're for George. They're his medicine to make him feel better."
+  },
+  {
+    "zh": "每个人都有一块饼干。大家都很开心。",
+    "en": "Everyone has a cookie. And everyone is happy."
+  }
+];
+
+let dictSpeaking = null; // currently speaking dict utterance
+
+function buildDictation() {
+  const container = document.getElementById('dictation-list');
+  DICT_LINES.forEach((line, i) => {
+    const card = document.createElement('div');
+    card.className = 'dict-card';
+    card.innerHTML = `
+      <div class="dict-zh">${i+1}. ${line.zh}</div>
+      <div class="dict-input-row">
+        <button class="dict-speak-btn" id="dsb-${i}" onclick="dictSpeak(${i})" title="点击朗读">🔊</button>
+        <input class="dict-input" id="di-${i}" type="text"
+          placeholder="输入英文台词…"
+          oninput="dictClearResult(${i})"
+          onkeydown="if(event.key==='Enter')dictCheck(${i})">
+        <button class="dict-check-btn" id="dcb-${i}" onclick="dictCheck(${i})">检查</button>
+      </div>
+      <div class="dict-result" id="dr-${i}"></div>`;
+    container.appendChild(card);
+  });
+}
+
+function dictSpeak(i) {
+  // stop any existing dict speech
+  if (dictSpeaking !== null) {
+    window.speechSynthesis.cancel();
+    document.querySelectorAll('.dict-speak-btn.playing').forEach(b => {
+      b.classList.remove('playing'); b.textContent = '🔊';
+    });
+    if (dictSpeaking === i) { dictSpeaking = null; return; }
+  }
+  dictSpeaking = i;
+  const btn = document.getElementById(`dsb-${i}`);
+  btn.classList.add('playing'); btn.textContent = '⏸';
+  const u = makeUtterance(DICT_LINES[i].en, 0.82);
+  u.onend = u.onerror = () => {
+    btn.classList.remove('playing'); btn.textContent = '🔊';
+    dictSpeaking = null;
+  };
+  window.speechSynthesis.speak(u);
+}
+
+function dictClearResult(i) {
+  const dr = document.getElementById(`dr-${i}`);
+  const inp = document.getElementById(`di-${i}`);
+  dr.classList.remove('show','correct','wrong');
+  inp.classList.remove('correct','wrong');
+}
+
+function dictCheck(i) {
+  const inp = document.getElementById(`di-${i}`);
+  const dr  = document.getElementById(`dr-${i}`);
+  const userVal = inp.value.trim();
+  if (!userVal) return;
+  const correct = DICT_LINES[i].en;
+  // Only compare letters (a-z), ignore ALL punctuation, spaces, case
+  const lettersOnly = s => s.toLowerCase().replace(/[^a-z]/g, '');
+  const isCorrect = lettersOnly(userVal) === lettersOnly(correct);
+
+  inp.classList.remove('correct','wrong');
+  inp.classList.add(isCorrect ? 'correct' : 'wrong');
+  dr.classList.remove('show','correct','wrong');
+  dr.classList.add('show', isCorrect ? 'correct' : 'wrong');
+
+  if (isCorrect) {
+    dr.innerHTML = `✅ <strong>完全正确！</strong>`;
+  } else {
+    dr.innerHTML = `❌ 参考答案：<span class="dict-answer">${correct}</span>`;
+  }
+  updateDictScore();
+}
+
+function updateDictScore() {
+  let correct = 0, answered = 0;
+  DICT_LINES.forEach((_, i) => {
+    const inp = document.getElementById(`di-${i}`);
+    if (!inp) return;
+    if (inp.classList.contains('correct') || inp.classList.contains('wrong')) answered++;
+    if (inp.classList.contains('correct')) correct++;
+  });
+  const bar = document.getElementById('dictScoreBar');
+  bar.style.display = answered > 0 ? 'flex' : 'none';
+  document.getElementById('dictScoreVal').textContent = `${correct} / ${answered} 题正确`;
+}
+
+function resetDictation() {
+  DICT_LINES.forEach((_, i) => {
+    const inp = document.getElementById(`di-${i}`);
+    const dr  = document.getElementById(`dr-${i}`);
+    const btn = document.getElementById(`dsb-${i}`);
+    if (inp) { inp.value = ''; inp.classList.remove('correct','wrong'); }
+    if (dr)  { dr.classList.remove('show','correct','wrong'); }
+    if (btn) { btn.classList.remove('playing'); btn.textContent = '🔊'; }
+  });
+  document.getElementById('dictScoreBar').style.display = 'none';
+  if (dictSpeaking !== null) { window.speechSynthesis.cancel(); dictSpeaking = null; }
+}
+
+// ══════════════════════════════════════
+// INIT
+// ══════════════════════════════════════
+window.speechSynthesis.onvoiceschanged = () => {};
+if (window.speechSynthesis.getVoices().length === 0) window.speechSynthesis.getVoices();
+buildDictation();
+</script>
+</body>
+</html>
